@@ -46,50 +46,59 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Add new card</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Edit Card</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;" enctype="multipart/form-data">
                     <div id='container'>
+<?php
+$id = $_GET['id'];
+$sql = "SELECT * FROM cards WHERE id = $id";
+$query = mysqli_query($connect, $sql);
+$num = mysqli_num_rows($query);
+if($num > 0) {
+    while($row = mysqli_fetch_assoc($query)) {
+        $name = $row['name'];
+        $phone = $row['phone'];
+        $birthday = $row['birthday'];
+        $gender = $row['gender'];
+        $code = $row['code'];
+        $hours = $row['hours'];
+    }
+} else {
+    die();
+}
+?>
                     <label style="font-weight: bold;">Name</label>
-                    <input type="text" name="name" required>
+                    <input type="text" name="name" value="<?php echo "$name" ?>" required>
                     <label style="font-weight: bold;">Phone</label>
-                    <input type="text" name="phone" value="+20" required>
+                    <input type="text" name="phone"  value="<?php echo "$phone" ?>" required>
                     <label style="font-weight: bold;">Birthday</label>
-                    <input type="date" name="birthday" required>
+                    <input type="date" name="birthday" value="<?php echo "$birthday" ?>" required>
+                    <label style="font-weight: bold;">Code</label>
+                    <input type="text" name="code" value="<?php echo "$code" ?>" disabled>
                     <label style="font-weight: bold;">Gender</label>
                     <select name="gender" required>
-                        <option value="" hidden>Choose Gender</option>
+                        <option hidden><?php echo "$gender" ?></option>
                         <option>Male</option>
                         <option>Female</option>
                     </select>
-                    <label style="font-weight: bold;" for="formFile" class="form-label">Profile Pic</label>
-                    <input type="file" class="form-control" id="formFile" name="profile-pic">
+                    <label style="font-weight: bold;">Available Hours</label>
+                    <input type="text" name="hours" value="<?php echo "$hours" ?>">
                     </div>
-                    <input type="submit" name="create-card" value="Create Card">
+                    <input type="submit" name="edit-card" value="Edit Card">
                 </form>
 <?php
-if(isset($_POST['create-card'])) {
+if(isset($_POST['edit-card'])) {
     $name = $_POST['name'];
     $phone = $_POST['phone'];
     $birthday = $_POST['birthday'];
     $gender = $_POST['gender'];
-    $hours = "0";
-    if($_FILES["profile-pic"]["name"] !== "") {
-        $targetDir = "students/";
-        $fileName = basename($_FILES["profile-pic"]["name"]);
-        $targetFilePath = $targetDir . $fileName;
-        $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-        if(move_uploaded_file($_FILES["profile-pic"]["tmp_name"], $targetFilePath)){
-            $sql = "INSERT INTO cards (name, phone, birthday, gender, profile_pic, hours) VALUES ('$name', '$phone', '$birthday', '$gender', '$fileName', $hours)";
-            $query = mysqli_query($connect, $sql);
-        }
-    } else {
-        $fileName = "placeholder.jpg";
-        $sql = "INSERT INTO cards (name, phone, birthday, gender, profile_pic, hours) VALUES ('$name', '$phone', '$birthday', '$gender', '$fileName', $hours)";
-        $query = mysqli_query($connect, $sql);
+    $hours = $_POST['hours'];
+    $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', hours='$hours' WHERE id='$id'";
+    $query = mysqli_query($connect, $sql);
+    header('Location:'.$_SERVER['REQUEST_URI']);
     }
-}
 ?>
             </div>
         </div>

@@ -30,13 +30,29 @@
                 <div class="card" style="padding: 30px;margin-right:5%">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> Cards</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
-                    <span style="font-size: 35px;font-weight: bold;">5</span>
+                    <span style="font-size: 35px;font-weight: bold;">
+<?php
+$sql = "SELECT COUNT(*) AS total_cards FROM cards";
+$query = mysqli_query($connect, $sql);
+$row = mysqli_fetch_assoc($query);
+$count = $row['total_cards'];
+echo $count;
+?>
+                    </span>
                     <span style="text-transform: uppercase;">total cards</span>
                 </div>
                 <div class="card" style="padding: 30px;margin-right:5%">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> Today Attendances</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
-                    <span style="font-size: 35px;font-weight: bold;">5</span>
+                    <span style="font-size: 35px;font-weight: bold;">
+<?php
+$sql = "SELECT COUNT(*) AS total_attend FROM sessions";
+$query = mysqli_query($connect, $sql);
+$row = mysqli_fetch_assoc($query);
+$count = $row['total_attend'];
+echo $count;
+?>
+                    </span>
                     <span style="text-transform: uppercase;">total Today Attendances</span>
                 </div>
             </div>
@@ -44,13 +60,21 @@
                 <div class="card" style="padding: 30px;margin-right:5%">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> Users</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
-                    <span style="font-size: 35px;font-weight: bold;">5</span>
+                    <span style="font-size: 35px;font-weight: bold;">
+                    <?php
+$sql = "SELECT COUNT(*) AS total_users FROM users";
+$query = mysqli_query($connect, $sql);
+$row = mysqli_fetch_assoc($query);
+$count = $row['total_users'];
+echo $count;
+?>
+                    </span>
                     <span style="text-transform: uppercase;">total uesrs</span>
                 </div>
             </div>
         <div style="margin-top: 5%;margin-left: 5%;">
-        <h5 style="text-align: center;text-transform:uppercase">Recently Added Of <?php echo date("F") ?></h5>
-        <table class="table table-striped table-bordered table-responsive">
+        <table class="table caption-top table-striped table-bordered table-responsive">
+        <caption style="text-transform: uppercase;text-align:center;font-weight:bold">Recently Added Of <?php echo date("F") ?></caption>
         <thead class="table-primary">
             <tr>
                 <th>Name</th>
@@ -59,11 +83,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+<?php
+$sql = "SELECT * FROM cards ORDER BY id DESC LIMIT 4";
+$query = mysqli_query($connect, $sql);
+$num = mysqli_num_rows($query);
+if($num > 0) {
+    while($row = mysqli_fetch_assoc($query)) {
+        $name = $row['name'];
+        $gender = $row['gender'];
+        $code = $row['code'];
+        echo "
+        <tr>
+            <td>$name</td>
+            <td>$gender</td>
+            <td>$code</td>
+        </tr>
+        ";
+    }
+}
+?>
         </tbody>
         </table>
         </div>

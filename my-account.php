@@ -3,7 +3,7 @@
     <title>Kids Area Dashboard | Sary Academy</title>
     <?php include('links.php'); ?>
     <style>
-    input[type="number"] {
+    input[type="text"], input[type="email"], input[type="password"], input[type="date"],select {
         padding: 5px;
         border: 1px solid #CCC;
         border-radius: 5px;
@@ -46,46 +46,45 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Edit hour price</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Edit Account</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;" enctype="multipart/form-data">
                     <div id='container'>
-                        <label style="font-weight: bold;">Hour Price</label>
-                        <input type="number" name="hour-price" value=
-                        <?php
-                        $sql_select = "SELECT * FROM price";
-                        $query_select = mysqli_query($connect, $sql_select);   
-                        $num = mysqli_num_rows($query_select);
-                        if($num > 0) {
-                            while($row = mysqli_fetch_array($query_select)) {
-                                $price_rate = $row['price'];
-                                echo "$price_rate";
-                            }
-                        } else {
-                            echo "0";
-                        }
-                        ?> required>
+<?php
+$sql = "SELECT * FROM users WHERE email = '$email'";
+$query = mysqli_query($connect, $sql);
+    while($row = mysqli_fetch_assoc($query)) {
+        $name = $row['name'];
+        $role = $row['role'];
+        $phone = $row['phone'];
+        $gender = $row['gender'];
+    }
+?>
+                    <label style="font-weight: bold;">Name</label>
+                    <input type="text" name="name" value="<?php echo "$name" ?>" required>
+                    <label style="font-weight: bold;">Phone</label>
+                    <input type="text" name="phone"  value="<?php echo "$phone" ?>" required>
+                    <label style="font-weight: bold;">Gender</label>
+                    <select name="gender" required>
+                        <option hidden><?php echo "$gender" ?></option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                    <label style="font-weight: bold;">Role</label>
+                    <input type="text" name="role"  value="<?php echo "$role" ?>" disabled>
                     </div>
-                    <input type="submit" name="edit-price" value="Edit Hour Price">
+                    <input type="submit" name="edit-card" value="Edit Account">
                 </form>
 <?php
-if(isset($_POST['edit-price'])) {
-    $price = $_POST['hour-price'];
-
-    $sql = "SELECT * FROM price";
+if(isset($_POST['edit-card'])) {
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $gender = $_POST['gender'];
+    $sql = "UPDATE users SET name='$name', phone='$phone', gender='$gender' WHERE email='$email'";
     $query = mysqli_query($connect, $sql);
-    $num = mysqli_num_rows($query);
-    if($num > 0) {
-        $sql = "UPDATE price SET price = '$price'";
-        $query = mysqli_query($connect, $sql);    
-        header('Location: edit-hour-price.php');
-    } else {
-        $sql = "INSERT INTO price (price) VALUES ('$price')";
-        $query = mysqli_query($connect, $sql);    
-        header('Location: edit-hour-price.php');
+    header('Location:'.$_SERVER['REQUEST_URI']);
     }
-}
 ?>
             </div>
         </div>

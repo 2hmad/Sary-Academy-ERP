@@ -12,13 +12,10 @@ a {
     color:black !important
 }
 .menu-dashboard {
-    min-height: 655px;
     background:#1D2362;
     border-radius: 10px;
     padding: 15px;
-    width: 380px;
-    height: 655px;
-    position: fixed;
+    position: relative;
 }
 .menu-container {
     margin-top: 5%;
@@ -34,7 +31,7 @@ a {
     border: none;
 }
 .menu-links {
-    margin-top: 55px;
+    margin-top: 30px;
 }
 .dashboard-menu.active,
 .add-admin-menu.active,

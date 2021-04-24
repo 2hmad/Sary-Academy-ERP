@@ -39,6 +39,18 @@
 <body style="background-color:#FAFAFA;padding:10px">
 <?php include('header.php'); ?>
 
+<?php
+    $email = $_SESSION['email'];
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $query = mysqli_query($connect, $sql);
+    while($row = mysqli_fetch_assoc($query)) {
+        $role = $row['role'];
+    }
+    if($role == "Admin") {
+        header('Location: no_permissions.php');
+    }
+?>
+
 <div class="container" style="max-width: 95%;margin-top: 70px;">
     <div class="row">
         <div class="col-lg-3">
@@ -64,10 +76,31 @@
                         <option>Female</option>
                     </select>
                     <label style="font-weight: bold;">Phone</label>
-                    <input type="text" name="admin-phone" value="+20" required>
+                    <input type="text" name="admin-phone" value="+20">
                     </div>
                     <input type="submit" name="create-admin" value="Create Admin">
                 </form>
+<?php
+if(isset($_POST['create-admin'])){
+    $name = $_POST['admin-name'];
+    $email = $_POST['admin-email'];
+    $password = sha1($_POST['admin-password']);
+    $gender = $_POST['admin-gender'];
+    $phone = $_POST['admin-phone'];
+    $role = "Admin";
+
+    $sql_select = "SELECT * FROM users WHERE email = '$email'";
+    $query_select = mysqli_query($connect, $sql_select);
+    $num = mysqli_num_rows($query_select);
+    if($num > 0) {
+        echo "<script>alert('This admin has been registered before')</script>";
+    } else {
+        $sql = "INSERT INTO users (name, email, password, gender, phone, role) VALUES ('$name', '$email', '$password', '$gender', '$phone', '$role')";
+        $query = mysqli_query($connect, $sql);
+        header('Location: add-admin.php');
+    }
+}
+?>
             </div>
         </div>
     </div>

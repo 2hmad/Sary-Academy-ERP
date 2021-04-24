@@ -3,7 +3,7 @@
     <title>Kids Area Dashboard | Sary Academy</title>
     <?php include('links.php'); ?>
     <style>
-    input[type="number"] {
+    input[type="text"], input[type="email"], input[type="password"], input[type="date"],select {
         padding: 5px;
         border: 1px solid #CCC;
         border-radius: 5px;
@@ -46,44 +46,42 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Edit hour price</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Change Password</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;" enctype="multipart/form-data">
                     <div id='container'>
-                        <label style="font-weight: bold;">Hour Price</label>
-                        <input type="number" name="hour-price" value=
-                        <?php
-                        $sql_select = "SELECT * FROM price";
-                        $query_select = mysqli_query($connect, $sql_select);   
-                        $num = mysqli_num_rows($query_select);
-                        if($num > 0) {
-                            while($row = mysqli_fetch_array($query_select)) {
-                                $price_rate = $row['price'];
-                                echo "$price_rate";
-                            }
-                        } else {
-                            echo "0";
-                        }
-                        ?> required>
+<?php
+$sql = "SELECT * FROM users WHERE email = '$email'";
+$query = mysqli_query($connect, $sql);
+    while($row = mysqli_fetch_assoc($query)) {
+        $password = $row['password'];
+    }
+?>
+                    <label style="font-weight: bold;">Old Password</label>
+                    <input type="password" name="old-password" required>
+                    <label style="font-weight: bold;">New Password</label>
+                    <input type="password" name="new-password" required>
                     </div>
-                    <input type="submit" name="edit-price" value="Edit Hour Price">
+                    <input type="submit" name="change-password" value="Change Password">
                 </form>
 <?php
-if(isset($_POST['edit-price'])) {
-    $price = $_POST['hour-price'];
-
-    $sql = "SELECT * FROM price";
-    $query = mysqli_query($connect, $sql);
-    $num = mysqli_num_rows($query);
-    if($num > 0) {
-        $sql = "UPDATE price SET price = '$price'";
-        $query = mysqli_query($connect, $sql);    
-        header('Location: edit-hour-price.php');
+if(isset($_POST['change-password'])) {
+    $old = sha1($_POST['old-password']);
+    $new = sha1($_POST['new-password']);
+    if("$old" === "$password") {
+        $sql = "UPDATE users SET password='$new' WHERE email='$email'";
+        $query = mysqli_query($connect, $sql);
+        echo "<div class='alert alert-success'>Your password has been changed, You will redirect to login in 10 Sec</div>";
+        echo '
+        <script>
+        window.setTimeout(function(){
+            window.location.href = "logout.php";
+        }, 10000);
+        </script>
+        ';
     } else {
-        $sql = "INSERT INTO price (price) VALUES ('$price')";
-        $query = mysqli_query($connect, $sql);    
-        header('Location: edit-hour-price.php');
+        echo "<div class='alert alert-danger'>Old password does not match</div>";
     }
 }
 ?>
