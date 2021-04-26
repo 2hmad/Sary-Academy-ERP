@@ -97,7 +97,7 @@
             $sql_update = "UPDATE sessions SET status='Complete' WHERE date='$date' AND end_time <= '$current_time'";
             $query_update = mysqli_query($connect, $sql_update);            
         } else {
-            echo '<span>No data available at this moment</span>';
+            echo '<caption>No data available at this moment</caption>';
         }
 ?>
         </tbody>

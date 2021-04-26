@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Kids Area Dashboard | Sary Academy</title>
+    <title>لوحة تحكم منطقة الألعاب | اكاديمية ساري</title>
     <?php include('links.php'); ?>
     <style>
     input[type="text"] {
@@ -46,20 +46,20 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Activities</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> الجلسات</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
-<button class="btn btn-success refresh" onclick="location.reload();" style="width: auto;display:block;margin-bottom:2%"><i class="far fa-sync"></i> Refresh</button>
-
+<button class="btn btn-success refresh" onclick="location.reload();" style="width: auto;display:block;margin-bottom:2%"><i class="far fa-sync"></i> تحديث</button>
 <?php
         echo '
         <table class="table table-bordered">
         <thead class="table-dark">
             <tr>
-                <th scope="col">Code</th>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-                <th scope="col">Status</th>
+                <th scope="col">الرقم التعريفي</th>
+                <th scope="col">التاريخ</th>
+                <th scope="col">بداية الوقت</th>
+                <th scope="col">نهاية الوقت</th>
+                <th scope="col">الحالة</th>
             </tr>
         </thead>
         <tbody style="vertical-align: baseline">';
@@ -74,32 +74,36 @@
         }
         $num_per_page = 10;
         $from = ($page_number-1)*$num_per_page;        
-        $sql = "SELECT * FROM activities WHERE date='$date' ORDER BY id DESC LIMIT $from, $num_per_page";
+        $sql = "SELECT * FROM sessions WHERE date='$date' ORDER BY id DESC LIMIT $from, $num_per_page";
         $query = mysqli_query($connect, $sql);
         $num = mysqli_num_rows($query);
         if($num > 0) {
             while($row = $query->fetch_assoc()) {
                 $code = $row['code'];
                 $date = $row['date'];
-                $time = $row['time'];
-                $status = $row['tag'];
+                $start_time = $row['start_time'];
+                $end_time = $row['end_time'];
+                $status = $row['status'];
                 echo '
                     <tr>
                         <td>'.$code.'</td>
                         <td>'.$date.'</td>
-                        <td>'.$time.'</td>
+                        <td>'.$start_time.'</td>
+                        <td>'.$end_time.'</td>
                         <td>'.$status.'</td>
                     </tr>
                 ';  
             }
+            $sql_update = "UPDATE sessions SET status='Complete' WHERE date='$date' AND end_time <= '$current_time'";
+            $query_update = mysqli_query($connect, $sql_update);            
         } else {
-            echo '<caption>No data available at this moment</ؤش>';
+            echo '<span>لا توجد بيانات متاحة الان</span>';
         }
 ?>
         </tbody>
     </table>
     <?php
-    $sql = "SELECT * FROM activities WHERE date='$date'";
+    $sql = "SELECT * FROM sessions WHERE date='$date'";
     $query = mysqli_query($connect, $sql);
     $totalItems = mysqli_num_rows($query);
 
@@ -108,38 +112,7 @@
     }
 ?>
 
-<form method="POST" style="width:auto">
-    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="far fa-trash"></i> Delete today's activities</button>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Are Your Sure ?</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure to do this ?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="delete">Confirm</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<?php
-if(isset($_POST['delete'])) {
-    $date = date("Y-m-d");
-    $sql = "DELETE FROM activities WHERE date = '$date'";
-    $query = mysqli_query($connect, $sql);
-    header('Location: activities.php');
-}
-?>
-</form>
-
-<nav aria-label="Page navigation example" style="margin-left:auto;width:auto">
+<nav aria-label="Page navigation example">
   <ul class="pagination" style="float: right;">
     <li class="page-item">
       <a class="page-link" href="?page=<?php if(($page_number - 1) > 0){ echo $page_number - 1; }else{ echo $page_number; }?>" aria-label="Previous">
@@ -154,6 +127,7 @@ if(isset($_POST['delete'])) {
     </li>
   </ul>
 </nav>
+
 </div>
     </div>
     </div>

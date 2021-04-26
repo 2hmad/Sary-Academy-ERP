@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Kids Area Dashboard | Sary Academy</title>
+    <title>لوحة تحكم منطقة الألعاب | اكاديمية ساري</title>
     <?php include('links.php'); ?>
     <style>
     input[name="email-login"]{
@@ -31,13 +31,13 @@
 <div class="container" style="background-color: white;position: relative;top: 15%;min-height:500px;box-shadow: 0 0 30px -9px #B0B0B0;border-radius:15px">
     <div class="row">
         <div class="col-lg-5" style="padding: 0px 0px 0px 55px;min-height:500px">
-            <h4 style="margin-top:15%;margin-bottom: 5%;text-transform:uppercase;font-weight:bold;font-size: 27px;">Log into Kidsarea</h4>
+            <h4 style="margin-top:15%;margin-bottom: 5%;text-transform:uppercase;font-weight:bold;font-size: 27px;">تسجيل الدخول</h4>
             <form method="POST">
-            <input type="text" name="email-login" placeholder="Enter your email address">
-            <input type="password" name="pass-login" placeholder="Enter your password">
-            <a href="#" style="display:block;">Forget your password?</a>
+            <input type="text" name="email-login" placeholder="ادخل بريدك الالكتروني">
+            <input type="password" name="pass-login" placeholder="ادخل كلمة المرور">
+            <a href="#" style="display:block;">هل نسيت كلمة المرور ؟</a>
             
-            <input type="submit" name="login" class="btn btn-dark" value="Sign In" style="width: 200px;margin-top:5%;display:block">
+            <input type="submit" name="login" class="btn btn-dark" value="تسجيل الدخول" style="width: 200px;margin-top:5%;display:block">
             </form>
 <?php
 if(isset($_SESSION['email'])) {
@@ -59,7 +59,7 @@ if(isset($_SESSION['email'])) {
 }
 ?>
         </div>
-        <div class="col-lg" style="background: url('pics/wooden-playground-area.jpg');background-position: 5px;border-top-right-radius: 15px;border-bottom-right-radius: 15px;">
+        <div class="col-lg" style="background: url('../pics/wooden-playground-area.jpg');background-position: 5px;border-top-right-radius: 15px;border-bottom-right-radius: 15px;">
         
         </div>
     </div>

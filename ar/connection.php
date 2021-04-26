@@ -12,5 +12,4 @@ mysqli_query($connect,"SET CHARACTER SET 'utf8'");
 
 ob_start();
 session_start();
-
 ?>

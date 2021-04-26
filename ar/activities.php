@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Kids Area Dashboard | Sary Academy</title>
+    <title>لوحة تحكم منطقة الألعاب | اكاديمية ساري</title>
     <?php include('links.php'); ?>
     <style>
     input[type="text"] {
@@ -46,20 +46,20 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Activities</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> اخر الانشطة</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
-<button class="btn btn-success refresh" onclick="location.reload();" style="width: auto;display:block;margin-bottom:2%"><i class="far fa-sync"></i> Refresh</button>
+<button class="btn btn-success refresh" onclick="location.reload();" style="width: auto;display:block;margin-bottom:2%"><i class="far fa-sync"></i> تحديث</button>
 
 <?php
         echo '
         <table class="table table-bordered">
         <thead class="table-dark">
             <tr>
-                <th scope="col">Code</th>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-                <th scope="col">Status</th>
+                <th scope="col">الرقم التعريفي</th>
+                <th scope="col">التاريخ</th>
+                <th scope="col">الوقت</th>
+                <th scope="col">الحالة</th>
             </tr>
         </thead>
         <tbody style="vertical-align: baseline">';
@@ -93,7 +93,7 @@
                 ';  
             }
         } else {
-            echo '<caption>No data available at this moment</ؤش>';
+            echo '<caption>لا توجد بيانات متاحة</caption>';
         }
 ?>
         </tbody>
@@ -109,21 +109,21 @@
 ?>
 
 <form method="POST" style="width:auto">
-    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="far fa-trash"></i> Delete today's activities</button>
+    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="far fa-trash"></i> حذف انشطة اليوم</button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Are Your Sure ?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">هل انت متأكد ؟</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you sure to do this ?
+        هل انت متأكد من هذا الإجراء
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="delete">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+        <button type="submit" class="btn btn-primary" name="delete">تأكيد الحذف</button>
       </div>
     </div>
   </div>
