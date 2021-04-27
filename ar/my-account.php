@@ -46,7 +46,7 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Edit Account</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> تعديل بيانات الحساب</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;" enctype="multipart/form-data">
@@ -61,20 +61,25 @@ $query = mysqli_query($connect, $sql);
         $gender = $row['gender'];
     }
 ?>
-                    <label style="font-weight: bold;">Name</label>
+                    <label style="font-weight: bold;">الاسم</label>
                     <input type="text" name="name" value="<?php echo "$name" ?>" required>
-                    <label style="font-weight: bold;">Phone</label>
+                    <label style="font-weight: bold;">رقم الهاتف</label>
                     <input type="text" name="phone"  value="<?php echo "$phone" ?>" required>
-                    <label style="font-weight: bold;">Gender</label>
+                    <label style="font-weight: bold;">الجنس</label>
                     <select name="gender" required>
-                        <option hidden><?php echo "$gender" ?></option>
-                        <option>Male</option>
-                        <option>Female</option>
+                        <option hidden><?php 
+                        if($gender == "Male") {
+                            echo "ذكر";
+                        } else {
+                            echo "انثي";
+                        }?></option>
+                        <option value="Male">ذكر</option>
+                        <option value="Female">انثي</option>
                     </select>
-                    <label style="font-weight: bold;">Role</label>
+                    <label style="font-weight: bold;">نوع الحساب</label>
                     <input type="text" name="role"  value="<?php echo "$role" ?>" disabled>
                     </div>
-                    <input type="submit" name="edit-card" value="Edit Account">
+                    <input type="submit" name="edit-card" value="تعديل الحساب">
                 </form>
 <?php
 if(isset($_POST['edit-card'])) {

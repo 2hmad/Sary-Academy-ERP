@@ -27,10 +27,12 @@
     </style>
 </head>
 <body style="background-color:#FAFAFA">
-
 <div class="container" style="background-color: white;position: relative;top: 15%;min-height:500px;box-shadow: 0 0 30px -9px #B0B0B0;border-radius:15px">
     <div class="row">
         <div class="col-lg-5" style="padding: 0px 0px 0px 55px;min-height:500px">
+
+            <a href="ar/"><img src="pics/egypt-flag.png" style="position: absolute;top: 5%;"></a>
+
             <h4 style="margin-top:15%;margin-bottom: 5%;text-transform:uppercase;font-weight:bold;font-size: 27px;">Log into Kidsarea</h4>
             <form method="POST">
             <input type="text" name="email-login" placeholder="Enter your email address">
