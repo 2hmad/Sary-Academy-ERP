@@ -39,6 +39,8 @@
 <body style="background-color:#FAFAFA;padding:10px">
 <?php include('header.php'); ?>
 
+<audio src="Alarm.mp3"></audio>
+
 <div class="container" style="max-width: 95%;margin-top: 70px;">
     <div class="row">
         <div class="col-lg-3">
@@ -86,18 +88,18 @@
                 $status = $row['status'];
                 echo '
                     <tr>
-                        <td>'.$code.'</td>
+                        <td><span class="code">'.$code.'</span></td>
                         <td>'.$date.'</td>
                         <td>'.$start_time.'</td>
-                        <td>'.$end_time.'</td>
-                        <td>'.$status.'</td>
+                        <td><span class="end-time">'.$end_time.'</span></td>
+                        <td><span class="msg">'.$status.'</span></td>
                     </tr>
-                ';  
+                ';
             }
             $sql_update = "UPDATE sessions SET status='Complete' WHERE date='$date' AND end_time <= '$current_time'";
             $query_update = mysqli_query($connect, $sql_update);            
         } else {
-            echo '<span>لا توجد بيانات متاحة الان</span>';
+            echo '<caption>لا توجد بيانات متاحة الان</span>';
         }
 ?>
         </tbody>
@@ -134,4 +136,61 @@
 </div>
 </body>
 <?php include('scripts.php') ?>
+<script>
+const convertTimeString = (time) => {
+  const timeArray = time.split(":").map((el) => parseInt(el));
+  if (time.slice(-2) === "pm") timeArray[0] += 12;
+  console.log(timeArray);
+  return timeArray;
+};
+const getTimeDiffrence = (start, end) => {
+  if (start[0] > end[0]) return [0, 0, 0];
+  if (start[0] === end[0] && start[1] > end[1]) return [0, 0, 0];
+  if (start[0] === end[0] && start[1] === end[1] && start[2] > end[2])
+    return [0, 0, 0];
+  const hoursLeft = end[0] - start[0];
+  const minutesLeft = end[1] - start[1];
+  const secondsLeft = end[2] - start[2];
+  return [hoursLeft, minutesLeft, secondsLeft];
+};
+
+const convertTimeToMs = (timeArray) => {
+  let timeInMs = 0;
+  timeInMs += timeArray[0] * 60 * 60 * 1000;
+  timeInMs += timeArray[1] * 60 * 1000;
+  timeInMs += timeArray[2] * 1000;
+  return timeInMs;
+};
+function setAlarm(timeStart, timeEnd, callback) {
+  const timeStartArray = convertTimeString(timeStart);
+  const timeEndArray = convertTimeString(timeEnd);
+  const timeLeft = getTimeDiffrence(timeStartArray, timeEndArray);
+  const timeLeftInMs = convertTimeToMs(timeLeft);
+  setTimeout(() => {
+    callback();
+  }, timeLeftInMs);
+}
+
+window.onload = function () {
+  const timeStart = document.querySelector(".current-time").innerHTML;
+  const timeEnd = document.querySelector(".end-time").innerHTML;
+
+  var msg = document.querySelector(".msg").innerHTML;
+  if(msg === "Complete") {
+
+  } else {
+    
+    setAlarm(timeStart, timeEnd, () => {
+    document.querySelector("audio").play().then(()=>{
+      setTimeout(() => {
+        alert('hey')
+      }, 0);
+    })
+  });
+
+  }
+};
+
+</script>
+
 </html>

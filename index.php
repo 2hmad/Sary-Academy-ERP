@@ -54,6 +54,7 @@ if(isset($_SESSION['email'])) {
         if($num > 0) {
             header('Location: dashboard.php');
             $_SESSION['email'] = $email;
+            ob_end_flush();
         } else {
             echo "<div class='alert alert-danger' style='width:90%;margin-top:2%'>Email Address / Password is incorrect</div>";
         }

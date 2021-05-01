@@ -30,8 +30,10 @@ while($row = mysqli_fetch_assoc($query)) {
                 echo '<a href="add-admin.php"><button class="menu-link add-admin-menu"><i class="fal fa-user" style="margin-right: 5%;"></i> اضافة مشرف</button></a>';
             }
             ?>
+            <a href="attendance.php"><button class="menu-link attendance-menu"><i class="far fa-clipboard-user" style="margin-right: 5%;"></i> الحضور والانصراف</button></a>
             <a href="add-new-card.php" hidden><button class="menu-link add-new-card-menu"><i class="fal fa-id-card" style="margin-right: 5%;"></i> اضافة كارت جديد</button></a>
             <a href="edit-hour-price.php"><button class="menu-link edit-hour-price-menu"><i class="fal fa-money-bill" style="margin-right: 5%;"></i> تعديل سعر الساعه</button></a>
+            <a href="add-hours.php"><button class="menu-link add-hours-menu"><i class="fal fa-id-card" style="margin-right: 5%;"></i> اضافة ساعات</button></a>
             <a href="activities.php"><button class="menu-link activities-menu"><i class="fal fa-exchange" style="margin-right: 5%;"></i> اخر النشاطات</button></a>
             <a href="sessions.php"><button class="menu-link sessions-menu"><i class="far fa-plug" style="margin-right: 5%;"></i> الجلسات</button></a>
             <a href="card-verification.php"><button class="menu-link card-verify-menu"><i class="fal fa-users" style="margin-right: 5%;"></i> التحقق من كارت</button></a>

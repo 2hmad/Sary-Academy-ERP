@@ -27,7 +27,7 @@
         </div>
         <div class="col-lg">
             <div class="row" style="margin-left: 5%;">
-                <div class="card" style="padding: 30px;margin-right:5%">
+                <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> Cards</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
@@ -41,12 +41,13 @@ echo $count;
                     </span>
                     <span style="text-transform: uppercase;">total cards</span>
                 </div>
-                <div class="card" style="padding: 30px;margin-right:5%">
+                <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> Today Attendances</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
 <?php
-$sql = "SELECT COUNT(*) AS total_attend FROM sessions";
+$date = date("Y-m-d");
+$sql = "SELECT COUNT(*) AS total_attend FROM sessions WHERE date='$date'";
 $query = mysqli_query($connect, $sql);
 $row = mysqli_fetch_assoc($query);
 $count = $row['total_attend'];
@@ -57,11 +58,11 @@ echo $count;
                 </div>
             </div>
             <div class="row" style="margin-left: 5%;margin-top:3%">
-                <div class="card" style="padding: 30px;margin-right:5%">
+                <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> Users</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
-                    <?php
+<?php
 $sql = "SELECT COUNT(*) AS total_users FROM users";
 $query = mysqli_query($connect, $sql);
 $row = mysqli_fetch_assoc($query);

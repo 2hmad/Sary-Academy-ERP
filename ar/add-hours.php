@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Kids Area Dashboard | Sary Academy</title>
+    <title>لوحة تحكم منطقة الألعاب | اكاديمية ساري</title>
     <?php include('links.php'); ?>
     <style>
     input[type="text"], input[type="number"] {
@@ -27,7 +27,6 @@
         border: 1px solid #1d2362;
         font-weight: bold;
         outline: none;
-        width: 100px;
         margin-left: auto;
         margin-right: auto;
         margin-top: 5%;
@@ -57,14 +56,14 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Add Hours</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> اضافة ساعات</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;margin-bottom:5%" enctype="multipart/form-data">
                 <div id='container'>
-                    <label style="font-weight: bold;">Card ID</label>
+                    <label style="font-weight: bold;">الرقم التعريفي للكارت</label>
                     <input type="text" name="code" required>
-                    <label style="font-weight: bold;">Hours <span class="total">(Total price: <span class="price"></span> )</span></label>
+                    <label style="font-weight: bold;">الساعات <span class="total">(المبلغ الاجمالي: <span class="price"></span> )</span></label>
                     <input type="number" name="hours" class="hours-num" value="0" required>
                     <?php
                     $sql = "SELECT * FROM price";
@@ -76,7 +75,7 @@
                     
                     <span class="hidden-price" style="display:none"><?php echo "$price" ?></span>
                 </div>
-                    <input type="submit" class="hours-btn" name="add-hours" value="Add Hours">
+                    <input type="submit" class="hours-btn" name="add-hours" value="اضافة ساعات للكارت">
                 </form>
 <?php
 
@@ -130,7 +129,7 @@ var input  = document.querySelector("[type=number]"),
     calculate = document.querySelector(".hidden-price").innerHTML;
 
 function keydownHandler() {
-  output.innerHTML = this.value * calculate + " EGP";
+  output.innerHTML = this.value * calculate + " جنيه";
 }
 
 input.addEventListener("input", keydownHandler);

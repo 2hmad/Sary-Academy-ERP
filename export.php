@@ -2,8 +2,8 @@
       //export.php  
  if(isset($_POST["export"]))  
  {  
-      $connect = mysqli_connect("localhost", "root", "", "kidsarea");  
-      header('Content-Type: text/csv; charset=utf-8');  
+     include('connection.php');
+     header('Content-Type: text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=data.csv');  
       $output = fopen("php://output", "w");  
       fputcsv($output, array('ID', 'Name', 'Phone', 'Birthday', 'Gender', 'Code', 'Profile Pic', 'Hours'));  

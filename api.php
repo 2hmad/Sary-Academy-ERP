@@ -1,24 +1,31 @@
 <?php
 
 $host = "localhost";
-$user = "root";
-$pass = "";
-$db = "kidsarea";
+$user = "aqtardes_kids";
+$pass = "kidsarea";
+$db = "aqtardes_kidsarea";
+
+//$user = "root";
+//$pass = "";
+//$db = "kidsarea";
 $connect = mysqli_connect($host, $user, $pass, $db) or die("Can't connect with database");
 
 date_default_timezone_set("Africa/Cairo");
 
-if(isset($_GET['tag']) && isset($_GET['code'])) {
-    if($_GET['tag'] == "pressed") {
-        $code = $_GET['code'];
+$api_key = "f13b5611-170a-4174-9dfb-f5d68dbde960";
+if(isset($_POST['key'])) {
+if($_POST['key'] == $api_key) {
+if(!empty($_POST['code']) && !empty($_POST['tag'])){
+
+    $code = $_POST['code'];
+    $tag = $_POST['tag'];
+
+    if($tag == "pressed") {
         $sql_check = "SELECT * FROM cards WHERE code = '$code'";
         $query_check = mysqli_query($connect, $sql_check);
         $num_check = mysqli_num_rows($query_check);
         if($num_check > 0) {
-            $response = array(
-                'status' => false,
-                'message' => 'This User is Registerd Before'
-            );
+            echo "This User is Registerd Before";
             $date = date("Y-m-d");
             $time = date("h:i:sa");
 
@@ -34,13 +41,9 @@ if(isset($_GET['tag']) && isset($_GET['code'])) {
             
             $sql_activity = "INSERT INTO activities (code, date, time, tag) VALUES ('$code', '$date', '$time', 'New')";
             $query_activity = mysqli_query($connect, $sql_activity);
-            $response = array(
-                'status' => true,
-                'message' => 'Successful'
-            );
+            echo "the card has been added";
         }
-    } elseif($_GET['tag'] == "released") {
-        $code = $_GET['code'];
+    } elseif($tag == "released") {
         $sql_check = "SELECT * FROM cards WHERE code = '$code'";
         $query_check = mysqli_query($connect, $sql_check);
         $num_check = mysqli_num_rows($query_check);
@@ -52,37 +55,37 @@ if(isset($_GET['tag']) && isset($_GET['code'])) {
             $sql_hour = "SELECT * FROM cards WHERE code='$code'";
             $query_hour = mysqli_query($connect, $sql_hour);
             while($row_hour = mysqli_fetch_array($query_hour)) {
-                $hour = $row_hour['hours'];
-                if($hour > 0 ) {
-                    $sql = "INSERT INTO sessions (code, date, start_time, end_time) VALUES ('$code', '$date', '$start_time', '$end_time')";
-                    $query = mysqli_query($connect, $sql);
-                    $total_hours = $hour - 1;
-                    $sql_update_hour = "UPDATE cards SET hours = '$total_hours' WHERE code='$code'";
-                    $query_update_hour = mysqli_query($connect, $sql_update_hour);
-                    $date = date("Y-m-d");
-                    $time = date("h:i:sa");        
-                    $sql_activity = "INSERT INTO activities (code, date, time, tag) VALUES ('$code', '$date', '$time', 'Timer Started')";
-                    $query_activity = mysqli_query($connect, $sql_activity);        
-                    $response = array(
-                        'status' => true,
-                        'message' => 'Timer Started'
-                    );        
+
+                $sql_stop = "SELECT * FROM sessions WHERE code = '$code' AND date='$date' AND status=''";
+                $query_stop = mysqli_query($connect, $sql_stop);
+                if(mysqli_num_rows($query_stop) > 0) {
+                    $query_s = mysqli_query($connect, "UPDATE sessions SET status='Stopped' WHERE code = '$code' AND date='$date' AND status=''");
+                    echo "Timer Stopped";
+
+                    } else {
+                        $hour = $row_hour['hours'];
+                        if($hour > 0 ) {        
+                        $sql = "INSERT INTO sessions (code, date, start_time, end_time) VALUES ('$code', '$date', '$start_time', '$end_time')";
+                        $query = mysqli_query($connect, $sql);
+                        $total_hours = $hour - 1;
+                        $sql_update_hour = "UPDATE cards SET hours = '$total_hours' WHERE code='$code'";
+                        $query_update_hour = mysqli_query($connect, $sql_update_hour);
+                        $date = date("Y-m-d");
+                        $time = date("h:i:sa");        
+                        $sql_activity = "INSERT INTO activities (code, date, time, tag) VALUES ('$code', '$date', '$time', 'Timer Started')";
+                        $query_activity = mysqli_query($connect, $sql_activity);        
+                        echo "Timer Started";
                 } else {
                     $date = date("Y-m-d");
                     $time = date("h:i:sa");        
                     $sql_activity = "INSERT INTO activities (code, date, time, tag) VALUES ('$code', '$date', '$time', 'Recharge card')";
-                    $query_activity = mysqli_query($connect, $sql_activity);        
-                    $response = array(
-                        'status' => true,
-                        'message' => 'Recharge your card'
-                    );
+                    $query_activity = mysqli_query($connect, $sql_activity);      
+                    echo "Recharge your card"; 
                 }
             }
+            }
         } else {
-            $response = array(
-                'status' => true,
-                'message' => 'This Card has not registered before'
-            );
+            echo "This Card has not registered before";
             $date = date("Y-m-d");
             $time = date("h:i:sa");
             $sql_activity = "INSERT INTO activities (code, date, time, tag) VALUES ('$code', '$date', '$time', 'Check')";
@@ -91,10 +94,12 @@ if(isset($_GET['tag']) && isset($_GET['code'])) {
         }
     }
 } else {
-    $response = array(
-        'status' => false,
-        'message' => 'No data'
-    );
+    echo "Enter Values in POST Request";
 }
-echo json_encode($response);
+} else {
+    echo "Enter Correct API Key";
+}
+} else {
+    echo "Enter API Key";
+}
 ?>

@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-//$user = "id14515899_kids_sys";
-//$pass = "V_!}>6wAds|}wBnT";
-//$db = "id14515899_kidsarea";
+//$user = "aqtardes_kids";
+//$pass = "kidsarea";
+//$db = "aqtardes_kidsarea";
 
 $user = "root";
 $pass = "";

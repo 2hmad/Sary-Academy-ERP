@@ -108,35 +108,8 @@
     }
 ?>
 
-<form method="POST" style="width:auto">
-    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="far fa-trash"></i> Delete today's activities</button>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Are Your Sure ?</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure to do this ?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="delete">Confirm</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<?php
-if(isset($_POST['delete'])) {
-    $date = date("Y-m-d");
-    $sql = "DELETE FROM activities WHERE date = '$date'";
-    $query = mysqli_query($connect, $sql);
-    header('Location: activities.php');
-}
-?>
+<form method="POST" style="width:auto" action="export_activity.php">
+    <button class="btn btn-success" name="export" type="submit" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="far fa-file-csv"></i> Export today's activities</button>
 </form>
 
 <nav aria-label="Page navigation example" style="margin-left:auto;width:auto">

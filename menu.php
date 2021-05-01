@@ -30,9 +30,10 @@ while($row = mysqli_fetch_assoc($query)) {
                 echo '<a href="add-admin.php"><button class="menu-link add-admin-menu"><i class="fal fa-user" style="margin-right: 5%;"></i> Add Admin</button></a>';
             }
             ?>
+            <a href="attendance.php"><button class="menu-link attendance-menu"><i class="far fa-clipboard-user" style="margin-right: 5%;"></i> Attendances</button></a>
             <a href="add-new-card.php" hidden><button class="menu-link add-new-card-menu"><i class="fal fa-id-card" style="margin-right: 5%;"></i> Add New Card</button></a>
             <a href="edit-hour-price.php"><button class="menu-link edit-hour-price-menu"><i class="fal fa-money-bill" style="margin-right: 5%;"></i> Edit Hour Price</button></a>
-            <a href="add-hours.php"><button class="menu-link add-new-card-menu"><i class="fal fa-id-card" style="margin-right: 5%;"></i> Add Hours</button></a>
+            <a href="add-hours.php"><button class="menu-link add-hours-menu"><i class="fal fa-id-card" style="margin-right: 5%;"></i> Add Hours</button></a>
             <a href="activities.php"><button class="menu-link activities-menu"><i class="fal fa-exchange" style="margin-right: 5%;"></i> Latest Activities</button></a>
             <a href="sessions.php"><button class="menu-link sessions-menu"><i class="far fa-plug" style="margin-right: 5%;"></i> Sessions</button></a>
             <a href="card-verification.php"><button class="menu-link card-verify-menu"><i class="fal fa-users" style="margin-right: 5%;"></i> Card Verification</button></a>
