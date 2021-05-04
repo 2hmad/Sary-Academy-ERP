@@ -7,8 +7,8 @@ $db = "heroku_407b2626d06f99e";
 
 //$user = "root";
 //$pass = "";
-//$db = "kidsarea";$connect = mysqli_connect($host, $user, $pass, $db) or die("Can't connect with database");
-
+//$db = "kidsarea";
+$connect = mysqli_connect($host, $user, $pass, $db) or die("Can't connect with database");
 date_default_timezone_set("Africa/Cairo");
 
 $api_key = "f13b5611-170a-4174-9dfb-f5d68dbde960";
