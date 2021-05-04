@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>لوحة تحكم منطقة الألعاب | اكاديمية ساري</title>
+    <title>لوحة تحكم | ساري اكاديمي</title>
     <?php include('links.php'); ?>
     <style>
     input[type="text"] {

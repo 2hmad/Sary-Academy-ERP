@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Kids Area Dashboard | Sary Academy</title>
+    <title>Dashboard | Sary Academy</title>
     <?php include('links.php'); ?>
     <style>
     input[name="email-login"]{
@@ -33,7 +33,7 @@
 
             <a href="ar/"><img src="pics/egypt-flag.png" style="position: absolute;top: 5%;"></a>
 
-            <h4 style="margin-top:15%;margin-bottom: 5%;text-transform:uppercase;font-weight:bold;font-size: 27px;">Log into Kidsarea</h4>
+            <h4 style="margin-top:15%;margin-bottom: 5%;text-transform:uppercase;font-weight:bold;font-size: 27px;">Log into Dashboard</h4>
             <form method="POST">
             <input type="text" name="email-login" placeholder="Enter your email address">
             <input type="password" name="pass-login" placeholder="Enter your password">
@@ -61,6 +61,8 @@ if(isset($_SESSION['email'])) {
     }
 }
 ?>
+
+<span style="position: absolute;bottom: 10px;color: #949494 !important;left: 225px;">Powered By <a href="https://itgo-solutions.com" style="color: #949494 !important;text-decoration: underline !important;">ITGO</a></span>
         </div>
         <div class="col-lg" style="background: url('pics/wooden-playground-area.jpg');background-position: 5px;border-top-right-radius: 15px;border-bottom-right-radius: 15px;">
         

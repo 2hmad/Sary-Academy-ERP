@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Kids Area Dashboard | Sary Academy</title>
+    <title>Dashboard | Sary Academy</title>
     <?php include('links.php'); ?>
     <style>
     input[type="text"], input[type="email"], input[type="password"], input[type="date"],select {
@@ -63,7 +63,8 @@ if($num > 0) {
         $birthday = $row['birthday'];
         $gender = $row['gender'];
         $code = $row['code'];
-        $hours = $row['hours'];
+        $kind = $row['kind'];
+        $position = $row['position'];
     }
 } else {
     die();
@@ -83,8 +84,19 @@ if($num > 0) {
                         <option>Male</option>
                         <option>Female</option>
                     </select>
-                    <label style="font-weight: bold;">Available Hours</label>
-                    <input type="text" name="hours" value="<?php echo "$hours" ?>">
+
+                    <label style="font-weight: bold;">Kind</label>
+                    <select name="kind" onchange="yesnoCheck(this);" required>
+                        <option hidden><?php echo "$kind" ?></option>
+                        <option value="" hidden>-- Select Kind --</option>
+                        <option>Student</option>
+                        <option value="Employee">Employee</option>
+                        <option>Kids Area</option>
+                    </select>
+
+                    <label class="ifEmployeeLabel" style="font-weight: bold;display:none">Position</label>
+                    <input type="text" name="position" class="ifEmployee" style="display:none" value="<?php echo "$position" ?>">
+
                     </div>
                     <input type="submit" name="edit-card" value="Edit Card">
                 </form>
@@ -95,7 +107,10 @@ if(isset($_POST['edit-card'])) {
     $birthday = $_POST['birthday'];
     $gender = $_POST['gender'];
     $hours = $_POST['hours'];
-    $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', hours='$hours' WHERE id='$id'";
+    $kind = $_POST['kind'];
+    $position = $_POST['position'];
+
+    $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', kind='$kind', position='$position' WHERE id='$id'";
     $query = mysqli_query($connect, $sql);
     header('Location:'.$_SERVER['REQUEST_URI']);
     }

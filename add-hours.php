@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Kids Area Dashboard | Sary Academy</title>
+    <title>Dashboard | Sary Academy</title>
     <?php include('links.php'); ?>
     <style>
     input[type="text"], input[type="number"] {

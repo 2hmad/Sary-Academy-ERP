@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>لوحة تحكم منطقة الألعاب | اكاديمية ساري</title>
+    <title>لوحة تحكم | ساري اكاديمي</title>
     <?php include('links.php'); ?>
     <style>
     input[type="text"], input[type="email"], input[type="password"], input[type="date"],select {
@@ -63,30 +63,48 @@ if($num > 0) {
         $birthday = $row['birthday'];
         $gender = $row['gender'];
         $code = $row['code'];
-        $hours = $row['hours'];
+        $kind = $row['kind'];
+        $position = $row['position'];
     }
 } else {
     die();
 }
 ?>
-                    <label style="font-weight: bold;">Name</label>
+                    <label style="font-weight: bold;">الاسم</label>
                     <input type="text" name="name" value="<?php echo "$name" ?>" required>
-                    <label style="font-weight: bold;">Phone</label>
+                    <label style="font-weight: bold;">رقم الهاتف</label>
                     <input type="text" name="phone"  value="<?php echo "$phone" ?>" required>
-                    <label style="font-weight: bold;">Birthday</label>
+                    <label style="font-weight: bold;">تاريخ الميلاد</label>
                     <input type="date" name="birthday" value="<?php echo "$birthday" ?>" required>
-                    <label style="font-weight: bold;">Code</label>
+                    <label style="font-weight: bold;">الرقم التعريفي</label>
                     <input type="text" name="code" value="<?php echo "$code" ?>" disabled>
-                    <label style="font-weight: bold;">Gender</label>
+                    <label style="font-weight: bold;">الجنس</label>
                     <select name="gender" required>
-                        <option hidden><?php echo "$gender" ?></option>
-                        <option>Male</option>
-                        <option>Female</option>
+                    <?php
+                    if($gender == "Male") {
+                        echo "<option value='$gender' hidden>ذكر</option>";
+                    } elseif($gender == "Female") {
+                        echo "<option value='$gender' hidden>أنثي</option>";
+                    }
+                    ?>
+                        <option value="Male">ذكر</option>
+                        <option value="Female">انثي</option>
                     </select>
-                    <label style="font-weight: bold;">Available Hours</label>
-                    <input type="text" name="hours" value="<?php echo "$hours" ?>">
+                    
+                    <label style="font-weight: bold;">نوع الحساب</label>
+                    <select name="kind" onchange="yesnoCheck(this);" required>
+                        <option hidden><?php echo "$kind" ?></option>
+                        <option value="" hidden>-- اختر نوع الحساب --</option>
+                        <option value="Student">طالب</option>
+                        <option value="Employee">موظف</option>
+                        <option value="Kids Area">منطقة الاطفال</option>
+                    </select>
+
+                    <label class="ifEmployeeLabel" style="font-weight: bold;display:none">الوظيفة</label>
+                    <input type="text" name="position" class="ifEmployee" style="display:none" value="<?php echo "$position" ?>">
+
                     </div>
-                    <input type="submit" name="edit-card" value="Edit Card">
+                    <input type="submit" name="edit-card" value="تعديل المستخدم">
                 </form>
 <?php
 if(isset($_POST['edit-card'])) {

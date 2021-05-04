@@ -17,3 +17,13 @@ if (document.location.href.match(/[^\/]+$/)[0] == 'dashboard.php') {
 } else if (document.location.href.match(/[^\/]+$/)[0] == 'attendance.php') {
     $('.attendance-menu').addClass('active');
 };
+
+function yesnoCheck(that) {
+    if (that.value == "Employee") {
+        document.querySelector(".ifEmployee").style.display = "block";
+        document.querySelector(".ifEmployeeLabel").style.display = "block";
+    } else {
+        document.querySelector(".ifEmployee").style.display = "none";
+        document.querySelector(".ifEmployeeLabel").style.display = "none";
+    }
+}
