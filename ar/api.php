@@ -1,6 +1,6 @@
 <?php
 
-$host = "localhost";
+$host = "us-cdbr-east-03.cleardb.com";
 $user = "root";
 $pass = "";
 $db = "kidsarea";
