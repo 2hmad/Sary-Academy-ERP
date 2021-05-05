@@ -115,35 +115,13 @@
 <nav aria-label="Page navigation example" style="margin-left:auto;width:auto">
   <ul class="pagination" style="float: right;">
     <li class="page-item">
-      <a class="page-link" href="<?php
-        if(isset($_GET['month']) && isset($_GET['type'])) {
-            echo "?type=$type_get&month=$month_get";
-            if(($page_number - 1) > 0){
-                echo "&page=";
-                echo $page_number-1;
-            } else {
-                echo "&page=";
-                echo $page_number;
-            }    
-        }
-        ?>" aria-label="Previous">
+      <a class="page-link" href="?page=<?php if(($page_number - 1) > 0){ echo $page_number - 1; }else{ echo $page_number; }?>" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
     <li class="page-item"><a class="page-link" href="#"><?php echo "$page_number" ?></a></li>
     <li class="page-item">
-      <a class="page-link" href="<?php
-    if(isset($_GET['month']) && isset($_GET['type'])) {
-        echo "?type=$type_get&month=$month_get";
-        if(($page_number + 1) < $total_pages){
-            echo "&page=";
-            echo $page_number + 1;
-        } elseif(($page_number + 1) >= $total_pages) {
-            echo "&page=";
-            echo $total_pages;
-        }
-    }
-    ?>" aria-label="Next">
+      <a class="page-link" href="?page=<?php if(($page_number + 1) < $total_pages){ echo $page_number + 1; }elseif(($page_number + 1) >= $total_pages){ echo $total_pages; }?>" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
