@@ -60,6 +60,10 @@ if(!empty($_POST['code']) && !empty($_POST['tag'])){
                 if(mysqli_num_rows($query_stop) > 0) {
                     $query_s = mysqli_query($connect, "UPDATE sessions SET status='Stopped' WHERE code = '$code' AND date='$date' AND status=''");
                     echo "Timer Stopped";
+
+                    $date = date("Y-m-d");
+                    $time = date("h:i:sa");
+        
                     $sql_activity_stopped = "INSERT INTO activities (code, date, time, tag) VALUES ('$code', '$date', '$time', 'Timer Stopped')";
                     $query_activity_stopped = mysqli_query($connect, $sql_activity_stopped);        
 
