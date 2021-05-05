@@ -77,10 +77,10 @@ echo $count;
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
 <?php
-$sql = "SELECT COUNT(*) AS total_users FROM users";
+$sql = "SELECT COUNT(*) AS total_kids FROM sessions WHERE status=''";
 $query = mysqli_query($connect, $sql);
 $row = mysqli_fetch_assoc($query);
-$count = $row['total_users'];
+$count = $row['total_kids'];
 echo $count;
 ?>
                     </span>
