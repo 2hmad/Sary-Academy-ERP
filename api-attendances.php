@@ -1,13 +1,14 @@
 <?php
 
-$host = "us-cdbr-east-03.cleardb.com";
-$user = "bbf1e46cd1f90a";
-$pass = "9d4a4ff6";
-$db = "heroku_407b2626d06f99e";
+//$host = "us-cdbr-east-03.cleardb.com";
+//$user = "bbf1e46cd1f90a";
+//$pass = "9d4a4ff6";
+//$db = "heroku_407b2626d06f99e";
 
-//$user = "root";
-//$pass = "";
-//$db = "kidsarea";
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "kidsarea";
 $connect = mysqli_connect($host, $user, $pass, $db) or die("Can't connect with database");
 date_default_timezone_set("Africa/Cairo");
 
@@ -74,14 +75,14 @@ if(!empty($_POST['code'])){
                 $sql_attendance = mysqli_query($connect, "SELECT * FROM attendance WHERE code='$code' AND date='$date'");
                 if(mysqli_num_rows($sql_attendance) > 0) {
                     $current_month = date('M');
-                    $current_time = date("h:i:sa");
+                    $current_time = date("H:i");
                     $sql_absence = "UPDATE attendance SET absence='$current_time' WHERE code='$code' AND date='$date'";
                     $query_absence = mysqli_query($connect, $sql_absence);
                     echo "Absence time updated";
                 } else {
                     $date = date("Y-m-d");
                     $current_month = date('M');
-                    $current_time = date("h:i:sa");
+                    $current_time = date("H:i");
                     $sql_insert = "INSERT INTO attendance (code, name, position, type, month, date, present) VALUES ('$code', '$name', '$position', '$kind', '$current_month', '$date' ,'$current_time')";
                     $query_insert = mysqli_query($connect, $sql_insert);
                     echo "Present time added";
