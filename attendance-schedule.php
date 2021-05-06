@@ -136,8 +136,8 @@ echo '
     </div>
 ';
 
-if(isset($_GET['code']) && isset($_GET['type'])) {
-    $sql_pagination = "SELECT * FROM attendance WHERE month='$month_get'";
+if(isset($_GET['code'])) {
+    $sql_pagination = "SELECT * FROM attendance WHERE code='$code'";
 } else {
     $sql_pagination = "SELECT * FROM attendance";
 }
@@ -156,10 +156,10 @@ for($i=1;$i<=$total_pages;$i++){
 ?>
 
 <?php
-if(isset($_GET['month']) && $totalItems > 0) {
+if(isset($_GET['code']) && $totalItems > 0) {
     echo '
-    <form method="POST" style="width:auto" action="export_attendance.php?month='.$month_get.'">
-        <button class="btn btn-success" name="export" type="submit" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="far fa-file-csv"></i> Export '.$month_get.' Attendences</button>
+    <form method="POST" style="width:auto" action="export_person.php?code='.$code.'">
+        <button class="btn btn-success" name="export" type="submit" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="far fa-file-csv"></i> Export '.$name.'</button>
     </form>
     ';
 }
@@ -170,8 +170,8 @@ if(isset($_GET['month']) && $totalItems > 0) {
     <li class="page-item">
       <a class="page-link" href="
         <?php
-        if(isset($_GET['month']) && isset($_GET['type'])) {
-            echo "?type=$type_get&month=$month_get";
+        if(isset($_GET['code'])) {
+            echo "?code=$code";
             if(($page_number - 1) > 0){
                 echo "&page=";
                 echo $page_number-1;
@@ -188,8 +188,8 @@ if(isset($_GET['month']) && $totalItems > 0) {
     <li class="page-item">
       <a class="page-link" href="
     <?php
-    if(isset($_GET['month']) && isset($_GET['type'])) {
-        echo "?type=$type_get&month=$month_get";
+    if(isset($_GET['code'])) {
+        echo "?code=$code";
         if(($page_number + 1) < $total_pages){
             echo "&page=";
             echo $page_number + 1;
