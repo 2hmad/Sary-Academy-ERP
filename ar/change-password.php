@@ -72,7 +72,7 @@ if(isset($_POST['change-password'])) {
     if("$old" === "$password") {
         $sql = "UPDATE users SET password='$new' WHERE email='$email'";
         $query = mysqli_query($connect, $sql);
-        echo "<div class='alert alert-success'>تم تغيير كلمة المرور, سيتم تسجيل الخروج خلال 10 ثواني</div>";
+        echo "<div class='alert alert-success'>تم تغيير كلمة المرور ، سيتم نقلك الي صفحة تسجيل الدخول خلال 10 ثواني</div>";
         echo '
         <script>
         window.setTimeout(function(){
@@ -81,7 +81,7 @@ if(isset($_POST['change-password'])) {
         </script>
         ';
     } else {
-        echo "<div class='alert alert-danger'>كلمة المرور القديمة غير متطابقة</div>";
+        echo "<div class='alert alert-danger'>كلمة المرور القديمة غير مطابقة</div>";
     }
 }
 ?>

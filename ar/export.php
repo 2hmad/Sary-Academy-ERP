@@ -2,7 +2,7 @@
       //export.php  
  if(isset($_POST["export"]))  
  {  
-     include('connection.php');
+     include('../connection.php');
      header('Content-Type: text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=data.csv');  
       $output = fopen("php://output", "w");  

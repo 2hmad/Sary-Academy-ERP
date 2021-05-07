@@ -46,7 +46,7 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Edit Card</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> تعديل بيانات البطاقة</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;" enctype="multipart/form-data">
@@ -65,6 +65,7 @@ if($num > 0) {
         $code = $row['code'];
         $kind = $row['kind'];
         $position = $row['position'];
+        $salary = $row['salary'];
     }
 } else {
     die();
@@ -80,31 +81,28 @@ if($num > 0) {
                     <input type="text" name="code" value="<?php echo "$code" ?>" disabled>
                     <label style="font-weight: bold;">الجنس</label>
                     <select name="gender" required>
-                    <?php
-                    if($gender == "Male") {
-                        echo "<option value='$gender' hidden>ذكر</option>";
-                    } elseif($gender == "Female") {
-                        echo "<option value='$gender' hidden>أنثي</option>";
-                    }
-                    ?>
-                        <option value="Male">ذكر</option>
-                        <option value="Female">انثي</option>
+                        <option hidden><?php echo "$gender" ?></option>
+                        <option>Male</option>
+                        <option>Female</option>
                     </select>
-                    
-                    <label style="font-weight: bold;">نوع الحساب</label>
+
+                    <label style="font-weight: bold;">نوع البطاقة</label>
                     <select name="kind" onchange="yesnoCheck(this);" required>
-                        <option hidden><?php echo "$kind" ?></option>
-                        <option value="" hidden>-- اختر نوع الحساب --</option>
+                        <option value=<?php echo "$kind" ?> hidden><?php echo "$kind" ?></option>
+                        <option value="" hidden>-- نوع البطاقة --</option>
                         <option value="Student">طالب</option>
                         <option value="Employee">موظف</option>
-                        <option value="Kids Area">منطقة الاطفال</option>
+                        <option value="Kids Area">منطقة الالعاب</option>
                     </select>
 
-                    <label class="ifEmployeeLabel" style="font-weight: bold;display:none">الوظيفة</label>
+                    <label class="ifEmployeeLabel" style="font-weight: bold;display:none">المهنة</label>
                     <input type="text" name="position" class="ifEmployee" style="display:none" value="<?php echo "$position" ?>">
 
+                    <label class="ifEmployeeLabelSalary" style="font-weight: bold;display:none">الراتب الشهري</label>
+                    <input type="text" name="salary" class="ifEmployeeSalary" style="display:none" value="<?php echo "$salary" ?>">
+
                     </div>
-                    <input type="submit" name="edit-card" value="تعديل المستخدم">
+                    <input type="submit" name="edit-card" value="تعديل البطاقة">
                 </form>
 <?php
 if(isset($_POST['edit-card'])) {
@@ -113,7 +111,11 @@ if(isset($_POST['edit-card'])) {
     $birthday = $_POST['birthday'];
     $gender = $_POST['gender'];
     $hours = $_POST['hours'];
-    $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', hours='$hours' WHERE id='$id'";
+    $kind = $_POST['kind'];
+    $position = $_POST['position'];
+    $salary = $_POST['salary'];
+
+    $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', kind='$kind', position='$position', salary='$salary' WHERE id='$id'";
     $query = mysqli_query($connect, $sql);
     header('Location:'.$_SERVER['REQUEST_URI']);
     }

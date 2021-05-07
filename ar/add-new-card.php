@@ -46,27 +46,27 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> اضافة كارت جديد</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Add new card</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;" enctype="multipart/form-data">
                     <div id='container'>
-                    <label style="font-weight: bold;">الإسم</label>
+                    <label style="font-weight: bold;">Name</label>
                     <input type="text" name="name" required>
-                    <label style="font-weight: bold;">رقم الهاتف</label>
+                    <label style="font-weight: bold;">Phone</label>
                     <input type="text" name="phone" value="+20" required>
-                    <label style="font-weight: bold;">تاريخ الميلاد</label>
+                    <label style="font-weight: bold;">Birthday</label>
                     <input type="date" name="birthday" required>
-                    <label style="font-weight: bold;">الجنس</label>
+                    <label style="font-weight: bold;">Gender</label>
                     <select name="gender" required>
-                        <option value="" hidden>اختر الجنس</option>
-                        <option value="Male">ذكر</option>
-                        <option value="Female">انثي</option>
+                        <option value="" hidden>Choose Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
                     </select>
-                    <label style="font-weight: bold;" for="formFile" class="form-label">الصورة الشخصية</label>
+                    <label style="font-weight: bold;" for="formFile" class="form-label">Profile Pic</label>
                     <input type="file" class="form-control" id="formFile" name="profile-pic">
                     </div>
-                    <input type="submit" name="create-card" value="انشاء كارت">
+                    <input type="submit" name="create-card" value="Create Card">
                 </form>
 <?php
 if(isset($_POST['create-card'])) {

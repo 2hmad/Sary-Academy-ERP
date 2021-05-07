@@ -27,16 +27,17 @@
     </style>
 </head>
 <body style="background-color:#FAFAFA">
-
 <div class="container" style="background-color: white;position: relative;top: 15%;min-height:500px;box-shadow: 0 0 30px -9px #B0B0B0;border-radius:15px">
     <div class="row">
         <div class="col-lg-5" style="padding: 0px 0px 0px 55px;min-height:500px">
-        <a href="../"><img src="../pics/usa-flag.png" style="position: absolute;top: 5%;"></a>
+
+            <a href="ar/"><img src="../pics/egypt-flag.png" style="position: absolute;top: 5%;"></a>
+
             <h4 style="margin-top:15%;margin-bottom: 5%;text-transform:uppercase;font-weight:bold;font-size: 27px;">تسجيل الدخول</h4>
             <form method="POST">
-            <input type="text" name="email-login" placeholder="ادخل بريدك الالكتروني">
+            <input type="text" name="email-login" placeholder="ادخل البريد الالكتروني">
             <input type="password" name="pass-login" placeholder="ادخل كلمة المرور">
-            <a href="#" style="display:block;">هل نسيت كلمة المرور ؟</a>
+            <a href="#" style="display:block;">نسيت كلمة المرور؟</a>
             
             <input type="submit" name="login" class="btn btn-dark" value="تسجيل الدخول" style="width: 200px;margin-top:5%;display:block">
             </form>
@@ -53,12 +54,15 @@ if(isset($_SESSION['email'])) {
         if($num > 0) {
             header('Location: dashboard.php');
             $_SESSION['email'] = $email;
+            ob_end_flush();
         } else {
-            echo "<div class='alert alert-danger' style='width:90%;margin-top:2%'>Email Address / Password is incorrect</div>";
+            echo "<div class='alert alert-danger' style='width:90%;margin-top:2%'>البريد الالكتروني / كلمة المرور غير صحيحة</div>";
         }
     }
 }
 ?>
+
+<span style="position: absolute;bottom: 10px;color: #949494 !important;left: 225px;">بواسطة شركة <a href="https://itgo-solutions.com" style="color: #949494 !important;text-decoration: underline !important;">أي تي جو</a></span>
         </div>
         <div class="col-lg" style="background: url('../pics/wooden-playground-area.jpg');background-position: 5px;border-top-right-radius: 15px;border-bottom-right-radius: 15px;">
         

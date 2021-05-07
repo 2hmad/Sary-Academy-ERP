@@ -186,7 +186,7 @@ window.onload = function () {
     setAlarm(timeStart, timeEnd, () => {
     document.querySelector("audio").play().then(()=>{
       setTimeout(() => {
-        alert('hey')
+        alert('There is a card coming out of Kids Area')
       }, 0);
     })
   });

@@ -63,7 +63,7 @@
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;">
                     <div id='container'>
-                    <label style="font-weight: bold;">الإسم</label>
+                    <label style="font-weight: bold;">الاسم</label>
                     <input type="text" name="admin-name" required>
                     <label style="font-weight: bold;">البريد الالكتروني</label>
                     <input type="email" name="admin-email" required>
@@ -71,14 +71,14 @@
                     <input type="password" name="admin-password" required>
                     <label style="font-weight: bold;">الجنس</label>
                     <select name="admin-gender" required>
-                        <option value="" hidden>اخر الجنس</option>
-                        <option value="Male">ذكر</option>
-                        <option value="Female">أنثي</option>
+                        <option value="" hidden>اختر الجنس</option>
+                        <option>ذكر</option>
+                        <option>انثي</option>
                     </select>
                     <label style="font-weight: bold;">رقم الهاتف</label>
                     <input type="text" name="admin-phone" value="+20">
                     </div>
-                    <input type="submit" name="create-admin" value="انشاء مشرف">
+                    <input type="submit" name="create-admin" value="اضافة مشرف">
                 </form>
 <?php
 if(isset($_POST['create-admin'])){

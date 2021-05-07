@@ -63,6 +63,6 @@ h2{
 </svg>
 </use>
 <h1>403</h1>
-<h2>Not this time, access forbidden!</h2>
+<h2>تعذر الوصول ، لعدم وجود صلاحية للوصول الي هذه الصفحة</h2>
 </body>
 </html>

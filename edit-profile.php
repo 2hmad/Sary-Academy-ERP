@@ -65,6 +65,7 @@ if($num > 0) {
         $code = $row['code'];
         $kind = $row['kind'];
         $position = $row['position'];
+        $salary = $row['salary'];
     }
 } else {
     die();
@@ -87,7 +88,7 @@ if($num > 0) {
 
                     <label style="font-weight: bold;">Kind</label>
                     <select name="kind" onchange="yesnoCheck(this);" required>
-                        <option hidden><?php echo "$kind" ?></option>
+                        <option value=<?php echo "$kind" ?> hidden><?php echo "$kind" ?></option>
                         <option value="" hidden>-- Select Kind --</option>
                         <option>Student</option>
                         <option value="Employee">Employee</option>
@@ -96,6 +97,9 @@ if($num > 0) {
 
                     <label class="ifEmployeeLabel" style="font-weight: bold;display:none">Position</label>
                     <input type="text" name="position" class="ifEmployee" style="display:none" value="<?php echo "$position" ?>">
+
+                    <label class="ifEmployeeLabelSalary" style="font-weight: bold;display:none">Salary</label>
+                    <input type="text" name="salary" class="ifEmployeeSalary" style="display:none" value="<?php echo "$salary" ?>">
 
                     </div>
                     <input type="submit" name="edit-card" value="Edit Card">
@@ -109,8 +113,9 @@ if(isset($_POST['edit-card'])) {
     $hours = $_POST['hours'];
     $kind = $_POST['kind'];
     $position = $_POST['position'];
+    $salary = $_POST['salary'];
 
-    $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', kind='$kind', position='$position' WHERE id='$id'";
+    $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', kind='$kind', position='$position', salary='$salary' WHERE id='$id'";
     $query = mysqli_query($connect, $sql);
     header('Location:'.$_SERVER['REQUEST_URI']);
     }

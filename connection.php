@@ -8,7 +8,9 @@ $host = "localhost";
 $user = "root";
 $pass = "";
 $db = "kidsarea";
-$connect = mysqli_connect($host, $user, $pass, $db) or die("Can't connect with database");mysqli_query($connect,"SET CHARACTER SET 'utf8'");
+$connect = mysqli_connect($host, $user, $pass, $db) or die("Can't connect with database");
+mysqli_set_charset($connect,"utf8");
+
 session_start();
 
 ob_start();

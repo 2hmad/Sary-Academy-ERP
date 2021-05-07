@@ -39,10 +39,10 @@ $count = $row['total_cards'];
 echo $count;
 ?>
                     </span>
-                    <span style="text-transform: uppercase;">اجمالي عدد الكروت</span>
+                    <span style="text-transform: uppercase;">عدد الكروت</span>
                 </div>
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
-                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> الحاضرين اليوم</h5>
+                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> الحضور اليومي</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
 <?php
@@ -54,7 +54,7 @@ $count = $row['total_attend'];
 echo $count;
 ?>
                     </span>
-                    <span style="text-transform: uppercase;">اجمالي عدد الحاضرين</span>
+                    <span style="text-transform: uppercase;">اجمالي حضور اليوم</span>
                 </div>
             </div>
             <div class="row" style="margin-left: 5%;margin-top:3%">
@@ -70,16 +70,30 @@ $count = $row['total_users'];
 echo $count;
 ?>
                     </span>
-                    <span style="text-transform: uppercase;">اجمالي عدد المستخدمين</span>
+                    <span style="text-transform: uppercase;">اجمالي المستخدمين</span>
+                </div>
+                <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
+                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> منطقة الالعاب</h5>
+                    <div class="box-card"><i class="fad fa-user-friends"></i></div>
+                    <span style="font-size: 35px;font-weight: bold;">
+<?php
+$sql = "SELECT COUNT(*) AS total_kids FROM sessions WHERE status=''";
+$query = mysqli_query($connect, $sql);
+$row = mysqli_fetch_assoc($query);
+$count = $row['total_kids'];
+echo $count;
+?>
+                    </span>
+                    <span style="text-transform: uppercase;">الحاليين في منطقة الالعاب</span>
                 </div>
             </div>
         <div style="margin-top: 5%;margin-left: 5%;">
         <table class="table caption-top table-striped table-bordered table-responsive">
-        <caption style="text-transform: uppercase;text-align:center;font-weight:bold">الذين تم اضافتهم الشهر الحالي</caption>
+        <caption style="text-transform: uppercase;text-align:center;font-weight:bold">اضيفت في <?php echo date("F") ?></caption>
         <thead class="table-primary">
             <tr>
                 <th>الاسم</th>
-                <th>الجنس</th>
+                <th>النوع</th>
                 <th>الرقم التعريفي</th>
             </tr>
         </thead>

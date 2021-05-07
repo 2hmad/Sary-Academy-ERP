@@ -24,7 +24,7 @@ a {
 }
 
 .menu-container {
-    margin-top: 5%;
+    margin-top: 5%
 }
 
 .menu-link {
@@ -45,13 +45,14 @@ a {
 .dashboard-menu.active,
 .add-admin-menu.active,
 .add-new-card-menu.active,
-.edit-hour-price-menu.active,
+.attendance-schedule-menu.active,
 .latest-trans-menu.active,
 .activities-menu.active,
 .sessions-menu.active,
 .card-verify-menu.active,
 .add-hours-menu.active,
-.attendance-menu.active {
+.attendance-menu.active,
+.accounting-menu.active {
     background: #4753d4;
     border-radius: 5px;
     box-shadow: 0px 0px 8px 0px #111431;

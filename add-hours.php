@@ -62,28 +62,59 @@
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;margin-bottom:5%" enctype="multipart/form-data">
                 <div id='container'>
-                    <label style="font-weight: bold;">Card ID</label>
-                    <input type="text" name="code" required>
-                    <label style="font-weight: bold;">Hours <span class="total">(Total price: <span class="price"></span> )</span></label>
-                    <input type="number" name="hours" class="hours-num" value="0" required>
-                    <?php
-                    $sql = "SELECT * FROM price";
-                    $query = mysqli_query($connect, $sql);
-                    while($row = mysqli_fetch_array($query)) {
-                        $price = $row['price'];
-                    }
-                    ?>
-                    
-                    <span class="hidden-price" style="display:none"><?php echo "$price" ?></span>
-                </div>
-                    <input type="submit" class="hours-btn" name="add-hours" value="Add Hours">
-                </form>
+
+<?php
+    if(isset($_GET['code'])) {
+        echo '
+        <label style="font-weight: bold;">Hours <span class="total">(Total price: <span class="price"></span> )</span></label>
+        <input type="number" name="hours" class="hours-num" value="0" required>';
+
+        $sql = "SELECT * FROM cards WHERE code=".$_GET['code']."";
+        $query = mysqli_query($connect, $sql);
+        
+        $price = $_GET['price'];
+        echo '
+        <span class="hidden-price" style="display:none">'.$price.'</span>
+        </div>
+        <input type="submit" class="hours-btn" name="add-hours" value="Add Hours">
+        </form>
+        ';
+        
+    } else {
+        echo '
+        <label style="font-weight: bold;">Card ID</label>
+        <input type="text" name="code" required>
+        <label style="font-weight: bold;">Hour Price</label>
+        <input type="text" name="price" required>
+        </div>
+        <input type="submit" class="hours-btn" name="next" value="Next Step">
+        </form>
+        ';
+    }
+?>
+
 <?php
 
-if(isset($_POST['add-hours'])) {
+if(isset($_POST['next'])) {
     $code = $_POST['code'];
+    $price = $_POST['price'];
+
+    $sql_check = "SELECT * FROM cards WHERE code = '$code'";
+    $query_check = mysqli_query($connect, $sql_check);
+    $num = mysqli_num_rows($query_check);
+    if($num > 0 ) {
+        header('Location: add-hours.php?code='.$code.'&price='.$price.'');
+    } else {
+        echo "<div class='alert alert-danger'>This card not found</div>";
+    }
     
-    if($code !== "") {
+}
+
+if(isset($_POST['add-hours'])) {
+    $code = $_GET['code'];
+    $price = $_GET['price'];
+
+    if($code !== "" && $price !== "") {
         $sql_check = "SELECT * FROM cards WHERE code = '$code'";
         $query_check = mysqli_query($connect, $sql_check);
         $num = mysqli_num_rows($query_check);
@@ -98,11 +129,9 @@ if(isset($_POST['add-hours'])) {
                 $hours_modify = $hours + $hours_add;
                 $sql_update = "UPDATE cards SET hours = '$hours_modify' WHERE code='$code'";
                 $query_update = mysqli_query($connect, $sql_update);
-    
+                
                 $date = date("Y-m-d");
-                $time = date("h:i:sa");
-                $tag = "Added " . $hours . " Hours" . "<br>" . "Hour rate: $price EGP";
-                $sql = "INSERT INTO activities (code, date, time, tag) VALUES ('$code', '$date', '$time', '$tag')";
+                $sql = "INSERT INTO accounting (code, hours, price, date) VALUES ('$code', '$hours', '$price', '$date')";
                 $query = mysqli_query($connect, $sql);
     
                 echo "<div class='alert alert-success'>Added $hours hours to this card</div>";    

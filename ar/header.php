@@ -1,5 +1,6 @@
 <nav style="display: block;">
         <a href="https://sary-academy.com" target="_blank"><img src="../pics/saryacademy.png" alt="Sary academy" style="max-width: 200px;"></a>
+        <a href="https://saryacademy.com/dashboard/login" style="margin-left:3%"><button class="btn btn-outline-dark">لوحة التحكم</button></a>
         <div style="float: right;display:flex;align-items: center;gap: 30px">
         <a href="../"><img src="../pics/usa-flag.png"></a>
         <div class="dropdown" style="box-shadow:none !important;background:#1D2362;border-radius: 5px;">
@@ -16,7 +17,7 @@ while($row = mysqli_fetch_assoc($query)) {
 ?>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="width: 100%;">
-            <li><a class="dropdown-item" href="my-account.php" style="text-transform: uppercase"><i class="fal fa-user"></i> الملف الشخصي</a></li>
+            <li><a class="dropdown-item" href="my-account.php" style="text-transform: uppercase"><i class="fal fa-user"></i> تعديل الحساب</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="change-password.php" style="text-transform: uppercase"><i class="fal fa-key"></i> تغيير كلمة المرور</a></li>
             <li><hr class="dropdown-divider"></li>

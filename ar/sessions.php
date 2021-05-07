@@ -48,7 +48,7 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> الجلسات</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> منطقة الالعاب</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
 <button class="btn btn-success refresh" onclick="location.reload();" style="width: auto;display:block;margin-bottom:2%"><i class="far fa-sync"></i> تحديث</button>
@@ -59,8 +59,8 @@
             <tr>
                 <th scope="col">الرقم التعريفي</th>
                 <th scope="col">التاريخ</th>
-                <th scope="col">بداية الوقت</th>
-                <th scope="col">نهاية الوقت</th>
+                <th scope="col">وقت البدء</th>
+                <th scope="col">وقت الانتهاء</th>
                 <th scope="col">الحالة</th>
             </tr>
         </thead>
@@ -94,16 +94,19 @@
                         <td><span class="end-time">'.$end_time.'</span></td>
                         <td><span class="msg">'.$status.'</span></td>
                     </tr>
-                ';
+                ';  
             }
-            $sql_update = "UPDATE sessions SET status='Complete' WHERE date='$date' AND end_time <= '$current_time'";
+            $sql_update = "UPDATE sessions SET status='Complete' WHERE date='$date' AND end_time <= '$current_time' AND code='$code'";
             $query_update = mysqli_query($connect, $sql_update);            
         } else {
-            echo '<caption>لا توجد بيانات متاحة الان</span>';
+            echo '<caption>لا توجد بيانات متاحة في الوقت الحالي</caption>';
         }
 ?>
         </tbody>
     </table>
+
+    <span class="current-time" style="display:none"><?php echo "$current_time" ?></span>
+    
     <?php
     $sql = "SELECT * FROM sessions WHERE date='$date'";
     $query = mysqli_query($connect, $sql);
@@ -183,7 +186,7 @@ window.onload = function () {
     setAlarm(timeStart, timeEnd, () => {
     document.querySelector("audio").play().then(()=>{
       setTimeout(() => {
-        alert('hey')
+        alert('هناك بطاقة خارجة من منطقة الالعاب')
       }, 0);
     })
   });
@@ -192,5 +195,4 @@ window.onload = function () {
 };
 
 </script>
-
 </html>

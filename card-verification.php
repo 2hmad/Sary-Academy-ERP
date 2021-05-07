@@ -53,6 +53,7 @@
                     <div style="display:block;text-align:center">
                         <input type="text" name="keyword" placeholder="Enter Name / Code">
                         <input type="submit" class="search-btn" name="search" value="Search">
+                        <input type="submit" class="search-btn" name="show-all" value="Show All">
                     </div>
                 </form>
 
@@ -64,6 +65,8 @@ if(isset($_POST['search'])) {
     } else {
         header('Location: card-verification.php');
     }
+} elseif(isset($_POST['show-all'])) {
+    header('Location: card-verification.php?search=show-all');
 }
         echo '
         <table class="table table-bordered">
@@ -76,20 +79,21 @@ if(isset($_POST['search'])) {
         </thead>
         <tbody style="vertical-align: baseline">';
 
-        if(isset($_GET['search'])) {
+    if(isset($_GET['search'])) {
         $keyword_get = $_GET['search'];
-        $sql = "SELECT * FROM cards WHERE name LIKE '%$keyword_get%' OR code LIKE '%$keyword_get%'";
-        $query = mysqli_query($connect, $sql);
-        $num = mysqli_num_rows($query);
-        if($num > 0) {
-            while($row = $query->fetch_assoc()) {
-                $id = $row['id'];
-                $name = $row['name'];
-                $profile_pic = $row['profile_pic'];
-                $hours = $row['hours'];
-                $gender = $row['gender'];
-                $birthday = $row['birthday'];
-                $phone = $row['phone'];
+        if($keyword_get == "show-all") {
+
+            $sql = "SELECT * FROM cards ORDER BY id DESC";
+            $query = mysqli_query($connect, $sql);
+            if(mysqli_num_rows($query) > 0) {
+                while($row = $query->fetch_assoc()) {
+                    $id = $row['id'];
+                    $name = $row['name'];
+                    $profile_pic = $row['profile_pic'];
+                    $hours = $row['hours'];
+                    $gender = $row['gender'];
+                    $birthday = $row['birthday'];
+                    $phone = $row['phone'];
                 echo '
                     <tr>
                         <td><img src="students/'.$profile_pic.'" style="max-width:50px;border-radius:50%"></td>
@@ -107,13 +111,48 @@ if(isset($_POST['search'])) {
                         </td>
                     </tr>
                 ';
+                }
+            } else {
+                echo "<caption>No data available</caption>";
             }
+
         } else {
-            echo '<script>alert("No match data with search")</script>';
+            $sql = "SELECT * FROM cards WHERE name LIKE '%$keyword_get%' OR code LIKE '%$keyword_get%'";
+            $query = mysqli_query($connect, $sql);
+            $num = mysqli_num_rows($query);
+            if($num > 0) {
+                while($row = $query->fetch_assoc()) {
+                    $id = $row['id'];
+                    $name = $row['name'];
+                    $profile_pic = $row['profile_pic'];
+                    $hours = $row['hours'];
+                    $gender = $row['gender'];
+                    $birthday = $row['birthday'];
+                    $phone = $row['phone'];
+                    echo '
+                        <tr>
+                            <td><img src="students/'.$profile_pic.'" style="max-width:50px;border-radius:50%"></td>
+                            <td>'.$name.'</td>
+                            <td>
+                            <div class="dropdown">
+                            <button class="btn dropdown-toggle shadow-none options" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="far fa-ellipsis-h"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="edit-profile.php?id='.$id.'">Edit</a></li>
+                                <li><a class="dropdown-item" href="delete-profile.php?id='.$id.'">Delete</a></li>
+                            </ul>
+                            </div>
+                            </td>
+                        </tr>
+                    ';
+                }
+            } else {
+                echo '<script>alert("No match data with search")</script>';
+            }
         }
     }
-
-    ?>
+?>
         </tbody>
     </table>
     <form method="post" action="export.php">  

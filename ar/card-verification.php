@@ -46,13 +46,14 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> بحث عن الكارت</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> البحث عن بطاقة</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;margin-bottom:5%" enctype="multipart/form-data">
                     <div style="display:block;text-align:center">
                         <input type="text" name="keyword" placeholder="ادخل الاسم / الرقم التعريفي">
                         <input type="submit" class="search-btn" name="search" value="بحث">
+                        <input type="submit" class="search-btn" name="show-all" value="رؤية الكل">
                     </div>
                 </form>
 
@@ -64,35 +65,38 @@ if(isset($_POST['search'])) {
     } else {
         header('Location: card-verification.php');
     }
+} elseif(isset($_POST['show-all'])) {
+    header('Location: card-verification.php?search=show-all');
 }
         echo '
         <table class="table table-bordered">
         <thead class="table-dark">
             <tr>
-                <th scope="col">الصورة الشخصية</th>
-                <th scope="col">الإسم</th>
+                <th scope="col">صورة الملف الشخصي</th>
+                <th scope="col">الاسم</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody style="vertical-align: baseline">';
 
-        if(isset($_GET['search'])) {
+    if(isset($_GET['search'])) {
         $keyword_get = $_GET['search'];
-        $sql = "SELECT * FROM cards WHERE name LIKE '%$keyword_get%' OR code LIKE '%$keyword_get%'";
-        $query = mysqli_query($connect, $sql);
-        $num = mysqli_num_rows($query);
-        if($num > 0) {
-            while($row = $query->fetch_assoc()) {
-                $id = $row['id'];
-                $name = $row['name'];
-                $profile_pic = $row['profile_pic'];
-                $hours = $row['hours'];
-                $gender = $row['gender'];
-                $birthday = $row['birthday'];
-                $phone = $row['phone'];
+        if($keyword_get == "show-all") {
+
+            $sql = "SELECT * FROM cards ORDER BY id DESC";
+            $query = mysqli_query($connect, $sql);
+            if(mysqli_num_rows($query) > 0) {
+                while($row = $query->fetch_assoc()) {
+                    $id = $row['id'];
+                    $name = $row['name'];
+                    $profile_pic = $row['profile_pic'];
+                    $hours = $row['hours'];
+                    $gender = $row['gender'];
+                    $birthday = $row['birthday'];
+                    $phone = $row['phone'];
                 echo '
                     <tr>
-                        <td><img src="../students/'.$profile_pic.'" style="max-width:50px;border-radius:50%"></td>
+                        <td><img src="students/'.$profile_pic.'" style="max-width:50px;border-radius:50%"></td>
                         <td>'.$name.'</td>
                         <td>
                         <div class="dropdown">
@@ -107,17 +111,52 @@ if(isset($_POST['search'])) {
                         </td>
                     </tr>
                 ';
+                }
+            } else {
+                echo "<caption>لا توجد بيانات</caption>";
             }
+
         } else {
-            echo '<script>alert("لا توجد بيانات مطابقة")</script>';
+            $sql = "SELECT * FROM cards WHERE name LIKE '%$keyword_get%' OR code LIKE '%$keyword_get%'";
+            $query = mysqli_query($connect, $sql);
+            $num = mysqli_num_rows($query);
+            if($num > 0) {
+                while($row = $query->fetch_assoc()) {
+                    $id = $row['id'];
+                    $name = $row['name'];
+                    $profile_pic = $row['profile_pic'];
+                    $hours = $row['hours'];
+                    $gender = $row['gender'];
+                    $birthday = $row['birthday'];
+                    $phone = $row['phone'];
+                    echo '
+                        <tr>
+                            <td><img src="../students/'.$profile_pic.'" style="max-width:50px;border-radius:50%"></td>
+                            <td>'.$name.'</td>
+                            <td>
+                            <div class="dropdown">
+                            <button class="btn dropdown-toggle shadow-none options" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="far fa-ellipsis-h"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="edit-profile.php?id='.$id.'">تعديل</a></li>
+                                <li><a class="dropdown-item" href="delete-profile.php?id='.$id.'">حذف</a></li>
+                            </ul>
+                            </div>
+                            </td>
+                        </tr>
+                    ';
+                }
+            } else {
+                echo '<script>alert("لا توجد بيانات مطابقة مع الاسم")</script>';
+            }
         }
     }
-
-    ?>
+?>
         </tbody>
     </table>
     <form method="post" action="export.php">  
-        <input type="submit" name="export" value="استخراج جميع الكروت CSV" class="btn btn-success" />  
+        <input type="submit" name="export" value="اصدار جميع البطاقات" class="btn btn-success" />  
     </form>  
 
 </div>

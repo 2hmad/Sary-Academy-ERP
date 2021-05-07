@@ -46,7 +46,7 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> تعديل بيانات الحساب</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> تعديل الملف الشخصي</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;" enctype="multipart/form-data">
@@ -67,16 +67,11 @@ $query = mysqli_query($connect, $sql);
                     <input type="text" name="phone"  value="<?php echo "$phone" ?>" required>
                     <label style="font-weight: bold;">الجنس</label>
                     <select name="gender" required>
-                        <option hidden><?php 
-                        if($gender == "Male") {
-                            echo "ذكر";
-                        } else {
-                            echo "انثي";
-                        }?></option>
+                        <option hidden><?php echo "$gender" ?></option>
                         <option value="Male">ذكر</option>
-                        <option value="Female">انثي</option>
+                        <option value="Female">أنثي</option>
                     </select>
-                    <label style="font-weight: bold;">نوع الحساب</label>
+                    <label style="font-weight: bold;">الوظيفة</label>
                     <input type="text" name="role"  value="<?php echo "$role" ?>" disabled>
                     </div>
                     <input type="submit" name="edit-card" value="تعديل الحساب">
