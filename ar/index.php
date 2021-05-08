@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-lg-5" style="padding: 0px 0px 0px 55px;min-height:500px">
 
-            <a href="ar/"><img src="../pics/egypt-flag.png" style="position: absolute;top: 5%;"></a>
+            <a href="../"><img src="../pics/usa-flag.png" style="position: absolute;top: 5%;"></a>
 
             <h4 style="margin-top:15%;margin-bottom: 5%;text-transform:uppercase;font-weight:bold;font-size: 27px;">تسجيل الدخول</h4>
             <form method="POST">
