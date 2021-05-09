@@ -179,7 +179,7 @@ window.onload = function () {
   const timeEnd = document.querySelector(".end-time").innerHTML;
 
   var msg = document.querySelector(".msg").innerHTML;
-  if(msg === "Complete") {
+  if(msg === "Complete" && msg === "Stopped") {
 
   } else {
     
