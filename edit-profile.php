@@ -95,6 +95,14 @@ if($num > 0) {
                         <option>Kids Area</option>
                     </select>
 
+<?php
+if($kind == "Student") {
+    echo "
+    
+    ";
+}                    
+?>
+
                     <label class="ifEmployeeLabel" style="font-weight: bold;display:none">Position</label>
                     <input type="text" name="position" class="ifEmployee" style="display:none" value="<?php echo "$position" ?>">
 

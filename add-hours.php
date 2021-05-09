@@ -65,7 +65,15 @@
 
 <?php
     if(isset($_GET['code'])) {
+        $code = $_GET['code'];
+        $sql_total = "SELECT * FROM cards WHERE code = '$code'";
+        $query_total = mysqli_query($connect, $sql_total);
+        while($row_total = mysqli_fetch_array($query_total)) {
+            $total_hours = $row_total['hours'];
+        }
         echo '
+        <label style="font-weight: bold;">Hours in card</label>
+        <input type="number" value="'.$total_hours.'" disabled>
         <label style="font-weight: bold;">Hours <span class="total">(Total price: <span class="price"></span> )</span></label>
         <input type="number" name="hours" class="hours-num" value="0" required>';
 
