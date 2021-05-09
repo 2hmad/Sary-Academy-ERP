@@ -117,16 +117,6 @@ if(isset($_POST['delete-all'])) {
             
             $sql_name = mysqli_query($connect, "SELECT * FROM cards WHERE code='$code'");
             if(mysqli_num_rows($sql_name) > 0) {
-                echo '
-                <tr>
-                    <td>'.$code.'</td>    
-                    <td></td>
-                    <td>'.$date.'</td>
-                    <td>'.$time.'</td>
-                    <td>'.$status.'</td>
-                </tr>
-                ';    
-            } else {
                 while($row_name = mysqli_fetch_array($sql_name)) {
                     $name = $row_name['name'];
                     echo '
@@ -138,8 +128,18 @@ if(isset($_POST['delete-all'])) {
                         <td>'.$status.'</td>
                     </tr>
                     ';    
-            }                
-            }
+            }          
+            }else {
+                echo '
+                <tr>
+                    <td>'.$code.'</td>    
+                    <td></td>
+                    <td>'.$date.'</td>
+                    <td>'.$time.'</td>
+                    <td>'.$status.'</td>
+                </tr>
+                ';    
+            } 
         }
         } else {
             echo '<caption>No data available at this moment</caption>';

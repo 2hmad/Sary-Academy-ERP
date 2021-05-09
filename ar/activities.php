@@ -114,25 +114,35 @@ if(isset($_POST['delete-all'])) {
                 $date = $row['date'];
                 $time = $row['time'];
                 $status = $row['tag'];
-                echo '
-                <tr>
-                <td>'.$code.'</td>
-                ';  
             
             $sql_name = mysqli_query($connect, "SELECT * FROM cards WHERE code='$code'");
-            while($row_name = mysqli_fetch_array($sql_name)) {
-                $name = $row_name['name'];
+            if(mysqli_num_rows($sql_name) > 0) {
+                while($row_name = mysqli_fetch_array($sql_name)) {
+                    $name = $row_name['name'];
+                    echo '
+                    <tr>
+                        <td>'.$code.'</td>    
+                        <td>'.$name.'</td>
+                        <td>'.$date.'</td>
+                        <td>'.$time.'</td>
+                        <td>'.$status.'</td>
+                    </tr>
+                    ';    
+            }          
+            }else {
                 echo '
-                <td>'.$name.'</td>
-                <td>'.$date.'</td>
-                <td>'.$time.'</td>
-                <td>'.$status.'</td>
+                <tr>
+                    <td>'.$code.'</td>    
+                    <td></td>
+                    <td>'.$date.'</td>
+                    <td>'.$time.'</td>
+                    <td>'.$status.'</td>
                 </tr>
-                ';
-            }
+                ';    
+            } 
         }
         } else {
-            echo '<caption>لا توجد بيانات متاحة في الوقت الحالي</caption>';
+            echo '<caption>لا توجد بيانات متاحة</caption>';
         }
 ?>
         </tbody>
