@@ -114,16 +114,14 @@ if(isset($_POST['delete-all'])) {
                 $date = $row['date'];
                 $time = $row['time'];
                 $status = $row['tag'];
-                echo '
-                <tr>
-                <td>'.$code.'</td>
-                ';  
             
             $sql_name = mysqli_query($connect, "SELECT * FROM cards WHERE code='$code'");
             while($row_name = mysqli_fetch_array($sql_name)) {
                 $name = $row_name['name'];
                 if($name !== "") {
                     echo '
+                    <tr>
+                    <td>'.$code.'</td>    
                     <td>'.$name.'</td>
                     <td>'.$date.'</td>
                     <td>'.$time.'</td>
@@ -132,6 +130,8 @@ if(isset($_POST['delete-all'])) {
                     ';    
                 } else {
                     echo '
+                    <tr>
+                    <td>'.$code.'</td>    
                     <td></td>
                     <td>'.$date.'</td>
                     <td>'.$time.'</td>
@@ -143,7 +143,7 @@ if(isset($_POST['delete-all'])) {
             }
         }
         } else {
-            echo '<caption>No data available at this moment</ؤش>';
+            echo '<caption>No data available at this moment</caption>';
         }
 ?>
         </tbody>
