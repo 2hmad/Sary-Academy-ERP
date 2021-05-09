@@ -116,30 +116,29 @@ if(isset($_POST['delete-all'])) {
                 $status = $row['tag'];
             
             $sql_name = mysqli_query($connect, "SELECT * FROM cards WHERE code='$code'");
-            while($row_name = mysqli_fetch_array($sql_name)) {
-                $name = $row_name['name'];
-                if($name !== "") {
-                    echo '
-                    <tr>
-                    <td>'.$code.'</td>    
-                    <td>'.$name.'</td>
-                    <td>'.$date.'</td>
-                    <td>'.$time.'</td>
-                    <td>'.$status.'</td>
-                    </tr>
-                    ';    
-                } else {
-                    echo '
-                    <tr>
+            if(mysqli_num_rows($sql_name) > 0) {
+                echo '
+                <tr>
                     <td>'.$code.'</td>    
                     <td></td>
                     <td>'.$date.'</td>
                     <td>'.$time.'</td>
                     <td>'.$status.'</td>
+                </tr>
+                ';    
+            } else {
+                while($row_name = mysqli_fetch_array($sql_name)) {
+                    $name = $row_name['name'];
+                    echo '
+                    <tr>
+                        <td>'.$code.'</td>    
+                        <td>'.$name.'</td>
+                        <td>'.$date.'</td>
+                        <td>'.$time.'</td>
+                        <td>'.$status.'</td>
                     </tr>
                     ';    
-                }
-                
+            }                
             }
         }
         } else {
