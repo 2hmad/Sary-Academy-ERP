@@ -122,13 +122,24 @@ if(isset($_POST['delete-all'])) {
             $sql_name = mysqli_query($connect, "SELECT * FROM cards WHERE code='$code'");
             while($row_name = mysqli_fetch_array($sql_name)) {
                 $name = $row_name['name'];
-                echo '
-                <td>'.$name.'</td>
-                <td>'.$date.'</td>
-                <td>'.$time.'</td>
-                <td>'.$status.'</td>
-                </tr>
-                ';
+                if($name !== "") {
+                    echo '
+                    <td>'.$name.'</td>
+                    <td>'.$date.'</td>
+                    <td>'.$time.'</td>
+                    <td>'.$status.'</td>
+                    </tr>
+                    ';    
+                } else {
+                    echo '
+                    <td></td>
+                    <td>'.$date.'</td>
+                    <td>'.$time.'</td>
+                    <td>'.$status.'</td>
+                    </tr>
+                    ';    
+                }
+                
             }
         }
         } else {
