@@ -47,30 +47,31 @@ echo $count;
                     <span style="font-size: 35px;font-weight: bold;">
 <?php
 $date = date("Y-m-d");
-$sql = "SELECT COUNT(*) AS total_attend FROM sessions WHERE date='$date'";
+$sql = "SELECT COUNT(*) AS total_attend FROM attendance WHERE date='$date' AND type='Employee'";
 $query = mysqli_query($connect, $sql);
 $row = mysqli_fetch_assoc($query);
 $count = $row['total_attend'];
 echo $count;
 ?>
                     </span>
-                    <span style="text-transform: uppercase;">total Today Attendances</span>
+                    <span style="text-transform: uppercase;">total employees attendances today</span>
                 </div>
             </div>
             <div class="row" style="margin-left: 5%;margin-top:3%">
-                <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
-                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> Users</h5>
+            <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
+                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> Today Attendances</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
 <?php
-$sql = "SELECT COUNT(*) AS total_users FROM users";
+$date = date("Y-m-d");
+$sql = "SELECT COUNT(*) AS total_attend FROM attendance WHERE date='$date' AND type='Student'";
 $query = mysqli_query($connect, $sql);
 $row = mysqli_fetch_assoc($query);
-$count = $row['total_users'];
+$count = $row['total_attend'];
 echo $count;
 ?>
                     </span>
-                    <span style="text-transform: uppercase;">total uesrs</span>
+                    <span style="text-transform: uppercase;">total students attendances today</span>
                 </div>
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> Kids Area</h5>
