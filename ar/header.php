@@ -1,6 +1,6 @@
 <nav style="display: block;">
         <a href="https://sary-academy.com" target="_blank"><img src="../pics/saryacademy.png" alt="Sary academy" style="max-width: 200px;"></a>
-        <a href="https://saryacademy.com/dashboard/login" style="margin-left:3%"><button class="btn btn-outline-dark">لوحة التحكم</button></a>
+        <a href="https://saryacademy.com/dashboard/login" style="margin-left:3%"><button class="btn btn-outline-dark">لوحة التحكم الرئيسية</button></a>
         <div style="float: right;display:flex;align-items: center;gap: 30px">
         <a href="../"><img src="../pics/usa-flag.png"></a>
         <div class="dropdown" style="box-shadow:none !important;background:#1D2362;border-radius: 5px;">
