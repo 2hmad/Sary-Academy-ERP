@@ -102,7 +102,7 @@
         </tbody>
     </table>
     <?php
-    $sql = "SELECT * FROM activities WHERE date='$date'";
+    $sql = "SELECT * FROM accounting";
     $query = mysqli_query($connect, $sql);
     $totalItems = mysqli_num_rows($query);
 
