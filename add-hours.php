@@ -138,11 +138,14 @@ if(isset($_POST['add-hours'])) {
                 $sql_update = "UPDATE cards SET hours = '$hours_modify' WHERE code='$code'";
                 $query_update = mysqli_query($connect, $sql_update);
                 
+                $month = date("M");
                 $date = date("Y-m-d");
-                $sql = "INSERT INTO accounting (code, hours, price, date) VALUES ('$code', '$hours', '$price', '$date')";
+                $sql = "INSERT INTO accounting (code, hours, price, date, month) VALUES ('$code', '$hours', '$price', '$date', '$month')";
                 $query = mysqli_query($connect, $sql);
     
-                echo "<div class='alert alert-success'>Added $hours hours to this card</div>";    
+                echo "<div class='alert alert-success'>Added $hours hours to this card</div>";  
+                header('refresh:4;url=add-hours.php');
+                  
             } else {
                 echo "<div class='alert alert-danger'>Please Enter Hours</div>";
             }

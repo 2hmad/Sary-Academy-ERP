@@ -104,7 +104,7 @@ if(isset($_POST['next'])) {
     if($num > 0 ) {
         header('Location: add-hours.php?code='.$code.'&price='.$price.'');
     } else {
-        echo "<div class='alert alert-danger'>This card not found</div>";
+        echo "<div class='alert alert-danger'>هذا الكارت غير موجود</div>";
     }
     
 }
@@ -133,15 +133,17 @@ if(isset($_POST['add-hours'])) {
                 $sql = "INSERT INTO accounting (code, hours, price, date) VALUES ('$code', '$hours', '$price', '$date')";
                 $query = mysqli_query($connect, $sql);
     
-                echo "<div class='alert alert-success'>Added $hours hours to this card</div>";    
+                echo "<div class='alert alert-success'>تم اضافة عدد $hours ساعة لهذا الكارت</div>";   
+                header('refresh:4;url=add-hours.php');
+
             } else {
-                echo "<div class='alert alert-danger'>Please Enter Hours</div>";
+                echo "<div class='alert alert-danger'>برجاء ادخال عدد الساعات اولا</div>";
             }
         } else {
-            echo "<div class='alert alert-danger'>This Card is not found</div>";
+            echo "<div class='alert alert-danger'>هذا الكارت غير موجود في النظام</div>";
         }
     } else {
-        echo "<div class='alert alert-danger'>Please Enter Card Code</div>";
+        echo "<div class='alert alert-danger'>برجاء ادخال الرقم التعريفي للكارت</div>";
     }
 }
 ?>

@@ -72,8 +72,9 @@ if(isset($_POST['search'])) {
         <table class="table table-bordered">
         <thead class="table-dark">
             <tr>
-                <th scope="col">Profile Pic</th>
+                <th scope="col">Card ID</th>
                 <th scope="col">Name</th>
+                <th scope="col">Type</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -88,16 +89,19 @@ if(isset($_POST['search'])) {
             if(mysqli_num_rows($query) > 0) {
                 while($row = $query->fetch_assoc()) {
                     $id = $row['id'];
+                    $code = $row['code'];
                     $name = $row['name'];
                     $profile_pic = $row['profile_pic'];
                     $hours = $row['hours'];
                     $gender = $row['gender'];
                     $birthday = $row['birthday'];
                     $phone = $row['phone'];
+                    $kind = $row['kind'];
                 echo '
                     <tr>
-                        <td><img src="students/'.$profile_pic.'" style="max-width:50px;border-radius:50%"></td>
+                        <td>'.$code.'</td>
                         <td>'.$name.'</td>
+                        <td>'.$kind.'</td>
                         <td>
                         <div class="dropdown">
                         <button class="btn dropdown-toggle shadow-none options" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -123,16 +127,19 @@ if(isset($_POST['search'])) {
             if($num > 0) {
                 while($row = $query->fetch_assoc()) {
                     $id = $row['id'];
+                    $code = $row['code'];
                     $name = $row['name'];
                     $profile_pic = $row['profile_pic'];
                     $hours = $row['hours'];
                     $gender = $row['gender'];
                     $birthday = $row['birthday'];
                     $phone = $row['phone'];
+                    $kind = $row['kind'];
                     echo '
                         <tr>
-                            <td><img src="students/'.$profile_pic.'" style="max-width:50px;border-radius:50%"></td>
+                            <td>'.$code.'</td>
                             <td>'.$name.'</td>
+                            <td>'.$kind.'</td>
                             <td>
                             <div class="dropdown">
                             <button class="btn dropdown-toggle shadow-none options" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -155,6 +162,7 @@ if(isset($_POST['search'])) {
 ?>
         </tbody>
     </table>
+
     <form method="post" action="export.php">  
         <input type="submit" name="export" value="Export All Cards in CSV" class="btn btn-success" />  
     </form>  

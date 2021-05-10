@@ -58,6 +58,20 @@
                 <form method="POST" style="margin-top: 2%;margin-bottom:5%" enctype="multipart/form-data">
                     <div style="display:block;text-align:center">
                         <input type="text" name="code" placeholder='الرقم التعريفي للبطاقة' required>
+                        <select type="text" name="month" required>
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option=>
+                            <option>August</option=>
+                            <option>September</option=>
+                            <option>October</option=>
+                            <option>November</option=>
+                            <option>December</option=>
+                        </select>
                         <input type="submit" class="apply-btn" name="apply" value="بحث">
                     </div>
                 </form>
@@ -88,12 +102,14 @@ $from = ($page_number-1)*$num_per_page;
 
 if(isset($_POST['apply'])) {
     $code = $_POST['code'];
-    header('Location: attendance-schedule.php?code='.$code.'');
+    $month = $_POST['month'];
+    header('Location: attendance-schedule.php?code='.$code.'&month='.$month.'');
 }
 
-if(isset($_GET['code'])) {
+if(isset($_GET['code']) && isset($_GET['month'])) {
     $code = $_GET['code'];
-$sql = "SELECT * FROM attendance WHERE code='$code' ORDER BY id DESC LIMIT $from, $num_per_page";
+    $month = $_GET['month'];
+$sql = "SELECT * FROM attendance WHERE code='$code' AND month = '$month' ORDER BY id DESC LIMIT $from, $num_per_page";
 $query = mysqli_query($connect, $sql);        
 
 if(mysqli_num_rows($query) > 0) {
@@ -136,8 +152,8 @@ echo '
     </div>
 ';
 
-if(isset($_GET['code'])) {
-    $sql_pagination = "SELECT * FROM attendance WHERE code='$code'";
+if(isset($_GET['code']) && isset($_GET['month'])) {
+    $sql_pagination = "SELECT * FROM attendance WHERE code='$code' AND month='$month'";
 } else {
     $sql_pagination = "SELECT * FROM attendance";
 }
@@ -156,9 +172,9 @@ for($i=1;$i<=$total_pages;$i++){
 ?>
 
 <?php
-if(isset($_GET['code']) && $totalItems > 0) {
+if(isset($_GET['code']) && isset($_GET['month']) && $totalItems > 0) {
     echo '
-    <form method="POST" style="width:auto" action="export_person.php?code='.$code.'">
+    <form method="POST" style="width:auto" action="export_person.php?code='.$code.'&month='.$month.'">
         <button class="btn btn-success" name="export" type="submit" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="far fa-file-csv"></i> Export '.$name.'</button>
     </form>
     ';
