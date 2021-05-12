@@ -15,63 +15,63 @@
                $output .= '  
                <tr>  
                     <td width="30%"><label>Name</label></td>  
-                    <td width="70%">'.$row["name"].'</td>  
+                    <td>'.$row["name"].'</td>  
                </tr>
                <tr>
                     <td width="30%"><label>Birthday</label></td>  
-                    <td width="70%">'.$row["birthday"].'</td> 
+                    <td>'.$row["birthday"].'</td> 
                </tr>
                <tr>
                     <td width="30%"><label>Phone</label></td>  
-                    <td width="70%">'.$row["phone"].'</td>   
+                    <td>'.$row["phone"].'</td>   
                </tr>
                <tr>
                     <td width="30%"><label>Gender</label></td>  
-                    <td width="70%">'.$row["gender"].'</td>  
+                    <td>'.$row["gender"].'</td>  
                </tr>
                <tr>
                     <td width="30%"><label>Type</label></td>  
-                    <td width="70%">'.$row["kind"].'</td>  
+                    <td>'.$row["kind"].'</td>  
                </tr>
                <tr>
                     <td width="30%"><label>Position</label></td>  
-                    <td width="70%">'.$row["position"].'</td>  
+                    <td>'.$row["position"].'</td>  
                </tr>
                <tr>
                     <td width="30%"><label>Salary</label></td>  
-                    <td width="70%">'.$row["salary"].'</td>  
+                    <td>'.$row["salary"].'</td>  
                </tr>  
                ';  
            } elseif($kind == "Kids Area") {
                $output .= '  
                <tr>  
                     <td width="30%"><label>Name</label></td>  
-                    <td width="70%">'.$row["name"].'</td>  
+                    <td>'.$row["name"].'</td>  
                     <td width="30%"><label>Birthday</label></td>  
-                    <td width="70%">'.$row["birthday"].'</td>  
+                    <td>'.$row["birthday"].'</td>  
                     <td width="30%"><label>Phone</label></td>  
-                    <td width="70%">'.$row["phone"].'</td>   
+                    <td>'.$row["phone"].'</td>   
                     <td width="30%"><label>Gender</label></td>  
-                    <td width="70%">'.$row["gender"].'</td>  
+                    <td>'.$row["gender"].'</td>  
                     <td width="30%"><label>Type</label></td>  
-                    <td width="70%">'.$row["kind"].'</td>  
+                    <td>'.$row["kind"].'</td>  
                     <td width="30%"><label>Hours in card</label></td>  
-                    <td width="70%">'.$row["hours"].'</td>  
+                    <td>'.$row["hours"].'</td>  
                </tr>  
                ';  
            } elseif($kind == "Student") {
                $output .= '  
                <tr>  
                     <td width="30%"><label>Name</label></td>  
-                    <td width="70%">'.$row["name"].'</td>  
+                    <td>'.$row["name"].'</td>  
                     <td width="30%"><label>Birthday</label></td>  
-                    <td width="70%">'.$row["birthday"].'</td>  
+                    <td>'.$row["birthday"].'</td>  
                     <td width="30%"><label>Phone</label></td>  
-                    <td width="70%">'.$row["phone"].'</td>   
+                    <td>'.$row["phone"].'</td>   
                     <td width="30%"><label>Gender</label></td>  
-                    <td width="70%">'.$row["gender"].'</td>  
+                    <td>'.$row["gender"].'</td>  
                     <td width="30%"><label>Type</label></td>  
-                    <td width="70%">'.$row["kind"].'</td>  
+                    <td>'.$row["kind"].'</td>  
                </tr>  
                ';  
            }
