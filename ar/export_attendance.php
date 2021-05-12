@@ -13,7 +13,7 @@ if(!isset($_SESSION['email'])) {
       header('Content-Type: text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=attendence.csv');  
       $output = fopen("php://output", "w");  
-      fputcsv($output, array('No#','Card code', 'Name', 'Position', 'Type', 'Month', 'Date', 'Present', 'Absence'));  
+      fputcsv($output, array('التسلسل','الرقم التعريفي', 'الاسم', 'الوظيفة', 'نوع الكارت', 'الشهر', 'التاريخ', 'الحضور', 'الانصراف'));  
       $date = date("Y-m-d");
       $query = "SELECT * from attendance WHERE month = '$month' ORDER BY id DESC";  
       $result = mysqli_query($connect, $query);  

@@ -171,10 +171,6 @@ if(isset($_POST['search'])) {
         </tbody>
     </table>
 
-    <form method="post" action="export.php">  
-        <input type="submit" name="export" value="Export All Cards in CSV" class="btn btn-success" />  
-    </form>  
-
 </div>
     </div>
     </div>

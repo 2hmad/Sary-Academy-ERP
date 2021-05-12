@@ -170,9 +170,6 @@ if(isset($_POST['search'])) {
 ?>
         </tbody>
     </table>
-    <form method="post" action="export.php">  
-        <input type="submit" name="export" value="اصدار جميع البطاقات" class="btn btn-success" />  
-    </form>  
 
 </div>
     </div>
