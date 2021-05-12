@@ -19,16 +19,25 @@
                </tr>
                <tr>
                     <td width="30%"><label>Birthday</label></td>  
-               </tr>
                     <td width="70%">'.$row["birthday"].'</td> 
+               </tr>
+               <tr>
                     <td width="30%"><label>Phone</label></td>  
                     <td width="70%">'.$row["phone"].'</td>   
+               </tr>
+               <tr>
                     <td width="30%"><label>Gender</label></td>  
                     <td width="70%">'.$row["gender"].'</td>  
+               </tr>
+               <tr>
                     <td width="30%"><label>Type</label></td>  
                     <td width="70%">'.$row["kind"].'</td>  
+               </tr>
+               <tr>
                     <td width="30%"><label>Position</label></td>  
                     <td width="70%">'.$row["position"].'</td>  
+               </tr>
+               <tr>
                     <td width="30%"><label>Salary</label></td>  
                     <td width="70%">'.$row["salary"].'</td>  
                </tr>  
