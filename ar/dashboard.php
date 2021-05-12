@@ -28,6 +28,7 @@
         <div class="col-lg">
             <div class="row" style="margin-left: 5%;">
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
+                    <a href="card-verification.php?search=show-all">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> الكروت</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
@@ -39,6 +40,7 @@ $count = $row['total_cards'];
 echo $count;
 ?>
                     </span>
+                    </a>
                     <span style="text-transform: uppercase;">عدد الكروت</span>
                 </div>
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
@@ -77,6 +79,7 @@ echo $count;
                     <span style="text-transform: uppercase;">اجمالي حضور الطلاب اليوم</span>
                 </div>
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
+                    <a href="sessions.php">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> منطقة الالعاب</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
@@ -88,6 +91,7 @@ $count = $row['total_kids'];
 echo $count;
 ?>
                     </span>
+                    </a>
                     <span style="text-transform: uppercase;">الحاليين في منطقة الالعاب</span>
                 </div>
             </div>

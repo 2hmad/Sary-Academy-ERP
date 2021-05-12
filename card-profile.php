@@ -16,7 +16,10 @@
                <tr>  
                     <td width="30%"><label>Name</label></td>  
                     <td width="70%">'.$row["name"].'</td>  
+               </tr>
+               <tr>
                     <td width="30%"><label>Birthday</label></td>  
+               </tr>
                     <td width="70%">'.$row["birthday"].'</td> 
                     <td width="30%"><label>Phone</label></td>  
                     <td width="70%">'.$row["phone"].'</td>   
