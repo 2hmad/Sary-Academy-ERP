@@ -42,6 +42,7 @@ echo $count;
                     <span style="text-transform: uppercase;">عدد الكروت</span>
                 </div>
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
+                    <a href="attendance.php?type=Employee&month=<?php echo date("M"); ?>">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> الحضور اليومي</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
@@ -54,11 +55,13 @@ $count = $row['total_attend'];
 echo $count;
 ?>
                     </span>
+                    </a>
                     <span style="text-transform: uppercase;">اجمالي حضور الموظفين اليوم</span>
                 </div>
             </div>
             <div class="row" style="margin-left: 5%;margin-top:3%">
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
+                    <a href="attendance.php?type=Students&month=<?php echo date("M"); ?>">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> الحضور اليومي</h5>
                     <div class="box-card"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
@@ -70,6 +73,7 @@ $count = $row['total_attend'];
 echo $count;
 ?>
                     </span>
+                    </a>
                     <span style="text-transform: uppercase;">اجمالي حضور الطلاب اليوم</span>
                 </div>
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">

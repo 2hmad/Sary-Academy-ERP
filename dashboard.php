@@ -42,6 +42,7 @@ echo $count;
                     <span style="text-transform: uppercase;">total cards</span>
                 </div>
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
+                    <a href="attendance.php?type=Employee&month=<?php echo date("M"); ?>">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> Today Attendances</h5>
                     <div class="box-card" style="background: #004a99;"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
@@ -53,12 +54,13 @@ $row = mysqli_fetch_assoc($query);
 $count = $row['total_attend'];
 echo $count;
 ?>
-                    </span>
+                    </span></a>
                     <span style="text-transform: uppercase;">total employees attendances today</span>
                 </div>
             </div>
             <div class="row" style="margin-left: 5%;margin-top:3%">
             <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
+                    <a href="attendance.php?type=Students&month=<?php echo date("M"); ?>">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> Today Attendances</h5>
                     <div class="box-card" style="background: #3caa36;"><i class="fad fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
@@ -70,7 +72,7 @@ $row = mysqli_fetch_assoc($query);
 $count = $row['total_attend'];
 echo $count;
 ?>
-                    </span>
+                    </span></a>
                     <span style="text-transform: uppercase;">total students attendances today</span>
                 </div>
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">

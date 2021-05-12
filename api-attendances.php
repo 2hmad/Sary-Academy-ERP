@@ -1,15 +1,6 @@
 <?php
 
-$host = "us-cdbr-east-03.cleardb.com";
-$user = "bbf1e46cd1f90a";
-$pass = "9d4a4ff6";
-$db = "heroku_407b2626d06f99e";
-
-//$host = "localhost";
-//$user = "root";
-//$pass = "";
-//$db = "kidsarea";
-$connect = mysqli_connect($host, $user, $pass, $db) or die("Can't connect with database");
+include('connection.php');
 date_default_timezone_set("Africa/Cairo");
 
 $api_key = "42f12f-b368be-e7fbb4-de0036-56975d";

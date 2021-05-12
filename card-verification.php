@@ -97,25 +97,29 @@ if(isset($_POST['search'])) {
                     $birthday = $row['birthday'];
                     $phone = $row['phone'];
                     $kind = $row['kind'];
-                echo '
+                ?>
                     <tr>
-                        <td>'.$code.'</td>
-                        <td>'.$name.'</td>
-                        <td>'.$kind.'</td>
+                        <td><?php echo $code ?></td>
+                        <td><?php echo $name ?></td>
+                        <td><?php echo $kind ?></td>
                         <td>
                         <div class="dropdown">
                         <button class="btn dropdown-toggle shadow-none options" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="far fa-ellipsis-h"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="edit-profile.php?id='.$id.'">Edit</a></li>
-                            <li><a class="dropdown-item" href="delete-profile.php?id='.$id.'">Delete</a></li>
+                            <li><input type="button" name="view" value="Profile" id="<?php echo $id ?>" class="btn btn-xs view_data dropdown-item" /></li>
+                            <li><a class="dropdown-item" href="edit-profile.php?id=<?php echo $id ?>">Edit</a></li>
+                            <li><a class="dropdown-item" href="delete-profile.php?id=<?php echo $id ?>">Delete</a></li>
                         </ul>
                         </div>
                         </td>
                     </tr>
-                ';
+
+            <?php
                 }
+            ?>
+            <?php
             } else {
                 echo "<caption>No data available</caption>";
             }
@@ -135,25 +139,29 @@ if(isset($_POST['search'])) {
                     $birthday = $row['birthday'];
                     $phone = $row['phone'];
                     $kind = $row['kind'];
-                    echo '
-                        <tr>
-                            <td>'.$code.'</td>
-                            <td>'.$name.'</td>
-                            <td>'.$kind.'</td>
-                            <td>
-                            <div class="dropdown">
-                            <button class="btn dropdown-toggle shadow-none options" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="far fa-ellipsis-h"></i>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="edit-profile.php?id='.$id.'">Edit</a></li>
-                                <li><a class="dropdown-item" href="delete-profile.php?id='.$id.'">Delete</a></li>
-                            </ul>
-                            </div>
-                            </td>
-                        </tr>
-                    ';
+                    ?>
+                    <tr>
+                        <td><?php echo $code ?></td>
+                        <td><?php echo $name ?></td>
+                        <td><?php echo $kind ?></td>
+                        <td>
+                        <div class="dropdown">
+                        <button class="btn dropdown-toggle shadow-none options" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="far fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><input type="button" name="view" value="Profile" id="<?php echo $id ?>" class="btn btn-xs view_data dropdown-item" /></li>
+                            <li><a class="dropdown-item" href="edit-profile.php?id=<?php echo $id ?>">Edit</a></li>
+                            <li><a class="dropdown-item" href="delete-profile.php?id=<?php echo $id ?>">Delete</a></li>
+                        </ul>
+                        </div>
+                        </td>
+                    </tr>
+
+            <?php
                 }
+            ?>
+            <?php
             } else {
                 echo '<script>alert("No match data with search")</script>';
             }
@@ -174,3 +182,39 @@ if(isset($_POST['search'])) {
 </body>
 <?php include('scripts.php') ?>
 </html>
+
+<div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="card_detail">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ <script>  
+ $(document).ready(function(){  
+      $('.view_data').click(function(){  
+           var card_id = $(this).attr("id");  
+           $.ajax({  
+                url:"card-profile.php",  
+                method:"post",  
+                data:{card_id:card_id},  
+                success:function(data){  
+                     $('#card_detail').html(data);  
+                     $('#dataModal').modal("show");  
+                }  
+           });  
+      });  
+ });  
+ </script>
