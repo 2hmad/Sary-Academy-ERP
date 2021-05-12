@@ -7,7 +7,7 @@
       $result = mysqli_query($connect, $query);  
       $output .= '  
       <div class="table-responsive">  
-           <table class="table table-bordered">';  
+           <table class="table">';  
       while($row = mysqli_fetch_array($result))  
       {  
            $kind = $row["kind"];
