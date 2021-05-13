@@ -52,7 +52,7 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Accounting</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="fas fa-user-friends"></i> Accounting</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
             <form method="POST" style="margin-top: 2%;margin-bottom:5%" enctype="multipart/form-data">
@@ -160,7 +160,7 @@ echo '
 if(isset($_GET['month']) && $totalItems > 0) {
     echo '
     <form method="POST" style="width:auto" action="export_accounting.php?month='.$month_get.'">
-        <button class="btn btn-success" name="export" type="submit" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="far fa-file-csv"></i> Export '.$month_get.'</button>
+        <button class="btn btn-success" name="export" type="submit" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="fas fa-file-csv"></i> Export '.$month_get.'</button>
     </form>
     ';
 }

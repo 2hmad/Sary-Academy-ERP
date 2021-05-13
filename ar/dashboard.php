@@ -29,9 +29,9 @@
             <div class="row" style="margin-left: 5%;">
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
                     <a href="card-verification.php?search=show-all">
-                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> الكروت</h5>
+                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fas fa-user-friends"></i> الكروت</h5>
                     </a>
-                    <div class="box-card"><i class="fad fa-user-friends"></i></div>
+                    <div class="box-card"><i class="fas fa-user-friends"></i></div>
                     <a href="card-verification.php?search=show-all">
                     <span style="font-size: 35px;font-weight: bold;">
 <?php
@@ -47,9 +47,9 @@ echo $count;
                 </div>
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
                     <a href="attendance.php?type=Employee&month=<?php echo date("M"); ?>">
-                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> الحضور اليومي</h5>
+                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fas fa-user-friends"></i> الحضور اليومي</h5>
                     </a>
-                    <div class="box-card"><i class="fad fa-user-friends"></i></div>
+                    <div class="box-card"><i class="fas fa-user-friends"></i></div>
                     <a href="attendance.php?type=Employee&month=<?php echo date("M"); ?>">
                     <span style="font-size: 35px;font-weight: bold;">
 <?php
@@ -68,9 +68,9 @@ echo $count;
             <div class="row" style="margin-left: 5%;margin-top:3%">
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
                     <a href="attendance.php?type=Students&month=<?php echo date("M"); ?>">
-                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> الحضور اليومي</h5>
+                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fas fa-user-friends"></i> الحضور اليومي</h5>
                     </a>
-                    <div class="box-card"><i class="fad fa-user-friends"></i></div>
+                    <div class="box-card"><i class="fas fa-user-friends"></i></div>
                     <a href="attendance.php?type=Students&month=<?php echo date("M"); ?>">
                     <span style="font-size: 35px;font-weight: bold;">
 <?php
@@ -86,8 +86,8 @@ echo $count;
                 </div>
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
                     <a href="sessions.php">
-                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fad fa-user-friends"></i> منطقة الالعاب</h5>
-                    <div class="box-card"><i class="fad fa-user-friends"></i></div>
+                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fas fa-user-friends"></i> منطقة الالعاب</h5>
+                    <div class="box-card"><i class="fas fa-user-friends"></i></div>
                     <span style="font-size: 35px;font-weight: bold;">
 <?php
 $sql = "SELECT COUNT(*) AS total_kids FROM sessions WHERE status=''";

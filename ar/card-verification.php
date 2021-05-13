@@ -46,7 +46,7 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> البحث عن بطاقة</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="fas fa-user-friends"></i> البحث عن بطاقة</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;margin-bottom:5%" enctype="multipart/form-data">
@@ -105,7 +105,7 @@ if(isset($_POST['search'])) {
                         <td>
                         <div class="dropdown">
                         <button class="btn dropdown-toggle shadow-none options" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="far fa-ellipsis-h"></i>
+                            <i class="fas fa-ellipsis-h"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><input type="button" name="view" value="الملف الشخصي" id="<?php echo $id ?>" class="btn btn-xs view_data dropdown-item" /></li>
@@ -147,7 +147,7 @@ if(isset($_POST['search'])) {
                         <td>
                         <div class="dropdown">
                         <button class="btn dropdown-toggle shadow-none options" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="far fa-ellipsis-h"></i>
+                            <i class="fas fa-ellipsis-h"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><input type="button" name="view" value="الملف الشخصي" id="<?php echo $id ?>" class="btn btn-xs view_data dropdown-item" /></li>

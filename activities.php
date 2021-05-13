@@ -46,12 +46,12 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="far fa-user-crown"></i> Activities</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="fas fa-user-friends"></i> Activities</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">            
             <form method="POST" style="display: flex;">
-                <button class="btn btn-success refresh" onclick="location.reload();" style="width: auto;display:block;margin-bottom:2%"><i class="far fa-sync"></i> Refresh</button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: auto;display:block;margin-bottom:2%;margin-left: auto;"><i class="far fa-trash"></i> Clear All</button>
+                <button class="btn btn-success refresh" onclick="location.reload();" style="width: auto;display:block;margin-bottom:2%"><i class="fas fa-sync"></i> Refresh</button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: auto;display:block;margin-bottom:2%;margin-left: auto;"><i class="fas fa-trash"></i> Clear All</button>
                 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -158,7 +158,7 @@ if(isset($_POST['delete-all'])) {
 ?>
 
 <form method="POST" style="width:auto" action="export_activity.php">
-    <button class="btn btn-success" name="export" type="submit" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="far fa-file-csv"></i> Export today's activities</button>
+    <button class="btn btn-success" name="export" type="submit" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="fas fa-file-csv"></i> Export today's activities</button>
 </form>
 
 <nav aria-label="Page navigation example" style="margin-left:auto;width:auto">

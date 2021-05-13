@@ -17,11 +17,11 @@ while($row = mysqli_fetch_assoc($query)) {
 ?>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="width: 100%;">
-            <li><a class="dropdown-item" href="my-account.php" style="text-transform: uppercase"><i class="fal fa-user"></i> تعديل الحساب</a></li>
+            <li><a class="dropdown-item" href="my-account.php" style="text-transform: uppercase"><i class="fas fa-user"></i> تعديل الحساب</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="change-password.php" style="text-transform: uppercase"><i class="fal fa-key"></i> تغيير كلمة المرور</a></li>
+            <li><a class="dropdown-item" href="change-password.php" style="text-transform: uppercase"><i class="fas fa-key"></i> تغيير كلمة المرور</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout.php" style="text-transform: uppercase"><i class="fal fa-sign-out"></i> تسجيل الخروج</a></li>
+            <li><a class="dropdown-item" href="logout.php" style="text-transform: uppercase"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a></li>
         </ul>
         </div>
         </div>
