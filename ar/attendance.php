@@ -59,8 +59,8 @@
                     <div style="display:block;text-align:center">
                         <select name="role" required>
                             <option value="">الوظيفة</option>
-                            <option>طالب</option>
-                            <option>موظف</option>
+                            <option value="Student">طالب</option>
+                            <option value="Employee">موظف</option>
                         </select>
                         <select name="month" required>
                             <option value="">اختر الشهر</option>

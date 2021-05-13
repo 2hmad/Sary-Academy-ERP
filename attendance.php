@@ -59,7 +59,7 @@
                     <div style="display:block;text-align:center">
                         <select name="role" required>
                             <option value="">Choose Type</option>
-                            <option>Students</option>
+                            <option>Student</option>
                             <option>Employee</option>
                         </select>
                         <select name="month" required>
