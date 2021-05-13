@@ -74,9 +74,9 @@ if($num > 0) {
                     <label style="font-weight: bold;">الاسم</label>
                     <input type="text" name="name" value="<?php echo "$name" ?>" required>
                     <label style="font-weight: bold;">رقم الهاتف</label>
-                    <input type="text" name="phone"  value="<?php echo "$phone" ?>" required>
+                    <input type="text" name="phone"  value="<?php echo "$phone" ?>">
                     <label style="font-weight: bold;">تاريخ الميلاد</label>
-                    <input type="date" name="birthday" value="<?php echo "$birthday" ?>" required>
+                    <input type="date" name="birthday" value="<?php echo "$birthday" ?>">
                     <label style="font-weight: bold;">الرقم التعريفي</label>
                     <input type="text" name="code" value="<?php echo "$code" ?>" disabled>
                     <label style="font-weight: bold;">الجنس</label>

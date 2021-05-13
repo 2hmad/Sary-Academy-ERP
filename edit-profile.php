@@ -74,9 +74,9 @@ if($num > 0) {
                     <label style="font-weight: bold;">Name</label>
                     <input type="text" name="name" value="<?php echo "$name" ?>" required>
                     <label style="font-weight: bold;">Phone</label>
-                    <input type="text" name="phone"  value="<?php echo "$phone" ?>" required>
+                    <input type="text" name="phone"  value="<?php echo "$phone" ?>">
                     <label style="font-weight: bold;">Birthday</label>
-                    <input type="date" name="birthday" value="<?php echo "$birthday" ?>" required>
+                    <input type="date" name="birthday" value="<?php echo "$birthday" ?>">
                     <label style="font-weight: bold;">Code</label>
                     <input type="text" name="code" value="<?php echo "$code" ?>" disabled>
                     <label style="font-weight: bold;">Gender</label>
