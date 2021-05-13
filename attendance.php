@@ -125,7 +125,7 @@ $query = mysqli_query($connect, $sql);
 
 if(mysqli_num_rows($query) > 0) {
 
-    while($row = mysqli_fetch_assoc($query)) {
+    while($row = mysqli_fetch_array($query)) {
         $code = $row['code'];
         $name = $row['name'];
         $position = $row['position'];
