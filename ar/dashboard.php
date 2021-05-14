@@ -103,7 +103,7 @@ echo $count;
             </div>
         <div style="margin-top: 5%;margin-left: 5%;">
         <table class="table caption-top table-striped table-bordered table-responsive">
-        <caption style="text-transform: uppercase;text-align:center;font-weight:bold">اضيفت في <?php echo date("F") ?></caption>
+        <caption style="text-transform: uppercase;text-align:center;font-weight:bold">الكروت التي اضيفت مؤخراً</caption>
         <thead class="table-primary">
             <tr>
                 <th>الاسم</th>

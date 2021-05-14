@@ -106,7 +106,7 @@ echo $count;
             </div>
         <div style="margin-top: 5%;margin-left: 5%;">
         <table class="table caption-top table-striped table-bordered table-responsive">
-        <caption style="text-transform: uppercase;text-align:center;font-weight:bold">Recently Added Of <?php echo date("F") ?></caption>
+        <caption style="text-transform: uppercase;text-align:center;font-weight:bold">Recently Added</caption>
         <thead class="table-primary">
             <tr>
                 <th>Name</th>
