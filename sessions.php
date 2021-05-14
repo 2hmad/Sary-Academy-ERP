@@ -57,7 +57,8 @@
         <table class="table table-bordered">
         <thead class="table-dark">
             <tr>
-                <th scope="col">ID</th>
+                <th scope="col">Card ID</th>
+                <th scope="col">Name</th>
                 <th scope="col">Date</th>
                 <th scope="col">Start Time</th>
                 <th scope="col">End Time</th>
@@ -86,9 +87,15 @@
                 $start_time = $row['start_time'];
                 $end_time = $row['end_time'];
                 $status = $row['status'];
+
+                $sql_name = mysqli_query($connect, "SELECT * FROM cards WHERE code='$code'");
+                while($row_name = mysqli_fetch_array($sql_name)) {
+                  $name = $row_name["name"];
+
                 echo '
                     <tr>
                         <td><span class="code">'.$code.'</span></td>
+                        <td>'.$name.'</td>
                         <td>'.$date.'</td>
                         <td>'.$start_time.'</td>
                         <td><span class="end-time">'.$end_time.'</span></td>
@@ -96,6 +103,7 @@
                     </tr>
                 ';  
             }
+          }
             $current_time = date("h:i:sa");
             $sql_update = "UPDATE sessions SET status='Complete' WHERE date='$date' AND end_time <= '$current_time'";
             $query_update = mysqli_query($connect, $sql_update);            
