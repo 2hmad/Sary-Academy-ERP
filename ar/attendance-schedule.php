@@ -59,18 +59,19 @@
                     <div style="display:block;text-align:center">
                         <input type="text" name="code" placeholder='الرقم التعريفي للبطاقة' required>
                         <select type="text" name="month" required>
-                            <option>January</option>
-                            <option>February</option>
-                            <option>March</option>
-                            <option>April</option>
-                            <option>May</option>
-                            <option>June</option>
-                            <option>July</option=>
-                            <option>August</option=>
-                            <option>September</option=>
-                            <option>October</option=>
-                            <option>November</option=>
-                            <option>December</option=>
+                            <option value="">اختر الشهر</option>
+                            <option value="January">يناير</option>
+                            <option value="February">فبراير</option>
+                            <option value="March">مارس</option>
+                            <option value="April">ابريل</option>
+                            <option value="May">مايو</option>
+                            <option value="June">يونيو</option>
+                            <option value="July">يوليو</option=>
+                            <option value="August">اغسطس</option=>
+                            <option value="September">سبتمبر</option=>
+                            <option value="October">اكتوبر</option=>
+                            <option value="November">نوفمبر</option=>
+                            <option value="December">ديسمبر</option=>
                         </select>
                         <input type="submit" class="apply-btn" name="apply" value="بحث">
                     </div>

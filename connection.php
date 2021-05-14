@@ -1,8 +1,8 @@
 <?php
-$host = "us-cdbr-east-03.cleardb.com";
-$user = "bbf1e46cd1f90a";
-$pass = "9d4a4ff6";
-$db = "heroku_407b2626d06f99e";
+$host = "remotemysql.com";
+$user = "xlNys7Lwd7";
+$pass = "XWvT9TQUfk";
+$db = "xlNys7Lwd7";
 
 //$host = "localhost";
 //$user = "root";

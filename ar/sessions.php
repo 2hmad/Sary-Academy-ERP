@@ -58,6 +58,7 @@
         <thead class="table-dark">
             <tr>
                 <th scope="col">الرقم التعريفي</th>
+                <th scope="col">الاسم</th>
                 <th scope="col">التاريخ</th>
                 <th scope="col">وقت البدء</th>
                 <th scope="col">وقت الانتهاء</th>
@@ -86,16 +87,22 @@
                 $start_time = $row['start_time'];
                 $end_time = $row['end_time'];
                 $status = $row['status'];
+                while($row_name = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM cards WHERE code='$code'"))) {
+                  $name = $row_name["name"];
+                }
+
                 echo '
                     <tr>
                         <td><span class="code">'.$code.'</span></td>
+                        <td>'.$name.'</td>
                         <td>'.$date.'</td>
                         <td>'.$start_time.'</td>
                         <td><span class="end-time">'.$end_time.'</span></td>
                         <td><span class="msg">'.$status.'</span></td>
                     </tr>
                 ';  
-            }
+            
+          }
             $sql_update = "UPDATE sessions SET status='Complete' WHERE date='$date' AND end_time <= '$current_time' AND code='$code'";
             $query_update = mysqli_query($connect, $sql_update);            
         } else {
