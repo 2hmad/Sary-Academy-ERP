@@ -15,7 +15,7 @@ include('../connection.php');
         <tbody style="vertical-align: baseline">';
 
         date_default_timezone_set("Africa/Cairo");
-        $date = date("Y-m-d");
+        $current_date = date("Y-m-d");
         $current_time = date("h:i:sa");
         if(isset($_GET['page'])) {
             $page_number = $_GET['page'];
@@ -24,7 +24,7 @@ include('../connection.php');
         }
         $num_per_page = 10;
         $from = ($page_number-1)*$num_per_page;        
-        $sql = "SELECT * FROM sessions WHERE date='$date' ORDER BY id DESC LIMIT $from, $num_per_page";
+        $sql = "SELECT * FROM sessions WHERE date='$current_date' ORDER BY id DESC LIMIT $from, $num_per_page";
         $query = mysqli_query($connect, $sql);
         $num = mysqli_num_rows($query);
         if($num > 0) {
@@ -50,9 +50,13 @@ include('../connection.php');
                 ';  
             }
           }
-            $sql_update = "UPDATE sessions SET status='Complete' WHERE date='$date' AND end_time <= '$current_time' AND code='$code'";
-            $query_update = mysqli_query($connect, $sql_update);            
-        } else {
+          $select_check = "SELECT * FROM sessions WHERE status='' AND date='$current_date' AND end_time <= '$current_time'";
+          $query_check = mysqli_query($connect, $select_check);
+          if(mysqli_num_rows($query_check) > 0) {
+              $sql_update = "UPDATE sessions SET status='Complete' WHERE date='$current_date' AND end_time <= '$current_time'";
+              $query_update = mysqli_query($connect, $sql_update);    
+          }
+      } else {
             echo '<caption>لا توجد بيانات متاحة في الوقت الحالي</caption>';
         }
 ?>
@@ -61,7 +65,7 @@ include('../connection.php');
 
     
     <?php
-    $sql = "SELECT * FROM sessions WHERE date='$date'";
+    $sql = "SELECT * FROM sessions WHERE date='$current_date'";
     $query = mysqli_query($connect, $sql);
     $totalItems = mysqli_num_rows($query);
 
@@ -108,13 +112,10 @@ if(time1InMinutesForTime1 >= time1InMinutesForTime2) {
   } else {
     var code = document.querySelector(".name").innerHTML;
     alert('الطفل ' + code + ' خارجة من منطقة الالعاب');
-    /*setAlarm(time1, time2, () => {
-    document.querySelector("audio").play().then(()=>{
-      setTimeout(() => {
-        alert(code + ' coming out of Kids Area')
-      }, 0);
-    })
-  });*/
+    window.addEventListener("DOMContentLoaded", event => {
+    const audio = document.querySelector("audio");
+    audio.play();
+    });
 };
 }
 </script>
