@@ -72,14 +72,14 @@ if(!empty($_POST['code'])){
                         $current_time = date("H:i");
                         $sql_absence = "UPDATE attendance SET absence='$current_time' WHERE code='$code' AND date='$date'";
                         $query_absence = mysqli_query($connect, $sql_absence);
-                        echo "Absence time updated";
+                        echo "Logged OUT";
                     } else {
                         $date = date("Y-m-d");
                         $current_month = date('M');
                         $current_time = date("H:i");
                         $sql_insert = "INSERT INTO attendance (code, name, position, type, month, date, present) VALUES ('$code', '$name', '$position', '$kind', '$current_month', '$date' ,'$current_time')";
                         $query_insert = mysqli_query($connect, $sql_insert);
-                        echo "Present time added";
+                        echo "Logged IN";
                     }
                 }
             }         
