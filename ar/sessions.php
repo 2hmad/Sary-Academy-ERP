@@ -39,7 +39,7 @@
 <body style="background-color:#FAFAFA;padding:10px">
 <?php include('header.php'); ?>
 
-<audio src="Alarm.mp3"></audio>
+<audio src="Alarm.mp3" preload="auto"></audio>
 
 <div class="container" style="max-width: 95%;margin-top: 70px;">
     <div class="row">
@@ -67,7 +67,7 @@
 
     function refreshTable(){
         $('#tableHolder').load('refresh-sessions.php', function(){
-           setTimeout(refreshTable, 5000);
+           setTimeout(refreshTable, 20000);
         });
     }
 </script>

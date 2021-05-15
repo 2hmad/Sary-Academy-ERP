@@ -70,7 +70,7 @@
 
     function refreshTable(){
         $('#tableHolder').load('refresh-sessions.php', function(){
-           setTimeout(refreshTable, 5000);
+           setTimeout(refreshTable, 20000);
         });
     }
 </script>

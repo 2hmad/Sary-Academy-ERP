@@ -16,7 +16,7 @@ include('../connection.php');
 
         date_default_timezone_set("Africa/Cairo");
         $current_date = date("Y-m-d");
-        $current_time = date("h:i:sa");
+        $current_time = date("H:i");
         if(isset($_GET['page'])) {
             $page_number = $_GET['page'];
         } else {
@@ -53,8 +53,26 @@ include('../connection.php');
           $select_check = "SELECT * FROM sessions WHERE status='' AND date='$current_date' AND end_time <= '$current_time'";
           $query_check = mysqli_query($connect, $select_check);
           if(mysqli_num_rows($query_check) > 0) {
-              $sql_update = "UPDATE sessions SET status='Complete' WHERE date='$current_date' AND end_time <= '$current_time'";
-              $query_update = mysqli_query($connect, $sql_update);    
+              while($check_time = mysqli_fetch_array($query_check)) {
+                $code_check = $check_time['code'];
+
+                $sql_name = mysqli_query($connect, "SELECT * FROM cards WHERE code='$code_check'");
+                while($row_name = mysqli_fetch_array($sql_name)) {
+                  $name = $row_name["name"];
+                }  
+                $sql_update = "UPDATE sessions SET status='Complete' WHERE code = '$code_check' AND date='$current_date' AND end_time <= '$current_time'";
+                $query_update = mysqli_query($connect, $sql_update);
+                echo '
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  الطفل/ة '.$name.' خارج من منطقة الالعاب
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <script>
+                var snd = new Audio("Alarm.mp3");    
+                snd .play();
+                </script>';
+
+                }
           }
       } else {
             echo '<caption>لا توجد بيانات متاحة في الوقت الحالي</caption>';
@@ -90,32 +108,5 @@ include('../connection.php');
   </ul>
 </nav>
 
-<span class="current-time" style="display:none"><?php echo "$current_time" ?></span>
 
-<script>
-var time1 = document.querySelector(".current-time").innerHTML;
-var time2 = document.querySelector(".end-time").innerHTML;
-
-var time1InMinutesForTime1 = getTimeAsNumberOfMinutes(time1);
-var time1InMinutesForTime2 = getTimeAsNumberOfMinutes(time2);
-
-function getTimeAsNumberOfMinutes(time) {
-    var timeParts = time.split(":");
-    var timeInMinutes = (timeParts[0] * 60) + timeParts[1];
-    return timeInMinutes;
-}
-
-if(time1InMinutesForTime1 >= time1InMinutesForTime2) {
-  var msg = document.querySelector(".msg").innerHTML;
-  if(msg === "Complete" || msg === "Stopped") {
-
-  } else {
-    var code = document.querySelector(".name").innerHTML;
-    alert('الطفل ' + code + ' خارجة من منطقة الالعاب');
-    window.addEventListener("DOMContentLoaded", event => {
-    const audio = document.querySelector("audio");
-    audio.play();
-    });
-};
-}
 </script>
