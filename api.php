@@ -1,14 +1,6 @@
 <?php
 
-$host = "us-cdbr-east-03.cleardb.com";
-$user = "bbf1e46cd1f90a";
-$pass = "9d4a4ff6";
-$db = "heroku_407b2626d06f99e";
-
-//$user = "root";
-//$pass = "";
-//$db = "kidsarea";
-$connect = mysqli_connect($host, $user, $pass, $db) or die("Can't connect with database");
+include('connection.php');
 date_default_timezone_set("Africa/Cairo");
 
 $api_key = "f13b5611-170a-4174-9dfb-f5d68dbde960";
@@ -48,9 +40,9 @@ if(!empty($_POST['code']) && !empty($_POST['tag'])){
         $num_check = mysqli_num_rows($query_check);
         if($num_check > 0) {
             $date = date("Y-m-d");
-            $start_time = date("h:i:sa");
+            $start_time = date("H:i");
             $end_time_format = strtotime($start_time) + 3600;
-            $end_time = date("h:i:sa",$end_time_format);
+            $end_time = date("H:i",$end_time_format);
             $sql_hour = "SELECT * FROM cards WHERE code='$code'";
             $query_hour = mysqli_query($connect, $sql_hour);
             while($row_hour = mysqli_fetch_array($query_hour)) {

@@ -1,8 +1,8 @@
 <?php
-$host = "us-mm-auto-dca-03-a.cleardb.net";
-$user = "bbf1e46cd1f90a";
-$pass = "9d4a4ff6";
-$db = "heroku_407b2626d06f99e";
+$host = "bmlx3df4ma7r1yh4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306";
+$user = "tfkx1mkuw3590scm";
+$pass = "amj1es3fhfnt4kw5";
+$db = "f6yog60g77dtmdrl";
 
 //$host = "localhost";
 //$user = "root";
