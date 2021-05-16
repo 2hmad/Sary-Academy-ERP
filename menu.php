@@ -35,7 +35,7 @@ while($row = mysqli_fetch_assoc($query)) {
             <a href="attendance.php"><button class="menu-link attendance-menu"><i class="fas fa-clipboard" style="margin-right: 5%;"></i> Attendances</button></a>
             <a href="add-hours.php"><button class="menu-link add-hours-menu"><i class="fas fa-id-card" style="margin-right: 5%;"></i> Add Hours</button></a>
             <a href="activities.php"><button class="menu-link activities-menu"><i class="fas fa-exchange-alt" style="margin-right: 5%;"></i> Latest Activities</button></a>
-            <a href="sessions.php"><button class="menu-link sessions-menu"><i class="fas fa-plug" style="margin-right: 5%;"></i> Sessions</button></a>
+            <a href="sessions.php"><button class="menu-link sessions-menu"><i class="fas fa-plug" style="margin-right: 5%;"></i> Kids Area</button></a>
             <a href="card-verification.php"><button class="menu-link card-verify-menu"><i class="fas fa-users" style="margin-right: 5%;"></i> Card Verification</button></a>
         </div>
     </div>

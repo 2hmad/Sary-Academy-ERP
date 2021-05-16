@@ -78,6 +78,33 @@
                     <label style="font-weight: bold;">Phone</label>
                     <input type="text" name="admin-phone" value="+20">
                     </div>
+                    <label style="font-weight:bold">Permissions</label><br>
+
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="all" value="All" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        All
+                    </label>
+                    </div>
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="accounting" value="Accounting" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Accounting
+                    </label>
+                    </div>
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="add-hours" value="Add Hours" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Add Hours
+                    </label>
+                    </div>
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="card-verification" value="Card Verification" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Card Verification
+                    </label>
+                    </div>
+
                     <input type="submit" name="create-admin" value="Create Admin">
                 </form>
 <?php

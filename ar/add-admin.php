@@ -78,6 +78,33 @@
                     <label style="font-weight: bold;">رقم الهاتف</label>
                     <input type="text" name="admin-phone" value="+20">
                     </div>
+
+                    <label style="font-weight:bold">الاذونات</label><br>
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="all" value="All" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        الكل
+                    </label>
+                    </div>
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="accounting" value="Accounting" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        صفحة الايرادات
+                    </label>
+                    </div>
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="add-hours" value="Add Hours" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        اضافة ساعات
+                    </label>
+                    </div>
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="card-verification" value="Card Verification" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        التحقق من كارت
+                    </label>
+                    </div>
+
                     <input type="submit" name="create-admin" value="اضافة مشرف">
                 </form>
 <?php

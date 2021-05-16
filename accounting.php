@@ -58,6 +58,7 @@
             <form method="POST" style="margin-top: 2%;margin-bottom:5%" enctype="multipart/form-data">
                     <div style="display:block;text-align:center">
                         <select type="text" name="month" required>
+                            <option value="All">All Months</option>
                             <option>January</option>
                             <option>February</option>
                             <option>March</option>
@@ -81,6 +82,7 @@
         <thead class="table-dark">
             <tr>
                 <th scope="col">Code</th>
+                <th scope="col">Name</th>
                 <th scope="col">Hours</th>
                 <th scope="col">Price per hour</th>
                 <th scope="col">Date</th>
@@ -105,12 +107,17 @@
             
         if(isset($_GET['month'])) {
             $month_get = $_GET['month'];
-            $sql = "SELECT * FROM accounting WHERE month='$month_get' ORDER BY id DESC LIMIT $from, $num_per_page";
+            if($month_get === "All") {
+                $sql = "SELECT * FROM accounting ORDER BY id DESC LIMIT $from, $num_per_page";
+            } else {
+                $sql = "SELECT * FROM accounting WHERE month='$month_get' ORDER BY id DESC LIMIT $from, $num_per_page";
+            }
             $query = mysqli_query($connect, $sql);
             $num = mysqli_num_rows($query);
             if($num > 0) {
                 while($row = $query->fetch_assoc()) {
                     $code = $row['code'];
+                    $name = $row['name'];
                     $date = $row['date'];
                     $hours = $row['hours'];
                     $price = $row['price'];
@@ -118,6 +125,7 @@
                     echo '
                     <tr>
                     <td>'.$code.'</td>
+                    <td>'.$name.'</td>
                     <td>'.$hours.'</td>
                     <td>'.$price.' EGP</td>
                     <td>'.$date.'</td>
@@ -137,7 +145,11 @@ echo '
 ';
 
     if(isset($_GET['month'])) {
-        $sql_pagination = "SELECT * FROM accounting WHERE month='$month_get'";
+        if($_GET['month'] === "All") {
+            $sql_pagination = "SELECT * FROM accounting";
+        } else {
+            $sql_pagination = "SELECT * FROM accounting WHERE month='$month_get'";
+        }
     } else {
         $sql_pagination = "SELECT * FROM accounting";
     }

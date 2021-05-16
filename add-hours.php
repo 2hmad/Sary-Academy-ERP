@@ -71,10 +71,16 @@
         while($row_total = mysqli_fetch_array($query_total)) {
             $total_hours = $row_total['hours'];
         }
-        echo '
-        <label style="font-weight: bold;">Hours in card</label>
-        <input type="number" value="'.$total_hours.'" disabled>
-        <label style="font-weight: bold;">Hours <span class="total">(Total price: <span class="price"></span> )</span></label>
+        if($total_hours <= 3) {
+            echo '
+            <label style="font-weight: bold;">Hours in card</label>
+            <input type="number" style="border:1px solid red;color:red" title="Please Add Hours" value="'.$total_hours.'" disabled>';
+        } else {
+            echo '
+            <label style="font-weight: bold;">Hours in card</label>
+            <input type="number" style="border:1px solid green;color:green" value="'.$total_hours.'" disabled>';    
+        }
+        echo '<label style="font-weight: bold;">Hours <span class="total">(Total price: <span class="price"></span> )</span></label>
         <input type="number" name="hours" class="hours-num" value="0" required>';
 
         $sql = "SELECT * FROM cards WHERE code=".$_GET['code']."";
@@ -131,6 +137,7 @@ if(isset($_POST['add-hours'])) {
             $query_add = mysqli_query($connect, $sql_add);
             while($row_add = mysqli_fetch_array($query_add)) {
                 $hours_add = $row_add['hours'];
+                $name_add = $row_add['name'];
             }
             $hours = $_POST['hours'];
             if($hours > 0) {
@@ -140,7 +147,7 @@ if(isset($_POST['add-hours'])) {
                 
                 $month = date("M");
                 $date = date("Y-m-d");
-                $sql = "INSERT INTO accounting (code, hours, price, date, month) VALUES ('$code', '$hours', '$price', '$date', '$month')";
+                $sql = "INSERT INTO accounting (code, name, hours, price, date, month) VALUES ('$code', '$name_add', '$hours', '$price', '$date', '$month')";
                 $query = mysqli_query($connect, $sql);
     
                 echo "<div class='alert alert-success'>Added $hours hours to this card</div>";  

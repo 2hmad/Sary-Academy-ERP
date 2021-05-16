@@ -30,7 +30,11 @@ if(!isset($_SESSION['email'])) {
     $output = fopen("php://output", "w");  
     fputcsv($output, array('No#','Card code', 'Name', 'Position', 'Type', 'Month', 'Date', 'Present', 'Absence'));  
     $date = date("Y-m-d");
-    $query = "SELECT * from attendance WHERE code = '$code' AND month='$month' ORDER BY id DESC";  
+    if($month === "All") {
+        $query = "SELECT * from attendance WHERE code = '$code' ORDER BY id DESC";  
+    } else {
+        $query = "SELECT * from attendance WHERE code = '$code' AND month='$month' ORDER BY id DESC";  
+    }
     $result = mysqli_query($connect, $query);  
     while($row = mysqli_fetch_assoc($result))  
     {  

@@ -64,8 +64,22 @@
 
 <?php
     if(isset($_GET['code'])) {
-        echo '
-        <label style="font-weight: bold;">الساعات <span class="total">(الاجمالي: <span class="price"></span> )</span></label>
+        $code = $_GET['code'];
+        $sql_total = "SELECT * FROM cards WHERE code = '$code'";
+        $query_total = mysqli_query($connect, $sql_total);
+        while($row_total = mysqli_fetch_array($query_total)) {
+            $total_hours = $row_total['hours'];
+        }
+        if($total_hours <= 3) {
+            echo '
+            <label style="font-weight: bold;">الساعات المتبقية</label>
+            <input type="number" style="border:1px solid red;color:red" title="برجاء اضافة ساعات" value="'.$total_hours.'" disabled>';
+        } else {
+            echo '
+            <label style="font-weight: bold;">الساعات المتبقية</label>
+            <input type="number" style="border:1px solid green;color:green" value="'.$total_hours.'" disabled>';    
+        }
+        echo '<label style="font-weight: bold;">اضافة ساعات <span class="total">(المبلغ: <span class="price"></span> )</span></label>
         <input type="number" name="hours" class="hours-num" value="0" required>';
 
         $sql = "SELECT * FROM cards WHERE code=".$_GET['code']."";
@@ -122,6 +136,7 @@ if(isset($_POST['add-hours'])) {
             $query_add = mysqli_query($connect, $sql_add);
             while($row_add = mysqli_fetch_array($query_add)) {
                 $hours_add = $row_add['hours'];
+                $name_add = $row_add['name'];
             }
             $hours = $_POST['hours'];
             if($hours > 0) {
@@ -130,7 +145,7 @@ if(isset($_POST['add-hours'])) {
                 $query_update = mysqli_query($connect, $sql_update);
                 
                 $date = date("Y-m-d");
-                $sql = "INSERT INTO accounting (code, hours, price, date) VALUES ('$code', '$hours', '$price', '$date')";
+                $sql = "INSERT INTO accounting (code, name, hours, price, date) VALUES ('$code', '$name', '$hours', '$price', '$date')";
                 $query = mysqli_query($connect, $sql);
     
                 echo "<div class='alert alert-success'>تم اضافة عدد $hours ساعة لهذا الكارت</div>";   

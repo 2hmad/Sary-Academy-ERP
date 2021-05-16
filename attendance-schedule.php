@@ -52,13 +52,14 @@
         </div>
         <div class="col-lg">
             <div class="row" style="background:white;height: 70px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px">
-                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="fas fa-user-friends"></i> Attendance</h5>
+                <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="fas fa-user-friends"></i> Attendance Schedule</h5>
             </div>
             <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
                 <form method="POST" style="margin-top: 2%;margin-bottom:5%" enctype="multipart/form-data">
                     <div style="display:block;text-align:center">
                         <input type="text" name="code" placeholder='Person Card Code' required>
                         <select type="text" name="month" required>
+                            <option value="All">All Months</option>
                             <option>January</option>
                             <option>February</option>
                             <option>March</option>
@@ -109,7 +110,11 @@ if(isset($_POST['apply'])) {
 if(isset($_GET['code']) && isset($_GET['month'])) {
     $code = $_GET['code'];
     $month = $_GET['month'];
-$sql = "SELECT * FROM attendance WHERE code='$code' AND month = '$month' ORDER BY id DESC LIMIT $from, $num_per_page";
+    if($month === "All") {
+        $sql = "SELECT * FROM attendance WHERE code='$code' ORDER BY id DESC LIMIT $from, $num_per_page";
+    } else {
+        $sql = "SELECT * FROM attendance WHERE code='$code' AND month = '$month' ORDER BY id DESC LIMIT $from, $num_per_page";
+    }
 $query = mysqli_query($connect, $sql);        
 
 if(mysqli_num_rows($query) > 0) {
@@ -153,7 +158,11 @@ echo '
 ';
 
 if(isset($_GET['code']) && isset($_GET['month'])) {
-    $sql_pagination = "SELECT * FROM attendance WHERE code='$code' AND month='$month'";
+    if($_GET['month'] === "All") {
+        $sql_pagination = "SELECT * FROM attendance WHERE code='$code'";
+    } else {
+        $sql_pagination = "SELECT * FROM attendance WHERE code='$code' AND month='$month'";
+    }
 } else {
     $sql_pagination = "SELECT * FROM attendance";
 }
@@ -187,7 +196,7 @@ if(isset($_GET['code']) && isset($_GET['month']) && $totalItems > 0) {
       <a class="page-link" href="
         <?php
         if(isset($_GET['code'])) {
-            echo "?code=$code";
+            echo "?code=$code&month=$month";
             if(($page_number - 1) > 0){
                 echo "&page=";
                 echo $page_number-1;
@@ -205,7 +214,7 @@ if(isset($_GET['code']) && isset($_GET['month']) && $totalItems > 0) {
       <a class="page-link" href="
     <?php
     if(isset($_GET['code'])) {
-        echo "?code=$code";
+        echo "?code=$code&month=$month";
         if(($page_number + 1) < $total_pages){
             echo "&page=";
             echo $page_number + 1;

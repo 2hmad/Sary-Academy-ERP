@@ -59,7 +59,7 @@
                     <div style="display:block;text-align:center">
                         <input type="text" name="code" placeholder='الرقم التعريفي للبطاقة' required>
                         <select type="text" name="month" required>
-                            <option value="">اختر الشهر</option>
+                            <option value="All">كل الشهور</option>
                             <option value="January">يناير</option>
                             <option value="February">فبراير</option>
                             <option value="March">مارس</option>
@@ -110,10 +110,15 @@ if(isset($_POST['apply'])) {
 if(isset($_GET['code']) && isset($_GET['month'])) {
     $code = $_GET['code'];
     $month = $_GET['month'];
-$sql = "SELECT * FROM attendance WHERE code='$code' AND month = '$month' ORDER BY id DESC LIMIT $from, $num_per_page";
-$query = mysqli_query($connect, $sql);        
+    if($month === "All") {
+        $sql = "SELECT * FROM attendance WHERE code='$code' ORDER BY id DESC LIMIT $from, $num_per_page";
+    } else {
+        $sql = "SELECT * FROM attendance WHERE code='$code' AND month = '$month' ORDER BY id DESC LIMIT $from, $num_per_page";
+    }
 
-if(mysqli_num_rows($query) > 0) {
+    $query = mysqli_query($connect, $sql);        
+
+    if(mysqli_num_rows($query) > 0) {
 
     while($row = mysqli_fetch_assoc($query)) {
         $name = $row['name'];
@@ -154,9 +159,11 @@ echo '
 ';
 
 if(isset($_GET['code']) && isset($_GET['month'])) {
-    $sql_pagination = "SELECT * FROM attendance WHERE code='$code' AND month='$month'";
-} else {
-    $sql_pagination = "SELECT * FROM attendance";
+    if($_GET['month'] === "All") {
+        $sql_pagination = "SELECT * FROM attendance WHERE code='$code'";
+    } else {
+        $sql_pagination = "SELECT * FROM attendance WHERE code='$code' AND month='$month'";
+    }
 }
 $query_pagination = mysqli_query($connect, $sql_pagination);
 $totalItems = mysqli_num_rows($query_pagination);
@@ -188,7 +195,7 @@ if(isset($_GET['code']) && isset($_GET['month']) && $totalItems > 0) {
       <a class="page-link" href="
         <?php
         if(isset($_GET['code'])) {
-            echo "?code=$code";
+            echo "?code=$code&month=$month";
             if(($page_number - 1) > 0){
                 echo "&page=";
                 echo $page_number-1;
@@ -206,7 +213,7 @@ if(isset($_GET['code']) && isset($_GET['month']) && $totalItems > 0) {
       <a class="page-link" href="
     <?php
     if(isset($_GET['code'])) {
-        echo "?code=$code";
+        echo "?code=$code&month=$month";
         if(($page_number + 1) < $total_pages){
             echo "&page=";
             echo $page_number + 1;
