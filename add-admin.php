@@ -81,7 +81,7 @@
                     <label style="font-weight:bold">Permissions</label><br>
 
                     <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="all" value="All" id="flexCheckDefault">
+                    <input class="form-check-input" id="check-all" type="checkbox" name="all" value="All" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
                         All
                     </label>
@@ -116,13 +116,26 @@ if(isset($_POST['create-admin'])){
     $phone = $_POST['admin-phone'];
     $role = "Admin";
 
+    if(isset($_POST['all'])) {
+        $per_one = "All";
+        $per_two = "Accounting";
+        $per_three = "Add Hours";
+        $per_four = "Card Verify";
+    } elseif(isset($_POST['accounting'])) {
+        $per_two = "Accounting";
+    } elseif(isset($_POST['add-hours'])) {
+        $per_three = "Add Hours";
+    } elseif(isset($_POST['card-verification'])) {
+        $per_four = "Card Verify";
+    }
+
     $sql_select = "SELECT * FROM users WHERE email = '$email'";
     $query_select = mysqli_query($connect, $sql_select);
     $num = mysqli_num_rows($query_select);
     if($num > 0) {
         echo "<script>alert('This admin has been registered before')</script>";
     } else {
-        $sql = "INSERT INTO users (name, email, password, gender, phone, role) VALUES ('$name', '$email', '$password', '$gender', '$phone', '$role')";
+        $sql = "INSERT INTO users (name, email, password, gender, phone, role, per_one, per_two, per_three, per_four) VALUES ('$name', '$email', '$password', '$gender', '$phone', '$role', '$per_one', '$per_two', '$per_three', '$per_four')";
         $query = mysqli_query($connect, $sql);
         header('Location: add-admin.php');
     }
@@ -131,10 +144,14 @@ if(isset($_POST['create-admin'])){
             </div>
         </div>
     </div>
-
 </div>
 
 
 </body>
 <?php include('scripts.php') ?>
+<script>
+$("#check-all").click(function () {
+    $('input:checkbox').not(this).prop('checked', this.checked);
+ });
+</script>
 </html>

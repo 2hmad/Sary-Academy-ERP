@@ -116,13 +116,26 @@ if(isset($_POST['create-admin'])){
     $phone = $_POST['admin-phone'];
     $role = "Admin";
 
+    if(isset($_POST['all'])) {
+        $per_one = "All";
+        $per_two = "Accounting";
+        $per_three = "Add Hours";
+        $per_four = "Card Verify";
+    } elseif(isset($_POST['accounting'])) {
+        $per_two = "Accounting";
+    } elseif(isset($_POST['add-hours'])) {
+        $per_three = "Add Hours";
+    } elseif(isset($_POST['card-verification'])) {
+        $per_four = "Card Verify";
+    }
+
     $sql_select = "SELECT * FROM users WHERE email = '$email'";
     $query_select = mysqli_query($connect, $sql_select);
     $num = mysqli_num_rows($query_select);
     if($num > 0) {
         echo "<script>alert('This admin has been registered before')</script>";
     } else {
-        $sql = "INSERT INTO users (name, email, password, gender, phone, role) VALUES ('$name', '$email', '$password', '$gender', '$phone', '$role')";
+        $sql = "INSERT INTO users (name, email, password, gender, phone, role, per_one, per_two, per_three, per_four) VALUES ('$name', '$email', '$password', '$gender', '$phone', '$role', '$per_one', '$per_two', '$per_three', '$per_four')";
         $query = mysqli_query($connect, $sql);
         header('Location: add-admin.php');
     }
