@@ -201,7 +201,7 @@ if(isset($_POST['apply'])) {
                             <i class="fas fa-ellipsis-h"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><input type="button" name="view" value="Profile" id="<?php echo $id ?>" class="btn btn-xs view_data dropdown-item" /></li>
+                        <li><input type="button" name="view" value="Profile" id="<?php echo $id ?>" class="btn btn-xs view_data dropdown-item" /></li>
                             <li><a class="dropdown-item" href="edit-profile.php?id=<?php echo $id ?>">Edit</a></li>
                             <li><a class="dropdown-item" href="delete-profile.php?id=<?php echo $id ?>">Delete</a></li>
                         </ul>
@@ -242,7 +242,7 @@ if(isset($_POST['apply'])) {
                             <i class="fas fa-ellipsis-h"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><input type="button" name="view" value="Profile" id="<?php echo $id ?>" class="btn btn-xs view_data dropdown-item" /></li>
+                        <li><input type="button" name="view" value="Profile" id="<?php echo $id ?>" class="btn btn-xs view_data dropdown-item" /></li>
                             <li><a class="dropdown-item" href="edit-profile.php?id=<?php echo $id ?>">Edit</a></li>
                             <li><a class="dropdown-item" href="delete-profile.php?id=<?php echo $id ?>">Delete</a></li>
                         </ul>
@@ -434,10 +434,6 @@ echo '
       </div>
       <div class="modal-body" id="card_detail">
         
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
     </div>
   </div>
 </div>

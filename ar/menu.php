@@ -11,8 +11,34 @@ while($row = mysqli_fetch_assoc($query)) {
 }
 ?></span>
         <div class="menu-links">
-            <span style="color: white;font-weight:bold;padding:15px;margin-bottom:10px;display:block">التنقل</span>
-            <a href="dashboard.php"><button class="menu-link dashboard-menu"><i class="fas fa-home" style="margin-right: 5%;"></i> الصفحة الرئيسية</button></a>
+            <span style="color: white;font-weight:bold;padding:15px;margin-bottom:10px;display:block">لوحة التنقل</span>
+            
+            <div class="group">
+            <span>رئيسي</span>
+            <a href="dashboard.php"><button class="menu-link dashboard-menu"><i class="fas fa-home" style="margin-right: 5%;"></i> الرئيسية</button></a>
+            <a href="activities.php"><button class="menu-link activities-menu"><i class="fas fa-exchange-alt" style="margin-right: 5%;"></i> اخر النشاطات</button></a>
+            </div>
+            
+            <div class="group">
+            <span>اكاديمي</span>
+            <a href="sessions.php"><button class="menu-link sessions-menu"><i class="fas fa-plug" style="margin-right: 5%;"></i> منطقة الالعاب</button></a>
+            <a href="attendance.php"><button class="menu-link attendance-menu"><i class="fas fa-clipboard" style="margin-right: 5%;"></i> حضور الاكاديمية</button></a>
+            <a href="attendance-schedule.php"><button class="menu-link attendance-schedule-menu"><i class="fas fa-users" style="margin-right: 5%;"></i> حضور شخصي</button></a>
+            </div>
+
+            <div class="group">
+            <span>حسابات</span>
+            <a href="accounting.php"><button class="menu-link accounting-menu"><i class="fas fa-calculator" style="margin-right: 5%;"></i> الحسابات</button></a>
+            </div>
+
+            <div class="group">
+            <span>التحقق</span>
+            <a href="card-verification.php"><button class="menu-link card-verify-menu"><i class="fas fa-users" style="margin-right: 5%;"></i> التحقق من كارت</button></a>
+            <a href="add-hours.php"><button class="menu-link add-hours-menu"><i class="fas fa-id-card" style="margin-right: 5%;"></i> اضافة ساعات</button></a>
+            </div>
+
+            <div class="group">
+            <span>الإشراف</span>
             <?php
             if(!isset($_SESSION['email'])) {
                 header('Location: index.php');
@@ -30,13 +56,8 @@ while($row = mysqli_fetch_assoc($query)) {
                 echo '<a href="add-admin.php"><button class="menu-link add-admin-menu"><i class="fas fa-user" style="margin-right: 5%;"></i> اضافة مشرف</button></a>';
             }
             ?>
-            <a href="accounting.php"><button class="menu-link accounting-menu"><i class="fas fa-calculator" style="margin-right: 5%;"></i> الايرادات</button></a>
-            <a href="attendance-schedule.php"><button class="menu-link attendance-schedule-menu"><i class="fas fa-users" style="margin-right: 5%;"></i> حضور شخص</button></a>
-            <a href="attendance.php"><button class="menu-link attendance-menu"><i class="fas fa-clipboard" style="margin-right: 5%;"></i> جميع الحضور</button></a>
-            <a href="add-hours.php"><button class="menu-link add-hours-menu"><i class="fas fa-id-card" style="margin-right: 5%;"></i> اضافة ساعات</button></a>
-            <a href="activities.php"><button class="menu-link activities-menu"><i class="fas fa-exchange-alt" style="margin-right: 5%;"></i> اخر الانشطة</button></a>
-            <a href="sessions.php"><button class="menu-link sessions-menu"><i class="fas fa-plug" style="margin-right: 5%;"></i> منطقة الالعاب</button></a>
-            <a href="card-verification.php"><button class="menu-link card-verify-menu"><i class="fas fa-users" style="margin-right: 5%;"></i> البحث عن بطاقة</button></a>
+            </div>
+            
         </div>
     </div>
 </div>

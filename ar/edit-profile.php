@@ -65,7 +65,7 @@ if($num > 0) {
         $code = $row['code'];
         $kind = $row['kind'];
         $position = $row['position'];
-        $salary = $row['salary'];
+        $salary = $row['salary'];    
     }
 } else {
     die();
@@ -114,8 +114,23 @@ if(isset($_POST['edit-card'])) {
     $kind = $_POST['kind'];
     $position = $_POST['position'];
     $salary = $_POST['salary'];
+    if($kind == "Employee") {
+        $cover= addslashes(file_get_contents($_FILES['profile-pic']['tmp_name']));
+        $file = $_FILES['profile-pic']['tmp_name'];
+        $pic = $_FILES["profile-pic"]["name"];
+        $destination = '../employees/'.$pic;
+        $file_folder = "../employees/";  
+        move_uploaded_file($file, $file_folder.$pic);
+    } else {
+        $cover= addslashes(file_get_contents($_FILES['profile-pic']['tmp_name']));
+        $file = $_FILES['profile-pic']['tmp_name'];
+        $pic = $_FILES["profile-pic"]["name"];
+        $destination = '../students/'.$pic;
+        $file_folder = "../students/";   
+        move_uploaded_file($file, $file_folder.$pic); 
+    }
 
-    $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', kind='$kind', position='$position', salary='$salary' WHERE id='$id'";
+    $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', kind='$kind', profile_pic='$pic', position='$position', salary='$salary' WHERE id='$id'";
     $query = mysqli_query($connect, $sql);
     header('Location:'.$_SERVER['REQUEST_URI']);
     }

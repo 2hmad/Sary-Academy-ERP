@@ -434,10 +434,6 @@ echo '
       </div>
       <div class="modal-body" id="card_detail">
         
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
-      </div>
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@
     <title>Dashboard | Sary Academy</title>
     <?php include('links.php'); ?>
     <style>
-    input[type="text"], input[type="email"], input[type="password"], input[type="date"],select {
+    input[type="file"], input[type="text"], input[type="email"], input[type="password"], input[type="date"],select {
         padding: 5px;
         border: 1px solid #CCC;
         border-radius: 5px;
@@ -85,6 +85,8 @@ if($num > 0) {
                         <option>Male</option>
                         <option>Female</option>
                     </select>
+                    <label style="font-weight: bold;">Profile Pic</label>
+                    <input type="file" name="profile-pic">
 
                     <label style="font-weight: bold;">Kind</label>
                     <select name="kind" onchange="yesnoCheck(this);" required>
@@ -115,7 +117,23 @@ if(isset($_POST['edit-card'])) {
     $position = $_POST['position'];
     $salary = $_POST['salary'];
 
-    $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', kind='$kind', position='$position', salary='$salary' WHERE id='$id'";
+    if($kind == "Employee") {
+        $cover= addslashes(file_get_contents($_FILES['profile-pic']['tmp_name']));
+        $file = $_FILES['profile-pic']['tmp_name'];
+        $pic = $_FILES["profile-pic"]["name"];
+        $destination = 'employees/'.$pic;
+        $file_folder = "employees/";  
+        move_uploaded_file($file, $file_folder.$pic);
+    } else {
+        $cover= addslashes(file_get_contents($_FILES['profile-pic']['tmp_name']));
+        $file = $_FILES['profile-pic']['tmp_name'];
+        $pic = $_FILES["profile-pic"]["name"];
+        $destination = 'students/'.$pic;
+        $file_folder = "students/";   
+        move_uploaded_file($file, $file_folder.$pic); 
+    }
+  
+    $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', kind='$kind', profile_pic='$pic', position='$position', salary='$salary' WHERE id='$id'";
     $query = mysqli_query($connect, $sql);
     header('Location:'.$_SERVER['REQUEST_URI']);
     }

@@ -164,6 +164,8 @@ if(isset($_GET['code']) && isset($_GET['month'])) {
     } else {
         $sql_pagination = "SELECT * FROM attendance WHERE code='$code' AND month='$month'";
     }
+} else {
+    $sql_pagination = "SELECT * FROM attendance";
 }
 $query_pagination = mysqli_query($connect, $sql_pagination);
 $totalItems = mysqli_num_rows($query_pagination);

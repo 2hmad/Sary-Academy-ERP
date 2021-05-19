@@ -1,6 +1,6 @@
 <?php  
       //export_accounting.php
-
+      
 include('connection.php');
 if(!isset($_SESSION['email'])) {
     header('Location: index.php');
@@ -10,7 +10,10 @@ if(!isset($_SESSION['email'])) {
 
  if(isset($_GET["month"])) {  
     $month = $_GET['month'];
-      header('Content-Type: text/csv; charset=utf-8');  
+      header("Content-type: text/xml; charset=utf-8; enucoding=utf-8");
+      header("Cache-Control: cache, must-revalidate");
+      header("Pragma: public");
+
       header('Content-Disposition: attachment; filename=accounting.csv');  
       $output = fopen("php://output", "w");  
       fputcsv($output, array('No#','Card ID', 'Name', 'Hours', 'Price per hour', 'Date', 'Month'));  

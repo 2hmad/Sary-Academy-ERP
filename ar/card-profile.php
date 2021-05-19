@@ -10,6 +10,7 @@
            <table class="table">';  
       while($row = mysqli_fetch_array($result))  
       {  
+          $id = $row["id"];
            $kind = $row["kind"];
            if($kind == "Employee") {
                $output .= '  
@@ -94,7 +95,14 @@
                ';  
            }
       }  
-      $output .= "</table></div>";  
+      $output .= "
+      </table>
+      </div>
+      </div>
+      <div class='modal-footer'>
+        <a href='profile.php?id=$id' target='_blank'><button type='button' class='btn btn-secondary'>طباعة</button></a>
+        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>اغلاق</button>
+      </div>";  
       echo $output;  
  }  
  ?>
