@@ -2,14 +2,18 @@
     <div class="menu-container">
         <img src="pics/placeholder.jpg" style="max-width: 50px;border-radius: 50%;margin-left: auto;margin-right: auto;display: block;">
         <span style="text-align: center;color:white;display:block;font-weight:bold;margin-top:2%"><?php
-$email = $_SESSION['email'];
-$sql = "SELECT * FROM users WHERE email = '$email'";
-$query = mysqli_query($connect, $sql);
-while($row = mysqli_fetch_assoc($query)) {
-    $name = $row['name'];
-    echo "$name";
-}
-?></span>
+        $email = $_SESSION['email'];
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $query = mysqli_query($connect, $sql);
+        while($row = mysqli_fetch_assoc($query)) {
+            $name = $row['name'];
+            $per_one = $row['per_one'];
+            $per_two = $row['per_two'];
+            $per_three = $row['per_three'];
+            $per_four = $row['per_four'];
+            echo "$name";
+        }
+        ?></span>
         <div class="menu-links">
             <span style="color: white;font-weight:bold;padding:15px;margin-bottom:10px;display:block">Navigation Panel</span>
             
@@ -26,15 +30,35 @@ while($row = mysqli_fetch_assoc($query)) {
             <a href="attendance-schedule.php"><button class="menu-link attendance-schedule-menu"><i class="fas fa-users" style="margin-right: 5%;"></i> Personal Attendance</button></a>
             </div>
 
-            <div class="group">
-            <span>Accounting</span>
-            <a href="accounting.php"><button class="menu-link accounting-menu"><i class="fas fa-calculator" style="margin-right: 5%;"></i> Accounting</button></a>
-            </div>
+            <?php
+                if($per_two !==""){
+                    echo '
+                    <div class="group">
+                    <span>Accounting</span>
+                    <a href="accounting.php"><button class="menu-link accounting-menu"><i class="fas fa-calculator" style="margin-right: 5%;"></i> Accounting</button></a>
+                    </div>        
+                    ';
+                }
+            ?>
 
             <div class="group">
-            <span>Verification</span>
-            <a href="card-verification.php"><button class="menu-link card-verify-menu"><i class="fas fa-users" style="margin-right: 5%;"></i> Card Verification</button></a>
-            <a href="add-hours.php"><button class="menu-link add-hours-menu"><i class="fas fa-id-card" style="margin-right: 5%;"></i> Add Hours</button></a>
+            <?php
+                if($per_four !=="" || $per_three !== ""){
+                    echo '<span>Verification</span>';
+                }
+            ?>
+            
+            <?php
+                if($per_four !==""){
+                    echo '<a href="card-verification.php"><button class="menu-link card-verify-menu"><i class="fas fa-users" style="margin-right: 5%;"></i> Card Verification</button></a>';
+                }
+            ?>
+            <?php
+                if($per_three !==""){
+                    echo '<a href="add-hours.php"><button class="menu-link add-hours-menu"><i class="fas fa-id-card" style="margin-right: 5%;"></i> Add Hours</button></a>';
+                }
+            ?>
+            
             </div>
 
             <div class="group">
