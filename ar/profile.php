@@ -6,6 +6,12 @@
 
 <body>
     <?php
+    if(!isset($_SESSION['email'])) {
+        header('Location: index.php');
+    } else {
+        $email = $_SESSION['email'];
+    }
+    
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $sql = "SELECT * FROM cards WHERE id='$id'";
