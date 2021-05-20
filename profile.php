@@ -38,7 +38,7 @@
                 } elseif ($kind == "Employee") {
                     echo '
                     <div class="id-print">
-                    <div class="id-student">
+                    <div class="id-employee">
                         <div class="student-image" style="max-width: 185px;height: 185px;object-fit: cover;">
                         <img class="pic-print" src="employees/' . $pic . '">
                         <div class="id-info" style="text-align:center">

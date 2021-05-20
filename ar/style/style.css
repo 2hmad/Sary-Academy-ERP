@@ -134,7 +134,8 @@ a {
     .back-id {
         visibility: visible;
     }
-    .id-student {
+    .id-student,
+    .id-employee {
         width: 80% !important;
     }
     @page {
