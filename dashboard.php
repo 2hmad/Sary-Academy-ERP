@@ -116,7 +116,7 @@ echo $count;
         </thead>
         <tbody>
 <?php
-$sql = "SELECT * FROM cards ORDER BY id DESC LIMIT 4";
+$sql = "SELECT * FROM cards ORDER BY id DESC LIMIT 6";
 $query = mysqli_query($connect, $sql);
 $num = mysqli_num_rows($query);
 if($num > 0) {
