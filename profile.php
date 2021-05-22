@@ -30,16 +30,15 @@
                         <div class="student-image" style="max-width: 185px;height: 185px;object-fit: cover;">
                         <img class="pic-print" src="students/' . $pic . '">
                         <div class="id-info" style="text-align:center">
-                            <span class="print-name" style="font-weight: bold;color: white;position: relative;top: 120px;left: 155px;font-size: 22px;">'.$name.'</span><br>
+                            <span class="print-name" style="font-weight: bold;color: white;position: relative;top: 120px;left: 155px;font-size: 22px;">'.$name.'</span>
                             <span class="print-code" style="font-weight: bold;color: white;position: relative;top: 120px;left: 155px;font-size: 22px;">'.$code.'</span>
                         </div>
                         </div>
                     </div>
+                    <div class="back-id"></div>
                     </div>
 
-                    <div class="back-id">
                     
-                    </div>
                 ';
                 } elseif ($kind == "Employee") {
                     echo '
@@ -48,16 +47,14 @@
                         <div class="student-image" style="max-width: 185px;height: 185px;object-fit: cover;">
                         <img class="pic-print" src="employees/' . $pic . '">
                         <div class="id-info" style="text-align:center">
-                            <span class="print-name" style="font-weight: bold;color: white;position: relative;top: 120px;left: 155px;font-size: 22px;">'.$name.'</span><br>
+                            <span class="print-name" style="font-weight: bold;color: white;position: relative;top: 120px;left: 155px;font-size: 22px;">'.$name.'</span>
                             <span class="print-code" style="font-weight: bold;color: white;position: relative;top: 120px;left: 155px;font-size: 22px;">'.$code.'</span>
                         </div>
                         </div>
                     </div>
+                    <div class="back-id"></div>
                     </div>
 
-                    <div class="back-id">
-                    
-                    </div>
                 ';
                 }
             }

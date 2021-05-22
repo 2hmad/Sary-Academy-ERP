@@ -133,28 +133,36 @@ a {
     }
     .back-id {
         visibility: visible;
+        width: 54mm !important;
+        height: 85mm !important;
+        page-break-before: always
+    }
+    .id-print {
+        width: 54mm !important;
+        height: 85mm !important;
+        text-align: center;
     }
     .id-student,
     .id-employee {
-        width: 80% !important;
+        width: 100% !important;
     }
     @page {
         margin: 5%;
     }
     .pic-print {
-        width: 220px;
-        height: 220px;
+        width: 85px;
+        height: 85px;
         object-fit: cover;
         border-radius: 10px;
-        position: relative;
-        top: 170px;
-        left: 200px;
+        top: 40px !important;
+        left: 10px !important;
     }
     .print-name,
     .print-code {
-        top: 200px !important;
-        left: 215px !important;
-        font-size: 35px !important;
+        top: 60px !important;
+        left: 50px !important;
+        font-size: 12px !important;
         display: block;
+        max-width: 100px;
     }
 }

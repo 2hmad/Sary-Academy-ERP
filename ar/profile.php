@@ -35,10 +35,7 @@
                         </div>
                         </div>
                     </div>
-                    </div>
-
-                    <div class="back-id">
-                    
+                    <div class="back-id"></div>
                     </div>
                 ';
                 } elseif ($kind == "Employee") {
@@ -53,10 +50,7 @@
                         </div>
                         </div>
                     </div>
-                    </div>
-
-                    <div class="back-id">
-                    
+                    <div class="back-id"></div>
                     </div>
                 ';
                 }
