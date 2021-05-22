@@ -292,8 +292,6 @@ if(isset($_POST['apply'])) {
 
             <?php
                 }
-            ?>
-            <?php
             } else {
                 echo "<caption>No data available</caption>";
             }
@@ -338,8 +336,42 @@ if(isset($_POST['apply'])) {
                 echo '<script>alert("No match data with search")</script>';
             }
         }
+    } else {
+        $sql = "SELECT * FROM cards ORDER BY id DESC LIMIT $from, $num_per_page";
+        $query = mysqli_query($connect, $sql);
+        if(mysqli_num_rows($query) > 0) {
+            while($row = $query->fetch_assoc()) {
+                $id = $row['id'];
+                $code = $row['code'];
+                $name = $row['name'];
+                $profile_pic = $row['profile_pic'];
+                $hours = $row['hours'];
+                $gender = $row['gender'];
+                $birthday = $row['birthday'];
+                $phone = $row['phone'];
+                $kind = $row['kind'];
+            ?>
+                <tr>
+                    <td><?php echo $code ?></td>
+                    <td><?php echo $name ?></td>
+                    <td><?php echo $kind ?></td>
+                    <td>
+                    <div class="dropdown">
+                    <button class="btn dropdown-toggle shadow-none options" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><input type="button" name="view" value="Profile" id="<?php echo $id ?>" class="btn btn-xs view_data dropdown-item" /></li>
+                        <li><a class="dropdown-item" href="edit-profile.php?id=<?php echo $id ?>">Edit</a></li>
+                        <li><a class="dropdown-item" href="delete-profile.php?id=<?php echo $id ?>">Delete</a></li>
+                    </ul>
+                    </div>
+                    </td>
+                </tr>
+        <?php
+            }
+        }
     }
-
 echo '
     </tbody>
     </table>
@@ -389,6 +421,14 @@ echo '
                 echo "&page=";
                 echo $page_number;
             }    
+        } else {
+            if(($page_number - 1) > 0){
+                echo "?page=";
+                echo $page_number-1;
+            } else {
+                echo "?page=";
+                echo $page_number;
+            }    
         }
         ?>" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
@@ -406,6 +446,14 @@ echo '
             echo $page_number + 1;
         } elseif(($page_number + 1) >= $total_pages) {
             echo "&page=";
+            echo $total_pages;
+        }
+    } else {
+        if(($page_number + 1) < $total_pages){
+            echo "?page=";
+            echo $page_number + 1;
+        } elseif(($page_number + 1) >= $total_pages) {
+            echo "?page=";
             echo $total_pages;
         }
     }
