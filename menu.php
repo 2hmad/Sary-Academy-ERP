@@ -35,7 +35,7 @@
                     echo '
                     <div class="group">
                     <span>Accounting</span>
-                    <a href="accounting.php"><button class="menu-link accounting-menu"><i class="fas fa-calculator" style="margin-right: 5%;"></i> Accounting</button></a>
+                    <a href="accounting.php"><button class="menu-link accounting-menu"><i class="fas fa-calculator" style="margin-right: 5%;"></i> Payments</button></a>
                     </div>        
                     ';
                 }
