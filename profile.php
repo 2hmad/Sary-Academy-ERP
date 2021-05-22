@@ -66,7 +66,7 @@
     ?>
 
     <button type="button" class="print" onclick="codespeedy()">
-        Print <?php echo "$name" ?> ID
+        Print <?php echo "$name" . "'s" ?> ID
     </button>
 </body>
 <script>
