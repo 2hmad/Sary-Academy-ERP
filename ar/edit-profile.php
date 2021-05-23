@@ -82,9 +82,23 @@ if($num > 0) {
                     <label style="font-weight: bold;">الجنس</label>
                     <select name="gender" required>
                         <option hidden><?php echo "$gender" ?></option>
-                        <option>Male</option>
-                        <option>Female</option>
+                        <option value="Male">ذكر</option>
+                        <option value="Female">انثي</option>
                     </select>
+                    <label style="font-weight: bold;">الصورة الشخصية</label>
+                    <div class="mb-3">
+                    <?php
+                        $query_check = mysqli_query($connect, "SELECT * FROM cards WHERE id = $id");
+                        if($row_check = mysqli_fetch_array($query_check)) {
+                            $profile = $row_check['profile_pic'];
+                            if($profile !== "") {
+                                echo '<input class="form-control" type="file" name="profile-pic" id="formFile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="تم رفع الصورة من قبل" style="border: 1px solid green">';
+                            } else {
+                                echo '<input class="form-control" type="file" name="profile-pic" id="formFile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="لم يتم رفع الصورة من قبل" style="border: 1px solid red">';
+                            }
+                        }
+                    ?>
+                    </div>
 
                     <label style="font-weight: bold;">نوع البطاقة</label>
                     <select name="kind" onchange="yesnoCheck(this);" required>
@@ -102,7 +116,7 @@ if($num > 0) {
                     <input type="text" name="salary" class="ifEmployeeSalary" style="display:none" value="<?php echo "$salary" ?>">
 
                     </div>
-                    <input type="submit" name="edit-card" value="تعديل البطاقة">
+                    <input type="submit" name="edit-card" value="حفظ التعديلات">
                 </form>
 <?php
 if(isset($_POST['edit-card'])) {
@@ -115,19 +129,35 @@ if(isset($_POST['edit-card'])) {
     $position = $_POST['position'];
     $salary = $_POST['salary'];
     if($kind == "Employee") {
+        if($_FILES['profile-pic']['tmp_name'] !== "") {
         $cover= addslashes(file_get_contents($_FILES['profile-pic']['tmp_name']));
         $file = $_FILES['profile-pic']['tmp_name'];
         $pic = $_FILES["profile-pic"]["name"];
         $destination = '../employees/'.$pic;
         $file_folder = "../employees/";  
         move_uploaded_file($file, $file_folder.$pic);
+        } else {
+            $query_photo = mysqli_query($connect, "SELECT * FROM cards WHERE id = $id");
+            while($row_photo = mysqli_fetch_array($query_photo)) {
+                $profile = $row_photo['profile_pic'];
+                $pic = "$profile";
+            }
+        }
     } else {
+        if($_FILES['profile-pic']['tmp_name'] !== "") {
         $cover= addslashes(file_get_contents($_FILES['profile-pic']['tmp_name']));
         $file = $_FILES['profile-pic']['tmp_name'];
         $pic = $_FILES["profile-pic"]["name"];
         $destination = '../students/'.$pic;
         $file_folder = "../students/";   
         move_uploaded_file($file, $file_folder.$pic); 
+        } else {
+            $query_photo = mysqli_query($connect, "SELECT * FROM cards WHERE id = $id");
+            while($row_photo = mysqli_fetch_array($query_photo)) {
+                $profile = $row_photo['profile_pic'];
+                $pic = "$profile";
+            }
+        }
     }
 
     $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', kind='$kind', profile_pic='$pic', position='$position', salary='$salary' WHERE id='$id'";
@@ -144,4 +174,10 @@ if(isset($_POST['edit-card'])) {
 
 </body>
 <?php include('scripts.php') ?>
+<script>
+$(document).ready(function(){
+    $('#formFile').tooltip();
+});
+</script>
+
 </html>

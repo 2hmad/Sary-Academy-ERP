@@ -86,8 +86,19 @@ if($num > 0) {
                         <option>Female</option>
                     </select>
                     <label style="font-weight: bold;">Profile Pic</label>
-                    <input type="file" name="profile-pic">
-
+                    <div class="mb-3">
+                    <?php
+                        $query_check = mysqli_query($connect, "SELECT * FROM cards WHERE id = $id");
+                        if($row_check = mysqli_fetch_array($query_check)) {
+                            $profile = $row_check['profile_pic'];
+                            if($profile !== "") {
+                                echo '<input class="form-control" type="file" name="profile-pic" id="formFile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="File Uploaded Before" style="border: 1px solid green">';
+                            } else {
+                                echo '<input class="form-control" type="file" name="profile-pic" id="formFile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="File Not Uploaded Yet" style="border: 1px solid red">';
+                            }
+                        }
+                    ?>
+                    </div>
                     <label style="font-weight: bold;">Kind</label>
                     <select name="kind" onchange="yesnoCheck(this);" required>
                         <option value=<?php echo "$kind" ?> hidden><?php echo "$kind" ?></option>
@@ -104,7 +115,7 @@ if($num > 0) {
                     <input type="text" name="salary" class="ifEmployeeSalary" style="display:none" value="<?php echo "$salary" ?>">
 
                     </div>
-                    <input type="submit" name="edit-card" value="Edit Card">
+                    <input type="submit" name="edit-card" value="Save Changes">
                 </form>
 <?php
 if(isset($_POST['edit-card'])) {
@@ -116,22 +127,38 @@ if(isset($_POST['edit-card'])) {
     $kind = $_POST['kind'];
     $position = $_POST['position'];
     $salary = $_POST['salary'];
-
+    
     if($kind == "Employee") {
-        $cover= addslashes(file_get_contents($_FILES['profile-pic']['tmp_name']));
-        $file = $_FILES['profile-pic']['tmp_name'];
-        $pic = $_FILES["profile-pic"]["name"];
-        $destination = 'employees/'.$pic;
-        $file_folder = "employees/";  
-        move_uploaded_file($file, $file_folder.$pic);
+        if($_FILES['profile-pic']['tmp_name'] !== "") {
+            $cover= addslashes(file_get_contents($_FILES['profile-pic']['tmp_name']));
+            $file = $_FILES['profile-pic']['tmp_name'];
+            $pic = $_FILES["profile-pic"]["name"];
+            $destination = 'employees/'.$pic;
+            $file_folder = "employees/";  
+            move_uploaded_file($file, $file_folder.$pic);    
+        } else {
+            $query_photo = mysqli_query($connect, "SELECT * FROM cards WHERE id = $id");
+            while($row_photo = mysqli_fetch_array($query_photo)) {
+                $profile = $row_photo['profile_pic'];
+                $pic = "$profile";
+            }
+        }
     } else {
+        if($_FILES['profile-pic']['tmp_name'] !== "") {
         $cover= addslashes(file_get_contents($_FILES['profile-pic']['tmp_name']));
         $file = $_FILES['profile-pic']['tmp_name'];
         $pic = $_FILES["profile-pic"]["name"];
         $destination = 'students/'.$pic;
         $file_folder = "students/";   
         move_uploaded_file($file, $file_folder.$pic); 
+    } else {
+        $query_photo = mysqli_query($connect, "SELECT * FROM cards WHERE id = $id");
+        while($row_photo = mysqli_fetch_array($query_photo)) {
+            $profile = $row_photo['profile_pic'];
+            $pic = "$profile";
+        }
     }
+}
   
     $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', kind='$kind', profile_pic='$pic', position='$position', salary='$salary' WHERE id='$id'";
     $query = mysqli_query($connect, $sql);
@@ -147,4 +174,9 @@ if(isset($_POST['edit-card'])) {
 
 </body>
 <?php include('scripts.php') ?>
+<script>
+$(document).ready(function(){
+    $('#formFile').tooltip();
+});
+</script>
 </html>
