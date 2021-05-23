@@ -11,4 +11,4 @@ It is an integrated system to control the preschool in terms of recording attend
 6- Automatic recording of activities that took place daily in the preschool<Br>
 7- The possibility of full control in the cards registered in the preschool<bR>
 
-  <a href="https://erp.saryacademy.com">Live Demo</a>
+  <a href="https://erp.saryacademy.com" target="_blank">Live Demo</a>
