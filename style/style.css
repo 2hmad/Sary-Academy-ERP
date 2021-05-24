@@ -166,3 +166,10 @@ a {
         max-width: 100px;
     }
 }
+
+@media only screen and (max-width: 768px) {
+    .menu-dashboard {
+        margin-bottom: 3%;
+        display: block;
+    }
+}

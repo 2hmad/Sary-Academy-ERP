@@ -15,6 +15,14 @@
         border-radius: 5px;
         right: 20px;
     }
+    @media only screen and (max-width: 768px){
+        .first-row, .second-row {
+            margin-left: auto !important;
+            margin-right: auto;
+            margin-top: 3%;
+            gap: 20px;
+        }
+    }
     </style>
 </head>
 <body style="background-color:#FAFAFA;padding:10px">
@@ -26,7 +34,7 @@
             <?php include('menu.php'); ?>
         </div>
         <div class="col-lg">
-            <div class="row" style="margin-left: 5%;">
+            <div class="row first-row" style="margin-left: 5%;">
                 <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
                     <a href="card-verification.php?search=show-all">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fas fa-user-friends"></i> Cards</h5>
@@ -65,7 +73,7 @@ echo $count;
                     <span style="text-transform: uppercase;">total employees attendances today</span>
                 </div>
             </div>
-            <div class="row" style="margin-left: 5%;margin-top:3%">
+            <div class="row second-row" style="margin-left: 5%;margin-top:3%">
             <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
                     <a href="attendance.php?type=Students&month=<?php echo date("M"); ?>">
                     <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fas fa-user-friends"></i> Today Attendances</h5>
