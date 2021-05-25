@@ -68,7 +68,7 @@ a {
 }
 
 .id-student {
-    background: url('../IDs/id-student.svg') no-repeat;
+    background: url('../../IDs/id-student.svg') no-repeat;
     width: 500px;
     height: 100%;
     background-size: cover;
@@ -77,7 +77,7 @@ a {
 }
 
 .id-employee {
-    background: url('../IDs/id-employee.svg') no-repeat;
+    background: url('../../IDs/id-employee.svg') no-repeat;
     width: 500px;
     height: 100%;
     background-size: cover;
@@ -86,7 +86,7 @@ a {
 }
 
 .id-kidsarea {
-    background: url('../IDs/id-kidsarea.svg') no-repeat;
+    background: url('../../IDs/id-kidsarea.svg') no-repeat;
     width: 500px;
     height: 100%;
     background-size: cover;
@@ -95,7 +95,7 @@ a {
 }
 
 .back-id {
-    background: url('../IDs/id-back.svg') no-repeat;
+    background: url('../../IDs/id-back.svg') no-repeat;
     width: 500px;
     height: 100%;
     background-size: cover;

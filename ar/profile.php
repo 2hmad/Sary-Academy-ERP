@@ -60,7 +60,7 @@
     ?>
 
     <button type="button" class="print" onclick="codespeedy()">
-        Print <?php echo "$name" ?> ID
+        طباعة كارت <?php echo "$name" ?>
     </button>
 </body>
 <script>

@@ -363,9 +363,9 @@ if(isset($_POST['apply'])) {
                         <i class="fas fa-ellipsis-h"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><input type="button" name="view" value="Profile" id="<?php echo $id ?>" class="btn btn-xs view_data dropdown-item" /></li>
-                        <li><a class="dropdown-item" href="edit-profile.php?id=<?php echo $id ?>">Edit</a></li>
-                        <li><a class="dropdown-item" href="delete-profile.php?id=<?php echo $id ?>">Delete</a></li>
+                        <li><input type="button" name="view" value="الملف الشخصي" id="<?php echo $id ?>" class="btn btn-xs view_data dropdown-item" /></li>
+                        <li><a class="dropdown-item" href="edit-profile.php?id=<?php echo $id ?>">تعديل</a></li>
+                        <li><a class="dropdown-item" href="delete-profile.php?id=<?php echo $id ?>">حذف</a></li>
                     </ul>
                     </div>
                     </td>
