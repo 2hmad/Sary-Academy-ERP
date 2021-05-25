@@ -58,12 +58,26 @@
                 <form method="POST" style="margin-top: 2%;margin-bottom:5%" enctype="multipart/form-data">
                     <div style="display:block;text-align:center">
                         <select name="role" required>
-                            <option value="">الوظيفة</option>
+                            <?php
+                            if(!isset($_GET['type'])) {
+                                echo '<option value="" hidden>اختر الوظيفة</option>';
+                            } else {
+                                $type_get = $_GET['type'];
+                                echo '<option hidden>'.$type_get.'</option>';
+                            }
+                            ?>
                             <option value="Student">طالب</option>
                             <option value="Employee">موظف</option>
                         </select>
                         <select name="month" required>
-                            <option value="">اختر الشهر</option>
+                            <?php
+                            if(!isset($_GET['month'])) {
+                                echo '<option value="" hidden>اختر الشهر</option>';
+                            } else {
+                                $month_get = $_GET['month'];
+                                echo '<option hidden>'.$month_get.'</option>';
+                            }
+                            ?>
                             <option value="January">يناير</option>
                             <option value="February">فبراير</option>
                             <option value="March">مارس</option>
@@ -120,6 +134,8 @@ if(isset($_GET['month']) && isset($_GET['type'])) {
     $type_get = "";
 }
 
+if(isset($_GET['month']) && isset($_GET['type'])) {
+
 $sql = "SELECT * FROM attendance WHERE type='$type_get' AND month='$month_get' ORDER BY id DESC LIMIT $from, $num_per_page";
 $query = mysqli_query($connect, $sql);        
 
@@ -154,7 +170,43 @@ echo '
     </table>
     </div>
 ';
+} else {
+    $current_month = date("M");
+    $sql = "SELECT * FROM attendance WHERE type='Student' AND month='$current_month' ORDER BY id DESC LIMIT $from, $num_per_page";
+    $query = mysqli_query($connect, $sql);        
 
+    if(mysqli_num_rows($query) > 0) {
+
+        while($row = mysqli_fetch_array($query)) {
+            $code = $row['code'];
+            $name = $row['name'];
+            $position = $row['position'];
+            $date = $row['date'];
+            $present = $row['present'];
+            $absence = $row['absence'];
+            
+            echo '
+            <tr>
+                <td>'.$code.'</td>
+                <td>'.$name.'</td>
+                <td>'.$position.'</td>
+                <td>'.$date.'</td>
+                <td>'.$present.'</td>
+                <td>'.$absence.'</td>
+            </tr>
+            ';
+        }
+
+    } else {
+        echo "<caption>لا توجد بيانات متاحه</caption>";
+    }
+
+    echo '
+        </tbody>
+        </table>
+        </div>
+    ';
+}
 if(isset($_GET['month']) && isset($_GET['type'])) {
     $sql_pagination = "SELECT * FROM attendance WHERE month='$month_get'";
 } else {
