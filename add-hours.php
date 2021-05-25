@@ -20,7 +20,6 @@
     }
     .hours-btn {
         padding: 5px;
-        display: block;
         background: white;
         color: #1d2362;
         border-radius: 5px;
@@ -34,6 +33,25 @@
     }
     .hours-btn:hover {
         background-color: #1d2362;
+        color: white;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
+    .reset-btn {
+        padding: 5px;
+        background: white;
+        color: #de0000;
+        border-radius: 5px;
+        border: 1px solid #de0000;
+        font-weight: bold;
+        outline: none;
+        width: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5%;
+    }
+    .reset-btn:hover {
+        background-color: #de0000;
         color: white;
         -webkit-transition: 0.5s;
         transition: 0.5s;
@@ -90,7 +108,10 @@
         echo '
         <span class="hidden-price" style="display:none">'.$price.'</span>
         </div>
-        <input type="submit" class="hours-btn" name="add-hours" value="Add Hours">
+        <div style="text-align:center">
+            <input type="submit" class="hours-btn" name="add-hours" value="Add Hours">
+            <input type="submit" class="reset-btn" name="reset-hours" value="Reset Hours">
+        </div>
         </form>
         ';
         
@@ -162,6 +183,12 @@ if(isset($_POST['add-hours'])) {
     } else {
         echo "<div class='alert alert-danger'>Please Enter Card Code</div>";
     }
+} elseif(isset($_POST['reset-hours'])) {
+    $code = $_GET['code'];
+    $sql = "UPDATE cards SET hours='0' WHERE code='$code'";
+    $query = mysqli_query($connect, $sql);
+    echo "<div class='alert alert-success'>Hours in this card have been deleted</div>";  
+    header('refresh:4;url='.$_SERVER['REQUEST_URI']);
 }
 ?>
             </div>

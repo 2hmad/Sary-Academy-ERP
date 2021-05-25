@@ -1,7 +1,7 @@
 <audio src="Alarm.mp3"></audio>
 
 <?php
-include('connection.php');
+  include('connection.php');
         echo '
         <table class="table table-bordered">
         <thead class="table-dark">
@@ -25,7 +25,8 @@ include('connection.php');
             $page_number = 1;
         }
         $num_per_page = 10;
-        $from = ($page_number-1)*$num_per_page;        
+        $from = ($page_number-1)*$num_per_page;     
+        
         $sql = "SELECT * FROM sessions WHERE date='$current_date' ORDER BY id DESC LIMIT $from, $num_per_page";
         $query = mysqli_query($connect, $sql);
         $num = mysqli_num_rows($query);
@@ -78,14 +79,19 @@ include('connection.php');
                 }
           }
       } else {
-            echo '<caption>لا توجد بيانات متاحة في الوقت الحالي</caption>';
-        }
+            echo '<caption>No data available now</caption>';
+      }
+
 ?>
         </tbody>
     </table>
 
     <?php
-        $sql = "SELECT * FROM sessions WHERE date='$current_date'";
+        if(!isset($_GET['month'])) {
+          $sql = "SELECT * FROM sessions WHERE date='$current_date'";
+        } else {
+          $sql = "SELECT * FROM sessions WHERE monthname(date)='$select_month'";
+        }
         $query = mysqli_query($connect, $sql);
         $totalItems = mysqli_num_rows($query);
     

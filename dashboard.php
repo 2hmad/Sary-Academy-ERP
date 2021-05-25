@@ -117,9 +117,10 @@ echo $count;
         <caption style="text-transform: uppercase;text-align:center;font-weight:bold">Recently Added</caption>
         <thead class="table-primary">
             <tr>
+                <th>Code</th>
                 <th>Name</th>
                 <th>Gender</th>
-                <th>Code</th>
+                <th>Position</th>
             </tr>
         </thead>
         <tbody>
@@ -132,11 +133,13 @@ if($num > 0) {
         $name = $row['name'];
         $gender = $row['gender'];
         $code = $row['code'];
+        $kind = $row['kind'];
         echo "
         <tr>
+            <td>$code</td>
             <td>$name</td>
             <td>$gender</td>
-            <td>$code</td>
+            <td>$kind</td>
         </tr>
         ";
     }

@@ -76,8 +76,9 @@
 
 <?php
 $date = date("Y-m-d");
+$current_month = date("M");
 if(isset($_POST['delete-all'])) {
-    $sql = "DELETE FROM activities WHERE date='$date'";
+    $sql = "DELETE FROM activities WHERE MONTHNAME(date)='$current_month'";
     $query = mysqli_query($connect, $sql);
 }
 ?>
@@ -98,6 +99,8 @@ if(isset($_POST['delete-all'])) {
         date_default_timezone_set("Africa/Cairo");
         $date = date("Y-m-d");
         $current_time = date("h:i:sa");
+        $current_month = date("M");
+
         if(isset($_GET['page'])) {
             $page_number = $_GET['page'];
         } else {
@@ -105,7 +108,7 @@ if(isset($_POST['delete-all'])) {
         }
         $num_per_page = 10;
         $from = ($page_number-1)*$num_per_page;        
-        $sql = "SELECT * FROM activities WHERE date='$date' ORDER BY id DESC LIMIT $from, $num_per_page";
+        $sql = "SELECT * FROM activities WHERE monthname(date)='$current_month' ORDER BY id DESC LIMIT $from, $num_per_page";
         $query = mysqli_query($connect, $sql);
         $num = mysqli_num_rows($query);
         if($num > 0) {
@@ -158,7 +161,7 @@ if(isset($_POST['delete-all'])) {
 ?>
 
 <form method="POST" style="width:auto" action="export_activity.php">
-    <button class="btn btn-success" name="export" type="submit" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="fas fa-file-csv"></i> Export today's activities</button>
+    <button class="btn btn-success" name="export" type="submit" style="width: auto;margin-bottom:2%;text-transform:capitalize;float:left"><i class="fas fa-file-csv"></i> Export <?php echo $current_month ?>'s activities</button>
 </form>
 
 <nav aria-label="Page navigation example" style="margin-left:auto;width:auto">
