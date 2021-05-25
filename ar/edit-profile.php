@@ -124,7 +124,6 @@ if(isset($_POST['edit-card'])) {
     $phone = $_POST['phone'];
     $birthday = $_POST['birthday'];
     $gender = $_POST['gender'];
-    $hours = $_POST['hours'];
     $kind = $_POST['kind'];
     $position = $_POST['position'];
     $salary = $_POST['salary'];
@@ -162,7 +161,9 @@ if(isset($_POST['edit-card'])) {
 
     $sql = "UPDATE cards SET name='$name', phone='$phone', birthday='$birthday', gender='$gender', kind='$kind', profile_pic='$pic', position='$position', salary='$salary' WHERE id='$id'";
     $query = mysqli_query($connect, $sql);
-    header('Location:'.$_SERVER['REQUEST_URI']);
+    echo "<div class='alert alert-success'>تم تحديث الملف الشخصي</div>";  
+    header('refresh:4;url='.$_SERVER['REQUEST_URI']);
+
     }
 ?>
             </div>
