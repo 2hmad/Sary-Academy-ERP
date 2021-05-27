@@ -58,6 +58,12 @@
             <form method="POST" style="margin-top: 2%;margin-bottom:5%" enctype="multipart/form-data">
                     <div style="display:block;text-align:center">
                         <select type="text" name="month" required>
+                            <?php
+                                if(isset($_GET['month'])) {
+                                    $monthGet = $_GET['month'];
+                                    echo "<option hidden>$monthGet</option>";
+                                }
+                            ?>
                             <option value="All">All Months</option>
                             <option>January</option>
                             <option>February</option>

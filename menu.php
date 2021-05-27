@@ -25,17 +25,18 @@
             
             <div class="group">
             <span>Academic</span>
-            <a href="sessions.php"><button class="menu-link sessions-menu"><i class="fas fa-plug" style="margin-right: 5%;"></i> Play Area</button></a>
+            <a href="display-sessions.php?month=<?php echo date('M') ?>"><button class="menu-link sessions-menu"><i class="fas fa-plug" style="margin-right: 5%;"></i> Play Area</button></a>
             <a href="attendance.php"><button class="menu-link attendance-menu"><i class="fas fa-clipboard" style="margin-right: 5%;"></i> Academy Attendance</button></a>
             <a href="attendance-schedule.php"><button class="menu-link attendance-schedule-menu"><i class="fas fa-users" style="margin-right: 5%;"></i> Personal Attendance</button></a>
             </div>
 
             <?php
                 if($per_two !==""){
+                    $current_month = date('M');
                     echo '
                     <div class="group">
                     <span>Accounting</span>
-                    <a href="accounting.php"><button class="menu-link accounting-menu"><i class="fas fa-calculator" style="margin-right: 5%;"></i> Payments</button></a>
+                    <a href="accounting.php?month='.$current_month.'"><button class="menu-link accounting-menu"><i class="fas fa-calculator" style="margin-right: 5%;"></i> Payments</button></a>
                     </div>        
                     ';
                 }
