@@ -171,7 +171,7 @@ echo '
     </div>
 ';
 } else {
-    $current_month = date("M");
+    $current_month = date("F");
     $sql = "SELECT * FROM attendance WHERE type='Student' AND month='$current_month' ORDER BY id DESC LIMIT $from, $num_per_page";
     $query = mysqli_query($connect, $sql);        
 

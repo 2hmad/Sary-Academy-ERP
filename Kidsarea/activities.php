@@ -76,7 +76,7 @@
 
 <?php
 $date = date("Y-m-d");
-$current_month = date("M");
+$current_month = date("F");
 if(isset($_POST['delete-all'])) {
     $sql = "DELETE FROM activities WHERE MONTHNAME(date)='$current_month'";
     $query = mysqli_query($connect, $sql);
@@ -99,7 +99,7 @@ if(isset($_POST['delete-all'])) {
         date_default_timezone_set("Africa/Cairo");
         $date = date("Y-m-d");
         $current_time = date("h:i:sa");
-        $current_month = date("M");
+        $current_month = date("F");
 
         if(isset($_GET['page'])) {
             $page_number = $_GET['page'];
@@ -132,7 +132,7 @@ if(isset($_POST['delete-all'])) {
                     </tr>
                     ';    
             }          
-            }else {
+            } else {
                 echo '
                 <tr>
                     <td>'.$code.'</td>    
