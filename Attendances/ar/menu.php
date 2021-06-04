@@ -25,7 +25,7 @@
             
             <div class="group">
             <span>اكاديمي</span>
-            <a href="display-sessions.php?month=<?php echo date('M') ?>"><button class="menu-link sessions-menu"><i class="fas fa-plug" style="margin-right: 5%;"></i> منطقة الالعاب</button></a>
+            <a href="display-sessions.php?month=<?php echo date('M') ?>" style="display:none"><button class="menu-link sessions-menu"><i class="fas fa-plug" style="margin-right: 5%;"></i> منطقة الالعاب</button></a>
             <a href="attendance.php"><button class="menu-link attendance-menu"><i class="fas fa-clipboard" style="margin-right: 5%;"></i> حضور الاكاديمية</button></a>
             <a href="attendance-schedule.php"><button class="menu-link attendance-schedule-menu"><i class="fas fa-users" style="margin-right: 5%;"></i> حضور شخصي</button></a>
             </div>
@@ -33,7 +33,7 @@
             <?php
                 if($per_two !==""){
                     echo '
-                    <div class="group">
+                    <div class="group" style="display:none">
                     <span>حسابات</span>
                     <a href="accounting.php?month='.date('M').'"><button class="menu-link accounting-menu"><i class="fas fa-calculator" style="margin-right: 5%;"></i> الحسابات</button></a>
                     </div>
@@ -55,7 +55,7 @@
             ?>
             <?php
                 if($per_three !==""){
-                    echo '<a href="add-hours.php"><button class="menu-link add-hours-menu"><i class="fas fa-id-card" style="margin-right: 5%;"></i> اضافة ساعات</button></a>';
+                    echo '<a href="add-hours.php" style="display:none"><button class="menu-link add-hours-menu"><i class="fas fa-id-card" style="margin-right: 5%;"></i> اضافة ساعات</button></a>';
                 }
             ?>
             </div>
