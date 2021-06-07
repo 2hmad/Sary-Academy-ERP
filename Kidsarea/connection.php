@@ -9,10 +9,9 @@ $user = "root";
 $pass = "";
 $db = "kidsarea";
 $connect = mysqli_connect($host, $user, $pass, $db) or die("Can't connect with database");
-mysqli_set_charset($connect, "set names 'utf8'");
+$connect->set_charset("ISO-8859-1");
 
 session_start();
-
 ob_start();
 
 ?>

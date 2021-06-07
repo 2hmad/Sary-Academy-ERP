@@ -158,6 +158,7 @@
                 while($row_name = mysqli_fetch_array($sql_name)) {
                   $name = $row_name["name"];
                 }  
+                $current_time = date("H:i");
                 $sql_update = "UPDATE sessions SET status='Complete' WHERE code = '$code_check' AND date='$current_date' AND end_time <= '$current_time'";
                 $query_update = mysqli_query($connect, $sql_update);
                 echo '
@@ -166,10 +167,9 @@
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 <script>
-                var snd = new Audio("Alarm.mp3");    
-                snd .play();
+                    var snd = new Audio("Alarm.mp3");    
+                    snd .play();
                 </script>';
-
                 }
           }
       } else {

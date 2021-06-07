@@ -68,14 +68,14 @@ if(!empty($_POST['code'])){
                 } else {
                     $sql_attendance = mysqli_query($connect, "SELECT * FROM attendance WHERE code='$code' AND date='$date'");
                     if(mysqli_num_rows($sql_attendance) > 0) {
-                        $current_month = date('M');
+                        $current_month = date('F');
                         $current_time = date("H:i");
                         $sql_absence = "UPDATE attendance SET absence='$current_time' WHERE code='$code' AND date='$date'";
                         $query_absence = mysqli_query($connect, $sql_absence);
                         echo "Logged OUT";
                     } else {
                         $date = date("Y-m-d");
-                        $current_month = date('M');
+                        $current_month = date('F');
                         $current_time = date("H:i");
                         $sql_insert = "INSERT INTO attendance (code, name, position, type, month, date, present) VALUES ('$code', '$name', '$position', '$kind', '$current_month', '$date' ,'$current_time')";
                         $query_insert = mysqli_query($connect, $sql_insert);

@@ -25,7 +25,7 @@
             
             <div class="group">
             <span>Academic</span>
-            <a href="display-sessions.php?month=<?php echo date('M') ?>"><button class="menu-link sessions-menu"><i class="fas fa-plug" style="margin-right: 5%;"></i> Play Area</button></a>
+            <a href="sessions.php"><button class="menu-link sessions-menu"><i class="fas fa-plug" style="margin-right: 5%;"></i> Play Area</button></a>
             <a href="attendance.php" style="display:none"><button class="menu-link attendance-menu"><i class="fas fa-clipboard" style="margin-right: 5%;"></i> Academy Attendance</button></a>
             <a href="attendance-schedule.php" style="display:none"><button class="menu-link attendance-schedule-menu"><i class="fas fa-users" style="margin-right: 5%;"></i> Personal Attendance</button></a>
             </div>

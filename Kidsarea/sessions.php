@@ -56,7 +56,7 @@
                 <h5 style="text-transform: uppercase;font-weight:bold;color:#424242;align-self: center;"><i class="fas fa-user-friends"></i> Online Sessions</h5>
             </div>
     <div class="row" style="background:white;padding:20px;box-shadow:0 0 15px -9px rgba(0, 0, 0, 0.25);border-radius:5px;margin-top:3%">
-    <form method="POST" style="margin-top: 2%;margin-bottom:5%">
+    <!-- <form method="POST" style="margin-top: 2%;margin-bottom:5%">
         <div style="text-align: center;">
         <select name="month">
             <?php
@@ -82,7 +82,7 @@
         </select>
         <input type="submit" class="apply-btn" name="apply" value="Apply">
         </div>
-    </form>
+    </form> -->
     <?php
         if(isset($_POST['apply'])) {
             $month = $_POST['month'];

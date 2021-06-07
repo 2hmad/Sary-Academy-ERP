@@ -93,24 +93,6 @@ echo $count;
                     </a>
                     <span style="text-transform: uppercase;">total students attendances today</span>
                 </div>
-                <div class="card" style="padding: 30px;margin-right:5%;box-shadow: 0px 0px 5px 0px #cccc;">
-                    <a href="sessions.php">
-                    <h5 class="text-muted" style="font-size: 1.1rem;font-weight: 400;"><i class="fas fa-user-friends"></i> Kids Area</h5>
-                    </a>
-                    <div class="box-card" style="background: #f39710;"><i class="fas fa-user-friends"></i></div>
-                    <a href="sessions.php">
-                    <span style="font-size: 35px;font-weight: bold;">
-<?php
-$sql = "SELECT COUNT(*) AS total_kids FROM sessions WHERE status=''";
-$query = mysqli_query($connect, $sql);
-$row = mysqli_fetch_assoc($query);
-$count = $row['total_kids'];
-echo $count;
-?>
-                    </span>
-                    </a>
-                    <span style="text-transform: uppercase;">total in kids area</span>
-                </div>
             </div>
         <div style="margin-top: 5%;margin-left: 5%;">
         <table class="table caption-top table-striped table-bordered table-responsive">
